@@ -11868,7 +11868,6 @@ Elm.Main.make = function (_elm) {
    $Html = Elm.Html.make(_elm),
    $Html$Attributes = Elm.Html.Attributes.make(_elm),
    $List = Elm.List.make(_elm),
-   $Material = Elm.Material.make(_elm),
    $Material$Layout = Elm.Material.Layout.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
@@ -11886,11 +11885,11 @@ Elm.Main.make = function (_elm) {
                                                              _U.list([$Html.text("Material Design")]))]))]);
    var drawer = _U.list([$Material$Layout.title("Example drawer")
                         ,$Material$Layout.navigation(_U.list([A2($Material$Layout.link,
-                                                             _U.list([$Html$Attributes.href("https://groups.google.com/forum/#!forum/elm-discuss")]),
-                                                             _U.list([$Html.text("Elm Discuss")]))
+                                                             _U.list([$Html$Attributes.href("https://github.com/debois/elm-mdl")]),
+                                                             _U.list([$Html.text("github")]))
                                                              ,A2($Material$Layout.link,
-                                                             _U.list([$Html$Attributes.href("http://elm-lang.org")]),
-                                                             _U.list([$Html.text("Elm")]))]))]);
+                                                             _U.list([$Html$Attributes.href("http://package.elm-lang.org/packages/debois/elm-mdl/1.0.0/")]),
+                                                             _U.list([$Html.text("elm-package")]))]))]);
    var TextfieldAction = function (a) {    return {ctor: "TextfieldAction",_0: a};};
    var ButtonsAction = function (a) {    return {ctor: "ButtonsAction",_0: a};};
    var tabs = _U.list([{ctor: "_Tuple2"
@@ -11926,13 +11925,10 @@ Elm.Main.make = function (_elm) {
       A2($Array.get,model.layout.selectedTab,tabViews)),
       addr,
       model));
-      return A3($Material.topWithColors,
-      $Material.Teal,
-      $Material.Red,
-      A3($Material$Layout.view,
+      return A3($Material$Layout.view,
       A2($Signal.forwardTo,addr,LayoutAction),
       model.layout,
-      {header: $Maybe.Just(header),drawer: $Maybe.Just(drawer),tabs: $Maybe.Just(tabTitles),main: _U.list([top])}));
+      {header: $Maybe.Just(header),drawer: $Maybe.Just(drawer),tabs: $Maybe.Just(tabTitles),main: _U.list([top])});
    });
    var inputs = _U.list([$Material$Layout.setupSizeChangeSignal(LayoutAction)]);
    var layoutModel = _U.update($Material$Layout.defaultLayoutModel,{state: $Material$Layout.initState($List.length(tabs))});
