@@ -1,0 +1,5 @@
+elm-stuff
+.*.sw?
+index.html
+docs.json
+documentation.json
