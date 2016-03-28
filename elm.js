@@ -11549,6 +11549,7 @@ Elm.Material.Layout.make = function (_elm) {
    var _U = Elm.Native.Utils.make(_elm),
    $Array = Elm.Array.make(_elm),
    $Basics = Elm.Basics.make(_elm),
+   $DOM = Elm.DOM.make(_elm),
    $Debug = Elm.Debug.make(_elm),
    $Effects = Elm.Effects.make(_elm),
    $Html = Elm.Html.make(_elm),
@@ -11621,7 +11622,8 @@ Elm.Material.Layout.make = function (_elm) {
               ,A2($Html.div,
               _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "mdl-layout__tab-bar",_1: true}
                                                           ,{ctor: "_Tuple2",_0: "mdl-js-ripple-effect",_1: model.rippleTabs}
-                                                          ,{ctor: "_Tuple2",_0: "mds-js-ripple-effect--ignore-events",_1: model.rippleTabs}]))]),
+                                                          ,{ctor: "_Tuple2",_0: "mds-js-ripple-effect--ignore-events",_1: model.rippleTabs}
+                                                          ,{ctor: "_Tuple2",_0: "is-casting-shadow",_1: _U.eq(model.mode,Standard)}]))]),
               A2($Material$Helpers.mapWithIndex,
               F2(function (tabIndex,tab) {
                  return A3($Material$Helpers.filter,
@@ -11654,20 +11656,20 @@ Elm.Material.Layout.make = function (_elm) {
    });
    var view = F3(function (addr,model,_p4) {
       var _p5 = _p4;
-      var _p12 = _p5.tabs;
-      var _p11 = _p5.header;
-      var _p10 = _p5.drawer;
-      var hasHeader = !_U.eq(_p12,$Maybe.Nothing) || !_U.eq(_p11,$Maybe.Nothing);
+      var _p13 = _p5.tabs;
+      var _p12 = _p5.header;
+      var _p11 = _p5.drawer;
+      var hasHeader = !_U.eq(_p13,$Maybe.Nothing) || !_U.eq(_p12,$Maybe.Nothing);
       var mode = function () {
          var _p6 = model.mode;
          switch (_p6.ctor)
          {case "Standard": return "";
             case "Scroll": return "mdl-layout__header-scroll";
-            case "Waterfall": return "mdl-layout__header-waterfall";
+            case "Waterfall": return "mdl-layout__header-waterfall mdl-layout__header--waterfall-hide-top";
             default: return "mdl-layout__header-seamed";}
       }();
       var _p7 = function () {
-         var _p8 = {ctor: "_Tuple3",_0: _p10,_1: _p11,_2: model.fixedHeader};
+         var _p8 = {ctor: "_Tuple3",_0: _p11,_1: _p12,_2: model.fixedHeader};
          if (_p8.ctor === "_Tuple3" && _p8._0.ctor === "Just") {
                if (_p8._1.ctor === "Just" && _p8._2 === true) {
                      return {ctor: "_Tuple2",_0: $Maybe.Nothing,_1: $Maybe.Just(drawerButton(addr))};
@@ -11684,23 +11686,27 @@ Elm.Material.Layout.make = function (_elm) {
       _U.list([$Html$Attributes.$class("mdl-layout__container")]),
       _U.list([A3($Material$Helpers.filter,
       $Html.div,
-      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "mdl-layout",_1: true}
+      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "mdl-layout ",_1: true}
+                                                  ,{ctor: "_Tuple2",_0: mode,_1: !_U.eq(mode,"")}
                                                   ,{ctor: "_Tuple2",_0: "is-upgraded",_1: true}
                                                   ,{ctor: "_Tuple2",_0: "is-small-screen",_1: s(model).isSmallScreen}
-                                                  ,{ctor: "_Tuple2",_0: "has-drawer",_1: !_U.eq(_p10,$Maybe.Nothing)}
-                                                  ,{ctor: "_Tuple2",_0: "has-tabs",_1: !_U.eq(_p12,$Maybe.Nothing)}
+                                                  ,{ctor: "_Tuple2",_0: "has-drawer",_1: !_U.eq(_p11,$Maybe.Nothing)}
+                                                  ,{ctor: "_Tuple2",_0: "has-tabs",_1: !_U.eq(_p13,$Maybe.Nothing)}
                                                   ,{ctor: "_Tuple2",_0: "mdl-js-layout",_1: true}
-                                                  ,{ctor: "_Tuple2",_0: "mdl-layout--fixed-drawer",_1: model.fixedDrawer && !_U.eq(_p10,$Maybe.Nothing)}
+                                                  ,{ctor: "_Tuple2",_0: "mdl-layout--fixed-drawer",_1: model.fixedDrawer && !_U.eq(_p11,$Maybe.Nothing)}
                                                   ,{ctor: "_Tuple2",_0: "mdl-layout--fixed-header",_1: model.fixedHeader && hasHeader}
-                                                  ,{ctor: "_Tuple2",_0: "mdl-layout--fixed-tabs",_1: model.fixedTabs && !_U.eq(_p12,$Maybe.Nothing)}]))]),
+                                                  ,{ctor: "_Tuple2",_0: "mdl-layout--fixed-tabs",_1: model.fixedTabs && !_U.eq(_p13,$Maybe.Nothing)}]))]),
       _U.list([hasHeader ? $Maybe.Just(A3(headerView,
               addr,
               model,
-              {ctor: "_Tuple3",_0: headerDrawerButton,_1: _p11,_2: A2($Maybe.map,A2(tabsView,addr,model),_p12)})) : $Maybe.Nothing
-              ,A2($Maybe.map,function (_p9) {    return A2(obfuscator,addr,model);},_p10)
-              ,A2($Maybe.map,A2(drawerView,addr,model),_p10)
+              {ctor: "_Tuple3",_0: headerDrawerButton,_1: _p12,_2: A2($Maybe.map,A2(tabsView,addr,model),_p13)})) : $Maybe.Nothing
+              ,A2($Maybe.map,function (_p9) {    return A2(obfuscator,addr,model);},_p11)
+              ,A2($Maybe.map,A2(drawerView,addr,model),_p11)
               ,contentDrawerButton
-              ,$Maybe.Just(A2($Html.main$,_U.list([$Html$Attributes.$class("mdl-layout__content")]),_p5.main))]))]));
+              ,$Maybe.Just(A2($Html.main$,
+              _U.list([$Html$Attributes.$class("mdl-layout__content")
+                      ,A3($Html$Events.on,"scroll",$DOM.target($DOM.scrollTop),function (_p10) {    return A2($Signal.message,addr,ScrollContents(_p10));})]),
+              _p5.main))]))]));
    });
    var S = function (a) {    return {ctor: "S",_0: a};};
    var initState = function (no_tabs) {
@@ -11715,30 +11721,30 @@ Elm.Material.Layout.make = function (_elm) {
                             ,mode: Standard
                             ,state: initState(0)};
    var update = F2(function (action,model) {
-      var _p13 = model.state;
-      var state = _p13._0;
-      var _p14 = action;
-      switch (_p14.ctor)
-      {case "SmallScreen": var _p15 = _p14._0;
+      var _p14 = model.state;
+      var state = _p14._0;
+      var _p15 = A2($Debug.log,"Layout:",action);
+      switch (_p15.ctor)
+      {case "SmallScreen": var _p16 = _p15._0;
            return $Material$Helpers.pure(_U.update(model,
-           {state: S(_U.update(state,{isSmallScreen: _p15})),isDrawerOpen: $Basics.not(_p15) && model.isDrawerOpen}));
-         case "SwitchTab": return $Material$Helpers.pure(_U.update(model,{selectedTab: _p14._0}));
+           {state: S(_U.update(state,{isSmallScreen: _p16})),isDrawerOpen: $Basics.not(_p16) && model.isDrawerOpen}));
+         case "SwitchTab": return $Material$Helpers.pure(_U.update(model,{selectedTab: _p15._0}));
          case "ToggleDrawer": return $Material$Helpers.pure(_U.update(model,{isDrawerOpen: $Basics.not(model.isDrawerOpen)}));
-         case "Ripple": var _p19 = _p14._0;
-           var _p16 = A2($Maybe.withDefault,
+         case "Ripple": var _p20 = _p15._0;
+           var _p17 = A2($Maybe.withDefault,
            $Material$Helpers.pure(state),
            A2($Maybe.map,
-           function (_p17) {
-              var _p18 = _p17;
-              return {ctor: "_Tuple2",_0: _U.update(state,{tabs: A3($Array.set,_p19,_p18._0,s(model).tabs)}),_1: A2($Effects.map,Ripple(_p19),_p18._1)};
+           function (_p18) {
+              var _p19 = _p18;
+              return {ctor: "_Tuple2",_0: _U.update(state,{tabs: A3($Array.set,_p20,_p19._0,s(model).tabs)}),_1: A2($Effects.map,Ripple(_p20),_p19._1)};
            },
-           A2($Maybe.map,$Material$Ripple.update(_p14._1),A2($Array.get,_p19,s(model).tabs))));
-           var state$ = _p16._0;
-           var effect = _p16._1;
+           A2($Maybe.map,$Material$Ripple.update(_p15._1),A2($Array.get,_p20,s(model).tabs))));
+           var state$ = _p17._0;
+           var effect = _p17._1;
            return {ctor: "_Tuple2",_0: _U.update(model,{state: S(state$)}),_1: effect};
          case "ScrollTab": return {ctor: "_Tuple2",_0: model,_1: $Effects.none};
          case "ScrollContents": var headerVisible = state.isSmallScreen || model.fixedHeader;
-           var state$ = _U.update(state,{isCompact: _U.cmp(_p14._0,0) > 0,isAnimating: headerVisible});
+           var state$ = _U.update(state,{isCompact: _U.cmp(_p15._0,0) > 0,isAnimating: headerVisible});
            return {ctor: "_Tuple2",_0: _U.update(model,{state: S(state$)}),_1: $Effects.none};
          case "TransitionEnd": return {ctor: "_Tuple2",_0: _U.update(model,{state: S(_U.update(state,{isAnimating: false}))}),_1: $Effects.none};
          default: return {ctor: "_Tuple2",_0: _U.update(model,{state: S(_U.update(state,{isAnimating: true,isCompact: false}))}),_1: $Effects.none};}
@@ -11746,8 +11752,8 @@ Elm.Material.Layout.make = function (_elm) {
    var State$ = F4(function (a,b,c,d) {    return {tabs: a,isSmallScreen: b,isCompact: c,isAnimating: d};});
    var setupSizeChangeSignal = function (f) {
       return A2($Signal.map,
-      function (_p20) {
-         return f(SmallScreen(_p20));
+      function (_p21) {
+         return f(SmallScreen(_p21));
       },
       $Signal.dropRepeats(A2($Signal.map,F2(function (x,y) {    return _U.cmp(x,y) > 0;})(1024),$Window.width)));
    };
@@ -11763,6 +11769,10 @@ Elm.Material.Layout.make = function (_elm) {
                                         ,view: view
                                         ,Model: Model
                                         ,Contents: Contents
+                                        ,Standard: Standard
+                                        ,Seamed: Seamed
+                                        ,Scroll: Scroll
+                                        ,Waterfall: Waterfall
                                         ,SwitchTab: SwitchTab
                                         ,ToggleDrawer: ToggleDrawer};
 };
@@ -11955,7 +11965,8 @@ Elm.Main.make = function (_elm) {
       {header: $Maybe.Just(header),drawer: $Maybe.Just(drawer),tabs: $Maybe.Just(tabTitles),main: _U.list([top])}));
    });
    var inputs = _U.list([$Material$Layout.setupSizeChangeSignal(LayoutAction)]);
-   var layoutModel = _U.update($Material$Layout.defaultLayoutModel,{state: $Material$Layout.initState($List.length(tabs))});
+   var layoutModel = _U.update($Material$Layout.defaultLayoutModel,
+   {state: $Material$Layout.initState($List.length(tabs)),mode: $Material$Layout.Scroll,fixedHeader: false});
    var model = {layout: layoutModel,buttons: $Demo$Buttons.model,textfields: $Demo$Textfields.model};
    var init = {ctor: "_Tuple2",_0: model,_1: $Effects.none};
    var app = $StartApp.start({init: init,view: view,update: update,inputs: inputs});
