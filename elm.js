@@ -12424,7 +12424,7 @@ Elm.Demo.Badges.make = function (_elm) {
    var _op = {};
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Badge")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/#badges-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Badges.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Badges.elm";
    var intro = A2($Demo$Page.fromMDL,
    "http://www.getmdl.io/components/#badges-section",
    "\n> The Material Design Lite (MDL) badge component is an onscreen notification\n> element. A badge consists of a small circle, typically containing a number or\n> other characters, that appears in proximity to another object. A badge can be\n> both a notifier that there are additional items associated with an object and\n> an indicator of how many items there are.\n> \n> You can use a badge to unobtrusively draw the user\'s attention to items they\n> might not otherwise notice, or to emphasize that items may need their\n> attention. For example:\n> \n>  - A \"New messages\" notification might be followed by a badge containing the\n> number of unread messages.  \n>  - A \"You have unpurchased items in your shopping cart\" reminder might include\n>  a badge showing the number of items in the cart.\n>  - A \"Join the discussion!\" button might have an accompanying badge indicating the\n> number of users currently participating in the discussion.  \n> \n> A badge is almost\n> always positioned near a link so that the user has a convenient way to access\n> the additional information indicated by the badge. However, depending on the\n> intent, the badge itself may or may not be part of the link.\n> \n> Badges are a new feature in user interfaces, and provide users with a visual clue to help them discover additional relevant content. Their design and use is therefore an important factor in the overall user experience.\n> \n");
@@ -12479,7 +12479,7 @@ Elm.Demo.Buttons.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Button")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/components/buttons.html")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/#buttons-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Buttons.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Buttons.elm";
    var intro = A2($Demo$Page.fromMDL,
    "https://www.getmdl.io/components/#buttons-section",
    "\n> The Material Design Lite (MDL) button component is an enhanced version of the\n> standard HTML `<button>` element. A button consists of text and/or an image that\n> clearly communicates what action will occur when the user clicks or touches it.\n> The MDL button component provides various types of buttons, and allows you to\n> add both display and click effects.\n>\n> Buttons are a ubiquitous feature of most user interfaces, regardless of a\n> site\'s content or function. Their design and use is therefore an important\n> factor in the overall user experience. See the button component\'s Material\n> Design specifications page for details.\n>\n> The available button display types are flat (default), raised, fab, mini-fab,\n> and icon; any of these types may be plain (light gray) or colored, and may be\n> initially or programmatically disabled. The fab, mini-fab, and icon button\n> types typically use a small image as their caption rather than text.\n\n");
@@ -12641,7 +12641,7 @@ Elm.Demo.Elevation.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Elevation")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/what-is-material/elevation-shadows.html")
                             ,$Demo$Page.mdl("https://github.com/google/material-design-lite/blob/master/src/shadow/README.md")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Elevation.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Elevation.elm";
    var intro = A2($Demo$Page.fromMDL,
    "https://github.com/google/material-design-lite/blob/master/src/shadow/README.md",
    "\n  > The Material Design Lite (MDL) shadow is not a component in the same sense as\n> an MDL card, menu, or textbox; it is a visual effect that can be assigned to a\n> user interface element. The effect simulates a three-dimensional positioning of\n> the element, as though it is slightly raised above the surface it rests upon —\n> a positive z-axis value, in user interface terms. The shadow starts at the\n> edges of the element and gradually fades outward, providing a realistic 3-D\n> effect.\n> \n> Shadows are a convenient and intuitive means of distinguishing an element from\n> its surroundings. A shadow can draw the user\'s eye to an object and emphasize\n> the object\'s importance, uniqueness, or immediacy.\n> \n> Shadows are a well-established feature in user interfaces, and provide users\n> with a visual clue to an object\'s intended use or value. Their design and use\n> is an important factor in the overall user experience.)\n\nThe [Material Design Specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html#elevation-shadows-elevation-android-)\npre-defines appropriate elevation for most UI elements; you need to manually\nassign shadows only to your own elements. \n\nYou are encouraged to visit the\n[Material Design specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html)\nfor details about appropriate use of shadows. \n");
@@ -12694,7 +12694,7 @@ Elm.Demo.Grid.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Grid")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/layout/responsive-ui.html#responsive-ui-grid")
                             ,$Demo$Page.mdl("http://www.getmdl.io/components/#layout-section/grid")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Grid.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Grid.elm";
    var intro = A2($Demo$Page.fromMDL,
    "http://www.getmdl.io/components/#layout-section/grid",
    "\n> The Material Design Lite (MDL) grid component is a simplified method for laying\n> out content for multiple screen sizes. It reduces the usual coding burden\n> required to correctly display blocks of content in a variety of display\n> conditions.\n>\n> The MDL grid is defined and enclosed by a container element. A grid has 12\n> columns in the desktop screen size, 8 in the tablet size, and 4 in the phone\n> size, each size having predefined margins and gutters. Cells are laid out\n> sequentially in a row, in the order they are defined, with some exceptions:\n>\n>   - If a cell doesn\'t fit in the row in one of the screen sizes, it flows\n>     into the following line.\n>   - If a cell has a specified column size equal to or larger than the number\n>     of columns for the current screen size, it takes up the entirety of its\n>     row.\n");
@@ -13069,7 +13069,7 @@ Elm.Demo.Snackbar.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Snackbar")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/components/snackbars-toasts.html")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/index.html#snackbar-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Snackbar.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Snackbar.elm";
    var intro = A2($Demo$Page.fromMDL,
    "https://www.getmdl.io/components/index.html#snackbar-section",
    "\n> The Material Design Lite (MDL) __snackbar__ component is a container used to\n> notify a user of an operation\'s status. It displays at the bottom of the\n> screen. A snackbar may contain an action button to execute a command for the\n> user. Actions should undo the committed action or retry it if it failed for\n> example. Actions should not be to close the snackbar. By not providing an\n> action, the snackbar becomes a __toast__ component.\n\n");
@@ -13311,7 +13311,7 @@ Elm.Demo.Textfields.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Textfield")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/components/text-fields.html")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/#textfields-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Textfields.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Textfields.elm";
    var intro = A2($Demo$Page.fromMDL,
    "http://www.getmdl.io/components/#textfields-section",
    "\n> The Material Design Lite (MDL) text field component is an enhanced version of\n> the standard HTML `<input type=\"text\">` and `<input type=\"textarea\">` elements.\n> A text field consists of a horizontal line indicating where keyboard input\n> can occur and, typically, text that clearly communicates the intended\n> contents of the text field. The MDL text field component provides various\n> types of text fields, and allows you to add both display and click effects.\n>\n> Text fields are a common feature of most user interfaces, regardless of a\n> site\'s content or function. Their design and use is therefore an important\n> factor in the overall user experience. See the text field component\'s\n> [Material  Design specifications page](https://www.google.com/design/spec/components/text-fields.html)\n> for details.\n>\n> The enhanced text field component has a more vivid visual look than a standard\n> text field, and may be initially or programmatically disabled. There are three\n> main types of text fields in the text field component, each with its own basic\n> coding requirements. The types are single-line, multi-line, and expandable.\n\nThis implementation provides only single-line.\n\n");
