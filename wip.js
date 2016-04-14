@@ -14729,7 +14729,7 @@ Elm.Main.make = function (_elm) {
    var ApplyRoute = function (a) {    return {ctor: "ApplyRoute",_0: a};};
    var Model = F5(function (a,b,c,d,e) {    return {layout: a,routing: b,buttons: c,textfields: d,snackbar: e};});
    var layoutModel = _U.update($Material$Layout.defaultLayoutModel,
-   {state: $Material$Layout.initState($List.length(tabs)),mode: $Material$Layout.Waterfall(true),fixedHeader: false});
+   {state: $Material$Layout.initState($List.length(tabs)),mode: $Material$Layout.Waterfall(true),fixedHeader: true});
    var E404 = {ctor: "E404"};
    var Tab = function (a) {    return {ctor: "Tab",_0: a};};
    var route0 = {ctor: "_Tuple2",_0: Tab(0),_1: $Hop$Types.newLocation};
