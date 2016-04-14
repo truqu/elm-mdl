@@ -12424,7 +12424,7 @@ Elm.Demo.Badges.make = function (_elm) {
    var _op = {};
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Badge")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/#badges-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Badges.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Badges.elm";
    var intro = A2($Demo$Page.fromMDL,
    "http://www.getmdl.io/components/#badges-section",
    "\n> The Material Design Lite (MDL) badge component is an onscreen notification\n> element. A badge consists of a small circle, typically containing a number or\n> other characters, that appears in proximity to another object. A badge can be\n> both a notifier that there are additional items associated with an object and\n> an indicator of how many items there are.\n> \n> You can use a badge to unobtrusively draw the user\'s attention to items they\n> might not otherwise notice, or to emphasize that items may need their\n> attention. For example:\n> \n>  - A \"New messages\" notification might be followed by a badge containing the\n> number of unread messages.  \n>  - A \"You have unpurchased items in your shopping cart\" reminder might include\n>  a badge showing the number of items in the cart.\n>  - A \"Join the discussion!\" button might have an accompanying badge indicating the\n> number of users currently participating in the discussion.  \n> \n> A badge is almost\n> always positioned near a link so that the user has a convenient way to access\n> the additional information indicated by the badge. However, depending on the\n> intent, the badge itself may or may not be part of the link.\n> \n> Badges are a new feature in user interfaces, and provide users with a visual clue to help them discover additional relevant content. Their design and use is therefore an important factor in the overall user experience.\n> \n");
@@ -12479,7 +12479,7 @@ Elm.Demo.Buttons.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Button")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/components/buttons.html")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/#buttons-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Buttons.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Buttons.elm";
    var intro = A2($Demo$Page.fromMDL,
    "https://www.getmdl.io/components/#buttons-section",
    "\n> The Material Design Lite (MDL) button component is an enhanced version of the\n> standard HTML `<button>` element. A button consists of text and/or an image that\n> clearly communicates what action will occur when the user clicks or touches it.\n> The MDL button component provides various types of buttons, and allows you to\n> add both display and click effects.\n>\n> Buttons are a ubiquitous feature of most user interfaces, regardless of a\n> site\'s content or function. Their design and use is therefore an important\n> factor in the overall user experience. See the button component\'s Material\n> Design specifications page for details.\n>\n> The available button display types are flat (default), raised, fab, mini-fab,\n> and icon; any of these types may be plain (light gray) or colored, and may be\n> initially or programmatically disabled. The fab, mini-fab, and icon button\n> types typically use a small image as their caption rather than text.\n\n");
@@ -12602,9 +12602,22 @@ Elm.Material.Elevation.make = function (_elm) {
    var transition = function (duration) {
       return A2($Material$Style.css,"transition",A2($Basics._op["++"],"box-shadow ",A2($Basics._op["++"],$Basics.toString(duration),"ms ease-in-out 0s")));
    };
-   var validElevations = _U.list([2,3,4,6,8,16,24]);
    var shadow = function (z) {    return $Material$Style.cs(A2($Basics._op["++"],"mdl-shadow--",A2($Basics._op["++"],$Basics.toString(z),"dp")));};
-   return _elm.Material.Elevation.values = {_op: _op,shadow: shadow,validElevations: validElevations,transition: transition};
+   var e2 = shadow(2);
+   var e3 = shadow(3);
+   var e4 = shadow(4);
+   var e6 = shadow(6);
+   var e8 = shadow(8);
+   var e16 = shadow(16);
+   var e24 = shadow(24);
+   var elevations = _U.list([{ctor: "_Tuple2",_0: e2,_1: 2}
+                            ,{ctor: "_Tuple2",_0: e3,_1: 3}
+                            ,{ctor: "_Tuple2",_0: e4,_1: 4}
+                            ,{ctor: "_Tuple2",_0: e6,_1: 6}
+                            ,{ctor: "_Tuple2",_0: e8,_1: 8}
+                            ,{ctor: "_Tuple2",_0: e16,_1: 16}
+                            ,{ctor: "_Tuple2",_0: e24,_1: 24}]);
+   return _elm.Material.Elevation.values = {_op: _op,e2: e2,e3: e3,e4: e4,e6: e6,e8: e8,e16: e16,e24: e24,elevations: elevations,transition: transition};
 };
 Elm.Demo = Elm.Demo || {};
 Elm.Demo.Elevation = Elm.Demo.Elevation || {};
@@ -12628,11 +12641,12 @@ Elm.Demo.Elevation.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Elevation")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/what-is-material/elevation-shadows.html")
                             ,$Demo$Page.mdl("https://github.com/google/material-design-lite/blob/master/src/shadow/README.md")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Elevation.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Elevation.elm";
    var intro = A2($Demo$Page.fromMDL,
    "https://github.com/google/material-design-lite/blob/master/src/shadow/README.md",
    "\n  > The Material Design Lite (MDL) shadow is not a component in the same sense as\n> an MDL card, menu, or textbox; it is a visual effect that can be assigned to a\n> user interface element. The effect simulates a three-dimensional positioning of\n> the element, as though it is slightly raised above the surface it rests upon —\n> a positive z-axis value, in user interface terms. The shadow starts at the\n> edges of the element and gradually fades outward, providing a realistic 3-D\n> effect.\n> \n> Shadows are a convenient and intuitive means of distinguishing an element from\n> its surroundings. A shadow can draw the user\'s eye to an object and emphasize\n> the object\'s importance, uniqueness, or immediacy.\n> \n> Shadows are a well-established feature in user interfaces, and provide users\n> with a visual clue to an object\'s intended use or value. Their design and use\n> is an important factor in the overall user experience.)\n\nThe [Material Design Specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html#elevation-shadows-elevation-android-)\npre-defines appropriate elevation for most UI elements; you need to manually\nassign shadows only to your own elements. \n\nYou are encouraged to visit the\n[Material Design specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html)\nfor details about appropriate use of shadows. \n");
-   var elevate = function (k) {
+   var elevate = function (_p0) {
+      var _p1 = _p0;
       return A2($Material$Style.div,
       _U.list([A2($Material$Style.css,"height","96px")
               ,A2($Material$Style.css,"width","128px")
@@ -12641,8 +12655,10 @@ Elm.Demo.Elevation.make = function (_elm) {
               ,A2($Material$Style.css,"flex-flow","row wrap")
               ,A2($Material$Style.css,"justify-content","center")
               ,A2($Material$Style.css,"align-items","center")
-              ,$Material$Elevation.shadow(k)]),
-      _U.list([A2($Material$Style.div,_U.list([$Material$Style.cs(".mdl-typography--title-color-contrast")]),_U.list([$Html.text($Basics.toString(k))]))]));
+              ,_p1._0]),
+      _U.list([A2($Material$Style.div,
+      _U.list([$Material$Style.cs(".mdl-typography--title-color-contrast"),A2($Material$Style.css,"box-radius","2pt")]),
+      _U.list([$Html.text($Basics.toString(_p1._1))]))]));
    };
    var view = A5($Demo$Page.body1,
    "Elevation",
@@ -12651,7 +12667,7 @@ Elm.Demo.Elevation.make = function (_elm) {
    references,
    A2(F2(function (x,y) {    return A2($List._op["::"],x,y);}),
    A2($Html.p,_U.list([]),_U.list([$Html.text("Below are boxes drawn at various elevations.")])),
-   A2($List.map,elevate,A2($List._op["::"],0,$Material$Elevation.validElevations))));
+   A2($List.map,elevate,A2($List._op["::"],{ctor: "_Tuple2",_0: $Material$Style.cs(""),_1: 0},$Material$Elevation.elevations))));
    return _elm.Demo.Elevation.values = {_op: _op,elevate: elevate,view: view,intro: intro,srcUrl: srcUrl,references: references};
 };
 Elm.Demo = Elm.Demo || {};
@@ -12678,7 +12694,7 @@ Elm.Demo.Grid.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Grid")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/layout/responsive-ui.html#responsive-ui-grid")
                             ,$Demo$Page.mdl("http://www.getmdl.io/components/#layout-section/grid")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Grid.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Grid.elm";
    var intro = A2($Demo$Page.fromMDL,
    "http://www.getmdl.io/components/#layout-section/grid",
    "\n> The Material Design Lite (MDL) grid component is a simplified method for laying\n> out content for multiple screen sizes. It reduces the usual coding burden\n> required to correctly display blocks of content in a variety of display\n> conditions.\n>\n> The MDL grid is defined and enclosed by a container element. A grid has 12\n> columns in the desktop screen size, 8 in the tablet size, and 4 in the phone\n> size, each size having predefined margins and gutters. Cells are laid out\n> sequentially in a row, in the order they are defined, with some exceptions:\n>\n>   - If a cell doesn\'t fit in the row in one of the screen sizes, it flows\n>     into the following line.\n>   - If a cell has a specified column size equal to or larger than the number\n>     of columns for the current screen size, it takes up the entirety of its\n>     row.\n");
@@ -12902,6 +12918,7 @@ Elm.Material.Textfield.make = function (_elm) {
    $List = Elm.List.make(_elm),
    $Material$Component = Elm.Material.Component.make(_elm),
    $Material$Helpers = Elm.Material.Helpers.make(_elm),
+   $Material$Style = Elm.Material.Style.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
@@ -12926,20 +12943,27 @@ Elm.Material.Textfield.make = function (_elm) {
    var Focus = {ctor: "Focus"};
    var Blur = {ctor: "Blur"};
    var Input = function (a) {    return {ctor: "Input",_0: a};};
-   var view = F2(function (addr,model) {
+   var view = F3(function (addr,model,styles) {
       var labelText = A2($Maybe.map,function (_) {    return _.text;},model.label);
       var hasError = A2($Maybe.withDefault,false,A2($Maybe.map,$Basics.always(true),model.error));
       var hasFloat = A2($Maybe.withDefault,false,A2($Maybe.map,function (_) {    return _.$float;},model.label));
       return A3($Material$Helpers.filter,
-      $Html.div,
-      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "mdl-textfield",_1: true}
-                                                  ,{ctor: "_Tuple2",_0: "mdl-js-textfield",_1: true}
-                                                  ,{ctor: "_Tuple2",_0: "is-upgraded",_1: true}
-                                                  ,{ctor: "_Tuple2",_0: "mdl-textfield--floating-label",_1: hasFloat}
-                                                  ,{ctor: "_Tuple2",_0: "is-invalid",_1: hasError}
-                                                  ,{ctor: "_Tuple2",_0: "is-dirty",_1: !_U.eq(model.value,"")}
-                                                  ,{ctor: "_Tuple2",_0: "is-focused",_1: model.isFocused && $Basics.not(model.isDisabled)}
-                                                  ,{ctor: "_Tuple2",_0: "is-disabled",_1: model.isDisabled}]))]),
+      $Material$Style.div,
+      A2($List._op["::"],
+      $Material$Style.cs("mdl-textfield"),
+      A2($List._op["::"],
+      $Material$Style.cs("mdl-js-textfield"),
+      A2($List._op["::"],
+      $Material$Style.cs("is-upgraded"),
+      A2($List._op["::"],
+      A2($Material$Style.cs$,"mdl-textfield--floating-label",hasFloat),
+      A2($List._op["::"],
+      A2($Material$Style.cs$,"is-invalid",hasError),
+      A2($List._op["::"],
+      A2($Material$Style.cs$,"is-dirty",!_U.eq(model.value,"")),
+      A2($List._op["::"],
+      A2($Material$Style.cs$,"is-focused",model.isFocused && $Basics.not(model.isDisabled)),
+      A2($List._op["::"],A2($Material$Style.cs$,"is-disabled",model.isDisabled),styles)))))))),
       _U.list([$Maybe.Just(A2($Html.input,
               _U.list([$Html$Attributes.$class("mdl-textfield__input")
                       ,$Html$Attributes.style(_U.list([{ctor: "_Tuple2",_0: "outline",_1: "none"}]))
@@ -13045,7 +13069,7 @@ Elm.Demo.Snackbar.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Snackbar")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/components/snackbars-toasts.html")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/index.html#snackbar-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Snackbar.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Snackbar.elm";
    var intro = A2($Demo$Page.fromMDL,
    "https://www.getmdl.io/components/index.html#snackbar-section",
    "\n> The Material Design Lite (MDL) __snackbar__ component is a container used to\n> notify a user of an operation\'s status. It displays at the bottom of the\n> screen. A snackbar may contain an action button to execute a command for the\n> user. Actions should undo the committed action or retry it if it failed for\n> example. Actions should not be to close the snackbar. By not providing an\n> action, the snackbar becomes a __toast__ component.\n\n");
@@ -13178,7 +13202,9 @@ Elm.Demo.Snackbar.make = function (_elm) {
               ,$Html$Attributes.key($Basics.toString(_p11))]),
       _U.list([A4($Material$Style.styled,
       $Html.div,
-      _U.list([$Material$Color.background(color),$Material$Color.text($Material$Color.primaryContrast),$Material$Elevation.shadow(selected ? 8 : 2)]),
+      _U.list([$Material$Color.background(color)
+              ,$Material$Color.text($Material$Color.primaryContrast)
+              ,selected ? $Material$Elevation.e8 : $Material$Elevation.e2]),
       _U.list([$Html$Attributes.style(_U.list([{ctor: "_Tuple2",_0: "display",_1: "inline-flex"}
                                               ,{ctor: "_Tuple2",_0: "align-items",_1: "center"}
                                               ,{ctor: "_Tuple2",_0: "justify-content",_1: "center"}
@@ -13285,7 +13311,7 @@ Elm.Demo.Textfields.make = function (_elm) {
    var references = _U.list([$Demo$Page.$package("http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Textfield")
                             ,$Demo$Page.mds("https://www.google.com/design/spec/components/text-fields.html")
                             ,$Demo$Page.mdl("https://www.getmdl.io/components/#textfields-section")]);
-   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/examples/Demo/Textfields.elm";
+   var srcUrl = "https://github.com/debois/elm-mdl/blob/master/demo/Demo/Textfields.elm";
    var intro = A2($Demo$Page.fromMDL,
    "http://www.getmdl.io/components/#textfields-section",
    "\n> The Material Design Lite (MDL) text field component is an enhanced version of\n> the standard HTML `<input type=\"text\">` and `<input type=\"textarea\">` elements.\n> A text field consists of a horizontal line indicating where keyboard input\n> can occur and, typically, text that clearly communicates the intended\n> contents of the text field. The MDL text field component provides various\n> types of text fields, and allows you to add both display and click effects.\n>\n> Text fields are a common feature of most user interfaces, regardless of a\n> site\'s content or function. Their design and use is therefore an important\n> factor in the overall user experience. See the text field component\'s\n> [Material  Design specifications page](https://www.google.com/design/spec/components/text-fields.html)\n> for details.\n>\n> The enhanced text field component has a more vivid visual look than a standard\n> text field, and may be initially or programmatically disabled. There are three\n> main types of text fields in the text field component, each with its own basic\n> coding requirements. The types are single-line, multi-line, and expandable.\n\nThis implementation provides only single-line.\n\n");
@@ -13350,7 +13376,7 @@ Elm.Demo.Textfields.make = function (_elm) {
       function (c) {
          return A2($Material$Grid.cell,
          _U.list([A2($Material$Grid.size,$Material$Grid.All,4),A2($Material$Grid.offset,$Material$Grid.Desktop,1)]),
-         _U.list([A2(c.view,addr,model.mdl)]));
+         _U.list([A3(c.view,addr,model.mdl,_U.list([]))]));
       },
       _U.list([field0,field1,field2,field3,field4])))))));
    });
@@ -14627,7 +14653,8 @@ Elm.Main.make = function (_elm) {
                                               ,{ctor: "_Tuple2",_0: "padding-left",_1: "8%"}
                                               ,{ctor: "_Tuple2",_0: "padding-right",_1: "8%"}]))
               ,$Html$Attributes.key($Basics.toString($Basics.fst(model.routing)))]),
-      _U.list([A2(A2($Maybe.withDefault,e404,A2($Array.get,model.layout.selectedTab,tabViews)),addr,model)]));
+      _U.list([A2(A2($Maybe.withDefault,e404,A2($Array.get,model.layout.selectedTab,tabViews)),addr,model)
+              ,$Material$Style.stylesheet("\n        html, body {\n  overflow-y: auto;\n  min-height: 100%;\n}\n\nmdl-layout {\n  min-height: 100%;\n}\n          .mdl-layout {\n    overflow: visible;\n}\n.mdl-layout__drawer {\n    position: fixed;\n}\n.mdl-layout__content {\n    display: block;\n    overflow: visible;\n    margin-top: 64px;\n}\n.is-small-screen .mdl-layout__content {\n    margin-top: 56px;\n}\n.mdl-layout__header {\n    position: fixed;\n}\n.mdl-layout__obfuscator {\n    position: fixed;\n}\n        ")]));
       return A3($Material$Scheme.topWithScheme,
       $Material$Color.Teal,
       $Material$Color.Red,
