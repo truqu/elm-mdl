@@ -12704,7 +12704,7 @@ Elm.Demo.Grid.make = function (_elm) {
       return $Material$Color.background(A3($Basics.flip,
       $Material$Color.color,
       $Material$Color.S500,
-      A2($Maybe.withDefault,$Material$Color.Teal,A2($Array.get,A2($Basics._op["%"],k + 11,$Array.length($Material$Color.hues)),$Material$Color.hues))));
+      A2($Maybe.withDefault,$Material$Color.Teal,A2($Array.get,A2($Basics._op["%"],k + 0,$Array.length($Material$Color.hues)),$Material$Color.hues))));
    };
    var style = function (h) {
       return _U.list([A2($Material$Style.css,"text-sizing","border-box")
