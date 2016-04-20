@@ -11405,21 +11405,22 @@ Elm.Material.Helpers.make = function (_elm) {
    $Time = Elm.Time.make(_elm);
    var _op = {};
    var delay = F2(function (t,x) {    return $Effects.task(A3($Basics.flip,$Task.andThen,$Basics.always($Task.succeed(x)),$Task.sleep(t)));});
+   var fx = function (_p0) {    return $Effects.task($Task.succeed(_p0));};
    var lift = F6(function (get,set,fwd,update,action,model) {
-      var _p0 = A2(update,action,get(model));
-      var submodel$ = _p0._0;
-      var e = _p0._1;
+      var _p1 = A2(update,action,get(model));
+      var submodel$ = _p1._0;
+      var e = _p1._1;
       return {ctor: "_Tuple2",_0: A2(set,model,submodel$),_1: A2($Effects.map,fwd,e)};
    });
    var lift$ = F5(function (get,set,update,action,model) {    return {ctor: "_Tuple2",_0: A2(set,model,A2(update,action,get(model))),_1: $Effects.none};});
-   var map2nd = F2(function (f,_p1) {    var _p2 = _p1;return {ctor: "_Tuple2",_0: _p2._0,_1: f(_p2._1)};});
-   var map1st = F2(function (f,_p3) {    var _p4 = _p3;return {ctor: "_Tuple2",_0: f(_p4._0),_1: _p4._1};});
-   var map2 = F2(function (f,_p5) {    var _p6 = _p5;return {ctor: "_Tuple3",_0: _p6._0,_1: f(_p6._1),_2: _p6._2};});
-   var map1 = F2(function (f,_p7) {    var _p8 = _p7;return {ctor: "_Tuple3",_0: f(_p8._0),_1: _p8._1,_2: _p8._2};});
+   var map2nd = F2(function (f,_p2) {    var _p3 = _p2;return {ctor: "_Tuple2",_0: _p3._0,_1: f(_p3._1)};});
+   var map1st = F2(function (f,_p4) {    var _p5 = _p4;return {ctor: "_Tuple2",_0: f(_p5._0),_1: _p5._1};});
+   var map2 = F2(function (f,_p6) {    var _p7 = _p6;return {ctor: "_Tuple3",_0: _p7._0,_1: f(_p7._1),_2: _p7._2};});
+   var map1 = F2(function (f,_p8) {    var _p9 = _p8;return {ctor: "_Tuple3",_0: f(_p9._0),_1: _p9._1,_2: _p9._2};});
    var blurOn = function (evt) {    return A2($Html$Attributes.attribute,A2($Basics._op["++"],"on",evt),"this.blur()");};
    var clip = F3(function (lower,upper,k) {    return A2($Basics.max,lower,A2($Basics.min,k,upper));});
-   var mapFx = F2(function (f,_p9) {    var _p10 = _p9;return {ctor: "_Tuple2",_0: _p10._0,_1: A2($Effects.map,f,_p10._1)};});
-   var addFx = F2(function (effect1,_p11) {    var _p12 = _p11;return {ctor: "_Tuple2",_0: _p12._0,_1: $Effects.batch(_U.list([effect1,_p12._1]))};});
+   var mapFx = F2(function (f,_p10) {    var _p11 = _p10;return {ctor: "_Tuple2",_0: _p11._0,_1: A2($Effects.map,f,_p11._1)};});
+   var addFx = F2(function (effect1,_p12) {    var _p13 = _p12;return {ctor: "_Tuple2",_0: _p13._0,_1: $Effects.batch(_U.list([effect1,_p13._1]))};});
    var effect = F2(function (e,x) {    return {ctor: "_Tuple2",_0: x,_1: e};});
    var pure = effect($Effects.none);
    var filter = F3(function (elem,attr,html) {    return A2(elem,attr,A2($List.filterMap,function (x) {    return x;},html));});
@@ -11437,6 +11438,7 @@ Elm.Material.Helpers.make = function (_elm) {
                                          ,map2nd: map2nd
                                          ,lift$: lift$
                                          ,lift: lift
+                                         ,fx: fx
                                          ,delay: delay};
 };
 Elm.Material = Elm.Material || {};
@@ -14276,7 +14278,6 @@ Elm.Material.Layout.make = function (_elm) {
    $Html = Elm.Html.make(_elm),
    $Html$Attributes = Elm.Html.Attributes.make(_elm),
    $Html$Events = Elm.Html.Events.make(_elm),
-   $Json$Decode = Elm.Json.Decode.make(_elm),
    $List = Elm.List.make(_elm),
    $Material$Helpers = Elm.Material.Helpers.make(_elm),
    $Material$Icon = Elm.Material.Icon.make(_elm),
@@ -14304,10 +14305,9 @@ Elm.Material.Layout.make = function (_elm) {
    var navigation = function (contents) {    return A2($Html.nav,_U.list([$Html$Attributes.$class("mdl-navigation")]),contents);};
    var title = function (t) {    return A2($Html.span,_U.list([$Html$Attributes.$class("mdl-layout__title")]),_U.list([$Html.text(t)]));};
    var spacer = A2($Html.div,_U.list([$Html$Attributes.$class("mdl-layout-spacer")]),_U.list([]));
-   var TransitionEnd = {ctor: "TransitionEnd"};
-   var Click = {ctor: "Click"};
    var Ripple = F2(function (a,b) {    return {ctor: "Ripple",_0: a,_1: b};});
-   var ScrollContents = function (a) {    return {ctor: "ScrollContents",_0: a};};
+   var TransitionEnd = {ctor: "TransitionEnd"};
+   var TransitionHeader = function (a) {    return {ctor: "TransitionHeader",_0: a};};
    var ScrollTab = function (a) {    return {ctor: "ScrollTab",_0: a};};
    var SmallScreen = function (a) {    return {ctor: "SmallScreen",_0: a};};
    var ToggleDrawer = {ctor: "ToggleDrawer"};
@@ -14379,15 +14379,10 @@ Elm.Material.Layout.make = function (_elm) {
                     return "mdl-layout__header--waterfall";
                  }}
       }();
+      var _p6 = A2($Debug.log,"foo",model.state);
       return A2($Html.header,
       A2($List.append,
-      isWaterfall(model.mode) ? _U.list([A2($Html$Events.onClick,addr,Click)
-                                        ,A3($Html$Events.on,
-                                        "transitionend",
-                                        $Json$Decode.value,
-                                        function (_p6) {
-                                           return A2($Signal.message,addr,TransitionEnd);
-                                        })]) : _U.list([]),
+      isWaterfall(model.mode) ? _U.list([A2($Html$Events.onClick,addr,TransitionHeader(false))]) : _U.list([]),
       _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "mdl-layout__header",_1: true}
                                                   ,{ctor: "_Tuple2"
                                                    ,_0: "is-casting-shadow"
@@ -14432,11 +14427,12 @@ Elm.Material.Layout.make = function (_elm) {
            var effect = _p10._1;
            return {ctor: "_Tuple2",_0: _U.update(model,{state: S(state$)}),_1: effect};
          case "ScrollTab": return {ctor: "_Tuple2",_0: model,_1: $Effects.none};
-         case "ScrollContents": var headerVisible = state.isSmallScreen || model.fixedHeader;
+         case "TransitionHeader": var headerVisible = $Basics.not(state.isSmallScreen) || model.fixedHeader;
            var state$ = _U.update(state,{isCompact: _p8._0,isAnimating: headerVisible});
-           return {ctor: "_Tuple2",_0: _U.update(model,{state: S(state$)}),_1: $Effects.none};
-         case "TransitionEnd": return {ctor: "_Tuple2",_0: _U.update(model,{state: S(_U.update(state,{isAnimating: false}))}),_1: $Effects.none};
-         default: return {ctor: "_Tuple2",_0: _U.update(model,{state: S(_U.update(state,{isAnimating: true,isCompact: false}))}),_1: $Effects.none};}
+           return $Basics.not(state.isAnimating) ? {ctor: "_Tuple2"
+                                                   ,_0: _U.update(model,{state: S(state$)})
+                                                   ,_1: A2($Material$Helpers.delay,200,TransitionEnd)} : {ctor: "_Tuple2",_0: model,_1: $Effects.none};
+         default: return {ctor: "_Tuple2",_0: _U.update(model,{state: S(_U.update(state,{isAnimating: false}))}),_1: $Effects.none};}
    });
    var State$ = F4(function (a,b,c,d) {    return {tabs: a,isSmallScreen: b,isCompact: c,isAnimating: d};});
    var scrollMailbox = $Signal.mailbox(0.0);
@@ -14448,7 +14444,7 @@ Elm.Material.Layout.make = function (_elm) {
                                        $Signal.dropRepeats(A2($Signal.map,F2(function (x,y) {    return _U.cmp(x,y) > 0;})(1024),$Window.width)))
                                        ,A2($Signal.map,
                                        function (_p15) {
-                                          return f(ScrollContents(_p15));
+                                          return f(TransitionHeader(_p15));
                                        },
                                        $Signal.dropRepeats(A2($Signal.map,F2(function (x,y) {    return _U.cmp(x,y) < 0;})(0.0),scrollMailbox.signal)))]));
    };
@@ -14653,8 +14649,7 @@ Elm.Main.make = function (_elm) {
                                               ,{ctor: "_Tuple2",_0: "padding-left",_1: "8%"}
                                               ,{ctor: "_Tuple2",_0: "padding-right",_1: "8%"}]))
               ,$Html$Attributes.key($Basics.toString($Basics.fst(model.routing)))]),
-      _U.list([A2(A2($Maybe.withDefault,e404,A2($Array.get,model.layout.selectedTab,tabViews)),addr,model)
-              ,$Material$Style.stylesheet("\n        html, body {\n  overflow-y: auto;\n  min-height: 100%;\n}\n\nmdl-layout {\n  min-height: 100%;\n}\n          .mdl-layout {\n    overflow: visible;\n}\n.mdl-layout__drawer {\n    position: fixed;\n}\n.mdl-layout__content {\n    display: block;\n    overflow: visible;\n    margin-top: 64px;\n}\n.is-small-screen .mdl-layout__content {\n    margin-top: 56px;\n}\n.mdl-layout__header {\n    position: fixed;\n}\n.mdl-layout__obfuscator {\n    position: fixed;\n}\n        ")]));
+      _U.list([A2(A2($Maybe.withDefault,e404,A2($Array.get,model.layout.selectedTab,tabViews)),addr,model)]));
       return A3($Material$Scheme.topWithScheme,
       $Material$Color.Teal,
       $Material$Color.Red,
@@ -14728,7 +14723,8 @@ Elm.Main.make = function (_elm) {
    });
    var ApplyRoute = function (a) {    return {ctor: "ApplyRoute",_0: a};};
    var Model = F5(function (a,b,c,d,e) {    return {layout: a,routing: b,buttons: c,textfields: d,snackbar: e};});
-   var layoutModel = _U.update($Material$Layout.defaultLayoutModel,{state: $Material$Layout.initState($List.length(tabs)),fixedHeader: true});
+   var layoutModel = _U.update($Material$Layout.defaultLayoutModel,
+   {state: $Material$Layout.initState($List.length(tabs)),mode: $Material$Layout.Waterfall(false),fixedHeader: false});
    var E404 = {ctor: "E404"};
    var Tab = function (a) {    return {ctor: "Tab",_0: a};};
    var route0 = {ctor: "_Tuple2",_0: Tab(0),_1: $Hop$Types.newLocation};
