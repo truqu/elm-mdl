@@ -11807,18 +11807,19 @@ Elm.Material.Ripple.make = function (_elm) {
       });
    });
    var Down = function (a) {    return {ctor: "Down",_0: a};};
-   var Geometry = F5(function (a,b,c,d,e) {    return {rect: a,clientX: b,clientY: c,touchX: d,touchY: e};});
-   var geometryDecoder = A6($Json$Decode.object5,
-   Geometry,
+   var DOMState = F6(function (a,b,c,d,e,f) {    return {rect: a,clientX: b,clientY: c,touchX: d,touchY: e,type$: f};});
+   var geometryDecoder = A7($Json$Decode.object6,
+   DOMState,
    $DOM.target($DOM.boundingClientRect),
    $Json$Decode.maybe(A2($Json$Decode._op[":="],"clientX",$Json$Decode.$float)),
    $Json$Decode.maybe(A2($Json$Decode._op[":="],"clientY",$Json$Decode.$float)),
    $Json$Decode.maybe(A2($Json$Decode.at,_U.list(["touches","0","clientX"]),$Json$Decode.$float)),
-   $Json$Decode.maybe(A2($Json$Decode.at,_U.list(["touches","0","clientY"]),$Json$Decode.$float)));
+   $Json$Decode.maybe(A2($Json$Decode.at,_U.list(["touches","0","clientY"]),$Json$Decode.$float)),
+   A2($Json$Decode._op[":="],"type",$Json$Decode.string));
    var downOn = F2(function (name,addr) {    return A3($Html$Events.on,name,geometryDecoder,function (_p2) {    return A2($Signal.message,addr,Down(_p2));});});
-   var Model = F2(function (a,b) {    return {animation: a,metrics: b};});
+   var Model = F3(function (a,b,c) {    return {animation: a,metrics: b,ignoringMouseDown: c};});
    var Inert = {ctor: "Inert"};
-   var model = {animation: Inert,metrics: $Maybe.Nothing};
+   var model = {animation: Inert,metrics: $Maybe.Nothing,ignoringMouseDown: false};
    var Frame = function (a) {    return {ctor: "Frame",_0: a};};
    var view = F3(function (addr,attrs,model) {
       var styling = function () {
@@ -11884,9 +11885,13 @@ Elm.Material.Ripple.make = function (_elm) {
    var update = F2(function (action,model) {
       var _p7 = action;
       switch (_p7.ctor)
-      {case "Down": return A2($Material$Helpers.effect,
+      {case "Down": var _p9 = _p7._0;
+           return _U.eq(_p9.type$,"mousedown") && model.ignoringMouseDown ? A2($Material$Helpers.effect,
+           $Effects.none,
+           _U.update(model,{ignoringMouseDown: false})) : A2($Material$Helpers.effect,
            $Effects.tick(function (_p8) {    return Tick;}),
-           _U.update(model,{animation: Frame(0),metrics: computeMetrics(_p7._0)}));
+           _U.update(model,
+           {animation: Frame(0),metrics: computeMetrics(_p9),ignoringMouseDown: _U.eq(_p9.type$,"touchstart") ? true : model.ignoringMouseDown}));
          case "Up": return A2($Material$Helpers.effect,$Effects.none,_U.update(model,{animation: Inert}));
          default: return A2($Material$Helpers.effect,$Effects.none,_U.update(model,{animation: Frame(1)}));}
    });
@@ -11896,7 +11901,7 @@ Elm.Material.Ripple.make = function (_elm) {
                                         ,Inert: Inert
                                         ,Model: Model
                                         ,model: model
-                                        ,Geometry: Geometry
+                                        ,DOMState: DOMState
                                         ,geometryDecoder: geometryDecoder
                                         ,computeMetrics: computeMetrics
                                         ,Down: Down
@@ -12704,7 +12709,7 @@ Elm.Demo.Grid.make = function (_elm) {
       return $Material$Color.background(A3($Basics.flip,
       $Material$Color.color,
       $Material$Color.S500,
-      A2($Maybe.withDefault,$Material$Color.Teal,A2($Array.get,A2($Basics._op["%"],k + 0,$Array.length($Material$Color.hues)),$Material$Color.hues))));
+      A2($Maybe.withDefault,$Material$Color.Teal,A2($Array.get,A2($Basics._op["%"],k + 11,$Array.length($Material$Color.hues)),$Material$Color.hues))));
    };
    var style = function (h) {
       return _U.list([A2($Material$Style.css,"text-sizing","border-box")
@@ -12946,6 +12951,7 @@ Elm.Material.Textfield.make = function (_elm) {
    var Blur = {ctor: "Blur"};
    var Input = function (a) {    return {ctor: "Input",_0: a};};
    var view = F3(function (addr,model,styles) {
+      var inputType = function () {    var _p4 = model.kind;if (_p4.ctor === "SingleLine") {    return "text";} else {    return "password";}}();
       var labelText = A2($Maybe.map,function (_) {    return _.text;},model.label);
       var hasError = A2($Maybe.withDefault,false,A2($Maybe.map,$Basics.always(true),model.error));
       var hasFloat = A2($Maybe.withDefault,false,A2($Maybe.map,function (_) {    return _.$float;},model.label));
@@ -12969,7 +12975,7 @@ Elm.Material.Textfield.make = function (_elm) {
       _U.list([$Maybe.Just(A2($Html.input,
               _U.list([$Html$Attributes.$class("mdl-textfield__input")
                       ,$Html$Attributes.style(_U.list([{ctor: "_Tuple2",_0: "outline",_1: "none"}]))
-                      ,$Html$Attributes.type$("text")
+                      ,$Html$Attributes.type$(inputType)
                       ,$Html$Attributes.disabled(model.isDisabled)
                       ,$Html$Attributes.value(model.value)
                       ,A3($Html$Events.on,"input",$Html$Events.targetValue,function (s) {    return A2($Signal.message,addr,Input(s));})
@@ -12979,9 +12985,9 @@ Elm.Material.Textfield.make = function (_elm) {
               ,$Maybe.Just(A2($Html.label,
               _U.list([$Html$Attributes.$class("mdl-textfield__label")]),
               function () {
-                 var _p4 = labelText;
-                 if (_p4.ctor === "Just") {
-                       return _U.list([$Html.text(_p4._0)]);
+                 var _p5 = labelText;
+                 if (_p5.ctor === "Just") {
+                       return _U.list([$Html.text(_p5._0)]);
                     } else {
                        return _U.list([]);
                     }
@@ -12997,12 +13003,14 @@ Elm.Material.Textfield.make = function (_elm) {
       return A4($Material$Component.instance,view,update$,function (_) {    return _.textfield;},F2(function (x,y) {    return _U.update(y,{textfield: x});}));
    }();
    var Model = F6(function (a,b,c,d,e,f) {    return {label: a,error: b,kind: c,isDisabled: d,isFocused: e,value: f};});
+   var Password = {ctor: "Password"};
    var SingleLine = {ctor: "SingleLine"};
    var model = {label: $Maybe.Nothing,error: $Maybe.Nothing,kind: SingleLine,isDisabled: false,isFocused: false,value: ""};
    var Label = F2(function (a,b) {    return {text: a,$float: b};});
    return _elm.Material.Textfield.values = {_op: _op
                                            ,Label: Label
                                            ,SingleLine: SingleLine
+                                           ,Password: Password
                                            ,Model: Model
                                            ,model: model
                                            ,Input: Input
@@ -13359,6 +13367,11 @@ Elm.Demo.Textfields.make = function (_elm) {
          case "Upd0": return {ctor: "_Tuple2",_0: _U.update(model,{mdl: A2(transferToDisabled,_p3._0,model.mdl)}),_1: $Effects.none};
          default: return {ctor: "_Tuple2",_0: _U.update(model,{mdl: A3(checkRegex,_p3._0,model.rx,model.mdl)}),_1: $Effects.none};}
    });
+   var field5 = A4($Material$Textfield.instance,
+   5,
+   MDL,
+   _U.update(m0,{label: $Maybe.Just({text: "Password",$float: true}),kind: $Material$Textfield.Password}),
+   _U.list([]));
    var view = F2(function (addr,model) {
       return A5($Demo$Page.body2,
       "Textfields",
@@ -13380,7 +13393,7 @@ Elm.Demo.Textfields.make = function (_elm) {
          _U.list([A2($Material$Grid.size,$Material$Grid.All,4),A2($Material$Grid.offset,$Material$Grid.Desktop,1)]),
          _U.list([A3(c.view,addr,model.mdl,_U.list([]))]));
       },
-      _U.list([field0,field1,field2,field3,field4])))))));
+      _U.list([field0,field1,field2,field3,field4,field5])))))));
    });
    var setRegex = function (str) {    return {ctor: "_Tuple2",_0: str,_1: $Regex.regex(str)};};
    var rx0 = "[0-9]*";
@@ -13404,6 +13417,7 @@ Elm.Demo.Textfields.make = function (_elm) {
                                         ,field2: field2
                                         ,field3: field3
                                         ,field4: field4
+                                        ,field5: field5
                                         ,view: view
                                         ,intro: intro
                                         ,srcUrl: srcUrl
@@ -14724,7 +14738,7 @@ Elm.Main.make = function (_elm) {
    var ApplyRoute = function (a) {    return {ctor: "ApplyRoute",_0: a};};
    var Model = F5(function (a,b,c,d,e) {    return {layout: a,routing: b,buttons: c,textfields: d,snackbar: e};});
    var layoutModel = _U.update($Material$Layout.defaultLayoutModel,
-   {state: $Material$Layout.initState($List.length(tabs)),mode: $Material$Layout.Waterfall(false),fixedHeader: true});
+   {state: $Material$Layout.initState($List.length(tabs)),mode: $Material$Layout.Waterfall(false),fixedHeader: false});
    var E404 = {ctor: "E404"};
    var Tab = function (a) {    return {ctor: "Tab",_0: a};};
    var route0 = {ctor: "_Tuple2",_0: Tab(0),_1: $Hop$Types.newLocation};
