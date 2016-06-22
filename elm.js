@@ -17588,37 +17588,23 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 	},
 		{
 		ctor: '_Tuple3',
-		_0: 'Menus',
-		_1: 'menus',
-		_2: function (_p2) {
-			return A2(
-				_elm_lang$html$Html_App$map,
-				_debois$elm_mdl$Main$MenusMsg,
-				_debois$elm_mdl$Demo_Menus$view(
-					function (_) {
-						return _.menus;
-					}(_p2)));
-		}
-	},
-		{
-		ctor: '_Tuple3',
 		_0: 'Badges',
 		_1: 'badges',
-		_2: function (_p3) {
+		_2: function (_p2) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$BadgesMsg,
 				_debois$elm_mdl$Demo_Badges$view(
 					function (_) {
 						return _.badges;
-					}(_p3)));
+					}(_p2)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Elevation',
 		_1: 'elevation',
-		_2: function (_p4) {
+		_2: function (_p3) {
 			return _debois$elm_mdl$Demo_Elevation$view;
 		}
 	},
@@ -17626,7 +17612,7 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 		ctor: '_Tuple3',
 		_0: 'Grid',
 		_1: 'grid',
-		_2: function (_p5) {
+		_2: function (_p4) {
 			return _debois$elm_mdl$Demo_Grid$view;
 		}
 	},
@@ -17634,52 +17620,52 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 		ctor: '_Tuple3',
 		_0: 'Snackbar',
 		_1: 'snackbar',
-		_2: function (_p6) {
+		_2: function (_p5) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$SnackbarMsg,
 				_debois$elm_mdl$Demo_Snackbar$view(
 					function (_) {
 						return _.snackbar;
-					}(_p6)));
+					}(_p5)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Textfields',
 		_1: 'textfields',
-		_2: function (_p7) {
+		_2: function (_p6) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TextfieldMsg,
 				_debois$elm_mdl$Demo_Textfields$view(
 					function (_) {
 						return _.textfields;
-					}(_p7)));
+					}(_p6)));
 		}
 	}
 	]);
 var _debois$elm_mdl$Main$tabTitles = A2(
 	_elm_lang$core$List$map,
-	function (_p8) {
-		var _p9 = _p8;
-		return _elm_lang$html$Html$text(_p9._0);
+	function (_p7) {
+		var _p8 = _p7;
+		return _elm_lang$html$Html$text(_p8._0);
 	},
 	_debois$elm_mdl$Main$tabs);
 var _debois$elm_mdl$Main$tabViews = _elm_lang$core$Array$fromList(
 	A2(
 		_elm_lang$core$List$map,
-		function (_p10) {
-			var _p11 = _p10;
-			return _p11._2;
+		function (_p9) {
+			var _p10 = _p9;
+			return _p10._2;
 		},
 		_debois$elm_mdl$Main$tabs));
 var _debois$elm_mdl$Main$tabUrls = _elm_lang$core$Array$fromList(
 	A2(
 		_elm_lang$core$List$map,
-		function (_p12) {
-			var _p13 = _p12;
-			return _p13._1;
+		function (_p11) {
+			var _p12 = _p11;
+			return _p12._1;
 		},
 		_debois$elm_mdl$Main$tabs));
 var _debois$elm_mdl$Main$urlOf = function (model) {
@@ -17703,9 +17689,9 @@ var _debois$elm_mdl$Main$urlTabs = _elm_lang$core$Dict$fromList(
 	A2(
 		_elm_lang$core$List$indexedMap,
 		F2(
-			function (idx, _p14) {
-				var _p15 = _p14;
-				return {ctor: '_Tuple2', _0: _p15._1, _1: idx};
+			function (idx, _p13) {
+				var _p14 = _p13;
+				return {ctor: '_Tuple2', _0: _p14._1, _1: idx};
 			}),
 		_debois$elm_mdl$Main$tabs));
 var _debois$elm_mdl$Main$Mdl = function (a) {
@@ -17713,14 +17699,14 @@ var _debois$elm_mdl$Main$Mdl = function (a) {
 };
 var _debois$elm_mdl$Main$update = F2(
 	function (action, model) {
-		var _p16 = action;
-		switch (_p16.ctor) {
+		var _p15 = action;
+		switch (_p15.ctor) {
 			case 'SelectTab':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{selectedTab: _p16._0}),
+						{selectedTab: _p15._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ToggleHeader':
@@ -17734,7 +17720,7 @@ var _debois$elm_mdl$Main$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Mdl':
-				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Main$Mdl, _p16._0, model);
+				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Main$Mdl, _p15._0, model);
 			case 'ButtonsMsg':
 				return A6(
 					_debois$elm_mdl$Material_Helpers$lift,
@@ -17749,7 +17735,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$ButtonsMsg,
 					_debois$elm_mdl$Demo_Buttons$update,
-					_p16._0,
+					_p15._0,
 					model);
 			case 'BadgesMsg':
 				return A6(
@@ -17765,7 +17751,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$BadgesMsg,
 					_debois$elm_mdl$Demo_Badges$update,
-					_p16._0,
+					_p15._0,
 					model);
 			case 'LayoutMsg':
 				return A6(
@@ -17781,7 +17767,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$LayoutMsg,
 					_debois$elm_mdl$Demo_Layout$update,
-					_p16._0,
+					_p15._0,
 					model);
 			case 'MenusMsg':
 				return A6(
@@ -17797,7 +17783,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$MenusMsg,
 					_debois$elm_mdl$Demo_Menus$update,
-					_p16._0,
+					_p15._0,
 					model);
 			case 'TextfieldMsg':
 				return A6(
@@ -17813,7 +17799,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TextfieldMsg,
 					_debois$elm_mdl$Demo_Textfields$update,
-					_p16._0,
+					_p15._0,
 					model);
 			case 'SnackbarMsg':
 				return A6(
@@ -17829,7 +17815,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$SnackbarMsg,
 					_debois$elm_mdl$Demo_Snackbar$update,
-					_p16._0,
+					_p15._0,
 					model);
 			case 'TogglesMsg':
 				return A6(
@@ -17845,7 +17831,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TogglesMsg,
 					_debois$elm_mdl$Demo_Toggles$update,
-					_p16._0,
+					_p15._0,
 					model);
 			case 'TablesMsg':
 				return A6(
@@ -17861,7 +17847,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TablesMsg,
 					_debois$elm_mdl$Demo_Tables$update,
-					_p16._0,
+					_p15._0,
 					model);
 			default:
 				return A6(
@@ -17877,7 +17863,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$LoadingMsg,
 					_debois$elm_mdl$Demo_Loading$update,
-					_p16._0,
+					_p15._0,
 					model);
 		}
 	});
@@ -17937,10 +17923,10 @@ var _debois$elm_mdl$Main$view = function (model) {
 					A2(
 					_debois$elm_mdl$Material_Options$when,
 					function () {
-						var _p17 = model.layout.header;
-						switch (_p17.ctor) {
+						var _p16 = model.layout.header;
+						switch (_p16.ctor) {
 							case 'Waterfall':
-								return _debois$elm_mdl$Material_Layout$waterfall(_p17._0);
+								return _debois$elm_mdl$Material_Layout$waterfall(_p16._0);
 							case 'Seamed':
 								return _debois$elm_mdl$Material_Layout$seamed;
 							case 'Standard':
@@ -17979,15 +17965,15 @@ var _debois$elm_mdl$Main$location2messages = function (location) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			function () {
-			var _p18 = A2(_elm_lang$core$String$dropLeft, 1, location.hash);
-			if (_p18 === '') {
+			var _p17 = A2(_elm_lang$core$String$dropLeft, 1, location.hash);
+			if (_p17 === '') {
 				return _debois$elm_mdl$Main$SelectTab(0);
 			} else {
 				return _debois$elm_mdl$Main$SelectTab(
 					A2(
 						_elm_lang$core$Maybe$withDefault,
 						-1,
-						A2(_elm_lang$core$Dict$get, _p18, _debois$elm_mdl$Main$urlTabs)));
+						A2(_elm_lang$core$Dict$get, _p17, _debois$elm_mdl$Main$urlTabs)));
 			}
 		}()
 		]);
