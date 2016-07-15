@@ -7873,10 +7873,6 @@ var _debois$elm_mdl$Material_Options$css = F2(
 		return _debois$elm_mdl$Material_Options_Internal$CSS(
 			{ctor: '_Tuple2', _0: key, _1: value});
 	});
-var _debois$elm_mdl$Material_Options$cs$ = F2(
-	function (c, b) {
-		return b ? _debois$elm_mdl$Material_Options_Internal$Class(c) : _debois$elm_mdl$Material_Options_Internal$None;
-	});
 var _debois$elm_mdl$Material_Options$cs = function (c) {
 	return _debois$elm_mdl$Material_Options_Internal$Class(c);
 };
@@ -9119,14 +9115,61 @@ var _debois$elm_mdl$Material_Ripple$model = {animation: _debois$elm_mdl$Material
 var _debois$elm_mdl$Material_Ripple$Frame = function (a) {
 	return {ctor: 'Frame', _0: a};
 };
+var _debois$elm_mdl$Material_Ripple$view$ = F2(
+	function (attrs, model) {
+		var styling = function () {
+			var _p3 = {ctor: '_Tuple2', _0: model.metrics, _1: model.animation};
+			if ((_p3.ctor === '_Tuple2') && (_p3._0.ctor === 'Just')) {
+				if (_p3._1.ctor === 'Frame') {
+					return A2(_debois$elm_mdl$Material_Ripple$styles, _p3._0._0, _p3._1._0);
+				} else {
+					return A2(_debois$elm_mdl$Material_Ripple$styles, _p3._0._0, 1);
+				}
+			} else {
+				return _elm_lang$core$Native_List.fromArray(
+					[]);
+			}
+		}();
+		return A2(
+			_elm_lang$html$Html$span,
+			attrs,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$span,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$classList(
+							_elm_lang$core$Native_List.fromArray(
+								[
+									{ctor: '_Tuple2', _0: 'mdl-ripple', _1: true},
+									{
+									ctor: '_Tuple2',
+									_0: 'is-animating',
+									_1: !_elm_lang$core$Native_Utils.eq(
+										model.animation,
+										_debois$elm_mdl$Material_Ripple$Frame(0))
+								},
+									{
+									ctor: '_Tuple2',
+									_0: 'is-visible',
+									_1: !_elm_lang$core$Native_Utils.eq(model.animation, _debois$elm_mdl$Material_Ripple$Inert)
+								}
+								])),
+							_elm_lang$html$Html_Attributes$style(styling)
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]));
+	});
 var _debois$elm_mdl$Material_Ripple$Tick = {ctor: 'Tick'};
 var _debois$elm_mdl$Material_Ripple$update = F2(
 	function (action, model) {
-		var _p3 = action;
-		switch (_p3.ctor) {
+		var _p4 = action;
+		switch (_p4.ctor) {
 			case 'Down':
-				var _p4 = _p3._0;
-				return (_elm_lang$core$Native_Utils.eq(_p4.type$, 'mousedown') && model.ignoringMouseDown) ? A2(
+				var _p5 = _p4._0;
+				return (_elm_lang$core$Native_Utils.eq(_p5.type$, 'mousedown') && model.ignoringMouseDown) ? A2(
 					_debois$elm_mdl$Material_Helpers$effect,
 					_elm_lang$core$Platform_Cmd$none,
 					_elm_lang$core$Native_Utils.update(
@@ -9138,8 +9181,8 @@ var _debois$elm_mdl$Material_Ripple$update = F2(
 						model,
 						{
 							animation: _debois$elm_mdl$Material_Ripple$Frame(0),
-							metrics: _debois$elm_mdl$Material_Ripple$computeMetrics(_p4),
-							ignoringMouseDown: _elm_lang$core$Native_Utils.eq(_p4.type$, 'touchstart') ? true : model.ignoringMouseDown
+							metrics: _debois$elm_mdl$Material_Ripple$computeMetrics(_p5),
+							ignoringMouseDown: _elm_lang$core$Native_Utils.eq(_p5.type$, 'touchstart') ? true : model.ignoringMouseDown
 						}));
 			case 'Up':
 				return A2(
@@ -9175,70 +9218,34 @@ var _debois$elm_mdl$Material_Ripple$downOn = function (name) {
 		name,
 		A2(_elm_lang$core$Json_Decode$map, _debois$elm_mdl$Material_Ripple$Down, _debois$elm_mdl$Material_Ripple$geometryDecoder));
 };
-var _debois$elm_mdl$Material_Ripple$view = F2(
-	function (attrs, model) {
-		var styling = function () {
-			var _p5 = {ctor: '_Tuple2', _0: model.metrics, _1: model.animation};
-			if ((_p5.ctor === '_Tuple2') && (_p5._0.ctor === 'Just')) {
-				if (_p5._1.ctor === 'Frame') {
-					return A2(_debois$elm_mdl$Material_Ripple$styles, _p5._0._0, _p5._1._0);
-				} else {
-					return A2(_debois$elm_mdl$Material_Ripple$styles, _p5._0._0, 1);
-				}
-			} else {
-				return _elm_lang$core$Native_List.fromArray(
-					[]);
-			}
-		}();
-		return A2(
-			_elm_lang$html$Html$span,
-			A2(
-				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Ripple$downOn('mousedown'),
-				A2(
-					_elm_lang$core$List_ops['::'],
-					_debois$elm_mdl$Material_Ripple$downOn('touchstart'),
-					A2(
-						_elm_lang$core$List_ops['::'],
-						_debois$elm_mdl$Material_Ripple$upOn('mouseup'),
-						A2(
-							_elm_lang$core$List_ops['::'],
-							_debois$elm_mdl$Material_Ripple$upOn('mouseleave'),
-							A2(
-								_elm_lang$core$List_ops['::'],
-								_debois$elm_mdl$Material_Ripple$upOn('touchend'),
-								A2(
-									_elm_lang$core$List_ops['::'],
-									_debois$elm_mdl$Material_Ripple$upOn('blur'),
-									attrs)))))),
+var _debois$elm_mdl$Material_Ripple$view = function (_p6) {
+	return _debois$elm_mdl$Material_Ripple$view$(
+		A3(
+			_elm_lang$core$Basics$flip,
+			_elm_lang$core$List$append,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$span,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$classList(
-							_elm_lang$core$Native_List.fromArray(
-								[
-									{ctor: '_Tuple2', _0: 'mdl-ripple', _1: true},
-									{
-									ctor: '_Tuple2',
-									_0: 'is-animating',
-									_1: !_elm_lang$core$Native_Utils.eq(
-										model.animation,
-										_debois$elm_mdl$Material_Ripple$Frame(0))
-								},
-									{
-									ctor: '_Tuple2',
-									_0: 'is-visible',
-									_1: !_elm_lang$core$Native_Utils.eq(model.animation, _debois$elm_mdl$Material_Ripple$Inert)
-								}
-								])),
-							_elm_lang$html$Html_Attributes$style(styling)
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[]))
-				]));
+					_debois$elm_mdl$Material_Ripple$upOn('mouseup'),
+					_debois$elm_mdl$Material_Ripple$upOn('mouseleave'),
+					_debois$elm_mdl$Material_Ripple$upOn('touchend'),
+					_debois$elm_mdl$Material_Ripple$upOn('blur'),
+					_debois$elm_mdl$Material_Ripple$downOn('mousedown'),
+					_debois$elm_mdl$Material_Ripple$downOn('touchstart')
+				]),
+			_p6));
+};
+var _debois$elm_mdl$Material_Ripple$downOn$ = F2(
+	function (f, name) {
+		return A2(
+			_elm_lang$html$Html_Events$on,
+			name,
+			A2(
+				_elm_lang$core$Json_Decode$map,
+				function (_p7) {
+					return f(
+						_debois$elm_mdl$Material_Ripple$Down(_p7));
+				},
+				_debois$elm_mdl$Material_Ripple$geometryDecoder));
 	});
 
 var _debois$elm_mdl$Material_Button$icon = _debois$elm_mdl$Material_Options$cs('mdl-button--icon');
@@ -9246,6 +9253,12 @@ var _debois$elm_mdl$Material_Button$minifab = _debois$elm_mdl$Material_Options$c
 var _debois$elm_mdl$Material_Button$fab = _debois$elm_mdl$Material_Options$cs('mdl-button--fab');
 var _debois$elm_mdl$Material_Button$raised = _debois$elm_mdl$Material_Options$cs('mdl-button--raised');
 var _debois$elm_mdl$Material_Button$flat = _debois$elm_mdl$Material_Options$nop;
+var _debois$elm_mdl$Material_Button$blurAndForward = function (event) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		A2(_elm_lang$core$Basics_ops['++'], 'on', event),
+		'this.blur(); this.lastChild.dispatchEvent(new Event(\'touchcancel\'));');
+};
 var _debois$elm_mdl$Material_Button$accent = _debois$elm_mdl$Material_Options$cs('mdl-button--accent');
 var _debois$elm_mdl$Material_Button$primary = _debois$elm_mdl$Material_Options$cs('mdl-button--primary');
 var _debois$elm_mdl$Material_Button$colored = _debois$elm_mdl$Material_Options$cs('mdl-button--colored');
@@ -9277,6 +9290,32 @@ var _debois$elm_mdl$Material_Button$defaultConfig = {ripple: false, onClick: _el
 var _debois$elm_mdl$Material_Button$view = F4(
 	function (lift, model, config, html) {
 		var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Button$defaultConfig, config);
+		var startListeners = summary.config.ripple ? _elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$core$Maybe$Just(
+				A2(_debois$elm_mdl$Material_Ripple$downOn$, lift, 'mousedown')),
+				_elm_lang$core$Maybe$Just(
+				A2(_debois$elm_mdl$Material_Ripple$downOn$, lift, 'touchstart'))
+			]) : _elm_lang$core$Native_List.fromArray(
+			[]);
+		var stopListeners = function () {
+			var handle = function (_p0) {
+				return _elm_lang$core$Maybe$Just(
+					(summary.config.ripple ? _debois$elm_mdl$Material_Button$blurAndForward : _debois$elm_mdl$Material_Helpers$blurOn)(_p0));
+			};
+			return _elm_lang$core$Native_List.fromArray(
+				[
+					handle('mouseup'),
+					handle('mouseleave'),
+					handle('touchend')
+				]);
+		}();
+		var misc = _elm_lang$core$Native_List.fromArray(
+			[
+				summary.config.onClick,
+				summary.config.disabled ? _elm_lang$core$Maybe$Just(
+				_elm_lang$html$Html_Attributes$disabled(true)) : _elm_lang$core$Maybe$Nothing
+			]);
 		return A5(
 			_debois$elm_mdl$Material_Options$apply,
 			summary,
@@ -9290,16 +9329,9 @@ var _debois$elm_mdl$Material_Button$view = F4(
 					_debois$elm_mdl$Material_Options$cs('mdl-js-ripple-effect'),
 					summary.config.ripple)
 				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$core$Maybe$Just(
-					_debois$elm_mdl$Material_Helpers$blurOn('mouseup')),
-					_elm_lang$core$Maybe$Just(
-					_debois$elm_mdl$Material_Helpers$blurOn('mouseleave')),
-					summary.config.onClick,
-					summary.config.disabled ? _elm_lang$core$Maybe$Just(
-					_elm_lang$html$Html_Attributes$disabled(true)) : _elm_lang$core$Maybe$Nothing
-				]),
+			_elm_lang$core$List$concat(
+				_elm_lang$core$Native_List.fromArray(
+					[startListeners, stopListeners, misc])),
 			summary.config.ripple ? _elm_lang$core$List$concat(
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -9310,11 +9342,12 @@ var _debois$elm_mdl$Material_Button$view = F4(
 							_elm_lang$html$Html_App$map,
 							lift,
 							A2(
-								_debois$elm_mdl$Material_Ripple$view,
+								_debois$elm_mdl$Material_Ripple$view$,
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html_Attributes$class('mdl-button__ripple-container'),
-										_debois$elm_mdl$Material_Helpers$blurOn('mouseup')
+										_debois$elm_mdl$Material_Ripple$upOn('blur'),
+										_debois$elm_mdl$Material_Ripple$upOn('touchcancel')
 									]),
 								model))
 						])
@@ -9721,14 +9754,6 @@ var _debois$elm_mdl$Material_Menu_Geometry$decode$ = A6(
 						_elm_lang$core$Array$fromList(_p3));
 				}))));
 
-var _debois$elm_mdl$Material_Menu$css$ = F3(
-	function (k, v, p) {
-		return p ? A2(_debois$elm_mdl$Material_Options$css, k, v) : _debois$elm_mdl$Material_Options$nop;
-	});
-var _debois$elm_mdl$Material_Menu$cs$ = F2(
-	function (c, p) {
-		return p ? _debois$elm_mdl$Material_Options$cs(c) : _debois$elm_mdl$Material_Options$nop;
-	});
 var _debois$elm_mdl$Material_Menu$toPx = function (_p0) {
 	return A3(
 		_elm_lang$core$Basics$flip,
@@ -9973,13 +9998,18 @@ var _debois$elm_mdl$Material_Menu$makeItem = F5(
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_debois$elm_mdl$Material_Options$cs('mdl-menu__item'),
-					A3(
-					_debois$elm_mdl$Material_Menu$css$,
-					'transition-delay',
-					itemDelay,
+					A2(
+					_debois$elm_mdl$Material_Options$when,
+					A2(_debois$elm_mdl$Material_Options$css, 'transition-delay', itemDelay),
 					_elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Opening) || _elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Opened)),
-					A2(_debois$elm_mdl$Material_Menu$cs$, 'mdl-js-ripple-effect', config.ripple),
-					A2(_debois$elm_mdl$Material_Menu$cs$, 'mdl-menu__item--full-bleed-divider', item.divider)
+					A2(
+					_debois$elm_mdl$Material_Options$when,
+					_debois$elm_mdl$Material_Options$cs('mdl-js-ripple-effect'),
+					config.ripple),
+					A2(
+					_debois$elm_mdl$Material_Options$when,
+					_debois$elm_mdl$Material_Options$cs('mdl-menu__item--full-bleed-divider'),
+					item.divider)
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -10127,8 +10157,8 @@ var _debois$elm_mdl$Material_Menu$view$ = F4(
 							_debois$elm_mdl$Material_Options$cs('mdl-menu__container'),
 							_debois$elm_mdl$Material_Options$cs('is-upgraded'),
 							A2(
-							_debois$elm_mdl$Material_Menu$cs$,
-							'is-visible',
+							_debois$elm_mdl$Material_Options$when,
+							_debois$elm_mdl$Material_Options$cs('is-visible'),
 							_elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Opened) || _elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Closing)),
 							A2(
 							_elm_lang$core$Maybe$withDefault,
@@ -10207,8 +10237,8 @@ var _debois$elm_mdl$Material_Menu$view$ = F4(
 									}
 								}(),
 									A2(
-									_debois$elm_mdl$Material_Menu$cs$,
-									'is-animating',
+									_debois$elm_mdl$Material_Options$when,
+									_debois$elm_mdl$Material_Options$cs('is-animating'),
 									_elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Opening) || _elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Closing)),
 									A2(
 									_elm_lang$core$Maybe$withDefault,
@@ -11306,7 +11336,17 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 							_debois$elm_mdl$Material_Icon$view,
 							A2(_elm_lang$core$Basics_ops['++'], 'chevron_', dir),
 							_elm_lang$core$Native_List.fromArray(
-								[_debois$elm_mdl$Material_Icon$size24]))
+								[
+									_debois$elm_mdl$Material_Icon$size24,
+									_debois$elm_mdl$Material_Options_Internal$attribute(
+									A2(
+										_elm_lang$html$Html_Attributes$attribute,
+										'onclick',
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'document.getElementsByClassName(\'mdl-layout__tab-bar\')[0].scrollLeft += ',
+											_elm_lang$core$Basics$toString(offset))))
+								]))
 						]));
 			});
 		return A2(
@@ -11323,6 +11363,7 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 					_elm_lang$core$Native_List.fromArray(
 						[
 							_debois$elm_mdl$Material_Options$cs('mdl-layout__tab-bar'),
+							A2(_debois$elm_mdl$Material_Options$css, 'scroll-behavior', 'smooth'),
 							config.rippleTabs ? _debois$elm_mdl$Material_Options$many(
 							_elm_lang$core$Native_List.fromArray(
 								[
