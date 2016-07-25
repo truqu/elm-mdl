@@ -14560,7 +14560,7 @@ var _debois$elm_mdl$Demo_Cards$view = function (model) {
 								A2(_debois$elm_mdl$Material_Options$css, 'margin', '5px'),
 								_debois$elm_mdl$Material_Card$width('256px'),
 								_debois$elm_mdl$Material_Card$height('256px'),
-								A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'../assets/elm.png\') center / cover')
+								A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/elm.png\') center / cover')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
