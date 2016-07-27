@@ -7364,6 +7364,107 @@ var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
 
+var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$html$Html_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['target', 'checked']),
+	_elm_lang$core$Json_Decode$bool);
+var _elm_lang$html$Html_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['target', 'value']),
+	_elm_lang$core$Json_Decode$string);
+var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
+var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$html$Html_Events$onFocus = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onBlur = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_elm_lang$html$Html_Events$defaultOptions,
+	{preventDefault: true});
+var _elm_lang$html$Html_Events$onSubmit = function (msg) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'submit',
+		_elm_lang$html$Html_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onCheck = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
+};
+var _elm_lang$html$Html_Events$onInput = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
+
 var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
 var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'contextmenu', value);
@@ -7716,107 +7817,6 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
-var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
-var _elm_lang$html$Html_Events$targetChecked = A2(
-	_elm_lang$core$Json_Decode$at,
-	_elm_lang$core$Native_List.fromArray(
-		['target', 'checked']),
-	_elm_lang$core$Json_Decode$bool);
-var _elm_lang$html$Html_Events$targetValue = A2(
-	_elm_lang$core$Json_Decode$at,
-	_elm_lang$core$Native_List.fromArray(
-		['target', 'value']),
-	_elm_lang$core$Json_Decode$string);
-var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
-var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
-var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
-var _elm_lang$html$Html_Events$onFocus = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'focus',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onBlur = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'blur',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
-	_elm_lang$html$Html_Events$defaultOptions,
-	{preventDefault: true});
-var _elm_lang$html$Html_Events$onSubmit = function (msg) {
-	return A3(
-		_elm_lang$html$Html_Events$onWithOptions,
-		'submit',
-		_elm_lang$html$Html_Events$onSubmitOptions,
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onCheck = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'change',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
-};
-var _elm_lang$html$Html_Events$onInput = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'input',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
-};
-var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseout',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseover',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseleave',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseenter',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseup',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mousedown',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'dblclick',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onClick = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'click',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$Options = F2(
-	function (a, b) {
-		return {stopPropagation: a, preventDefault: b};
-	});
-
 var _debois$elm_mdl$Material_Options_Internal$None = {ctor: 'None'};
 var _debois$elm_mdl$Material_Options_Internal$Set = function (a) {
 	return {ctor: 'Set', _0: a};
@@ -7835,13 +7835,7 @@ var _debois$elm_mdl$Material_Options_Internal$Class = function (a) {
 	return {ctor: 'Class', _0: a};
 };
 
-var _debois$elm_mdl$Material_Options$onHover = function (x) {
-	return _debois$elm_mdl$Material_Options_Internal$Attribute(
-		A2(
-			_elm_lang$html$Html_Events$on,
-			'mouseover',
-			_elm_lang$core$Json_Decode$succeed(x)));
-};
+var _debois$elm_mdl$Material_Options$attribute = _debois$elm_mdl$Material_Options_Internal$Attribute;
 var _debois$elm_mdl$Material_Options$stylesheet = function (css) {
 	return A3(
 		_elm_lang$html$Html$node,
@@ -7880,6 +7874,18 @@ var _debois$elm_mdl$Material_Options$center = _debois$elm_mdl$Material_Options$m
 			A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center'),
 			A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center')
 		]));
+var _debois$elm_mdl$Material_Options$scrim = function (opacity) {
+	return A2(
+		_debois$elm_mdl$Material_Options$css,
+		'background',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, ',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(opacity),
+				'))')));
+};
 var _debois$elm_mdl$Material_Options$cs = function (c) {
 	return _debois$elm_mdl$Material_Options_Internal$Class(c);
 };
@@ -9272,7 +9278,7 @@ var _debois$elm_mdl$Material_Button$blurAndForward = function (event) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		A2(_elm_lang$core$Basics_ops['++'], 'on', event),
-		'this.blur(); this.lastChild.dispatchEvent(new Event(\'touchcancel\'));');
+		'this.blur(); (function(self) { var e = document.createEvent(\'Event\'); e.initEvent(\'touchcancel\', true, true); self.lastChild.dispatchEvent(e); }(this));');
 };
 var _debois$elm_mdl$Material_Button$accent = _debois$elm_mdl$Material_Options$cs('mdl-button--accent');
 var _debois$elm_mdl$Material_Button$primary = _debois$elm_mdl$Material_Options$cs('mdl-button--primary');
@@ -13584,6 +13590,10 @@ var _debois$elm_mdl$Demo_Badges$c = _debois$elm_mdl$Material_Grid$cell(
 		[
 			A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 4)
 		]));
+var _debois$elm_mdl$Demo_Badges$onHover = function (_p0) {
+	return _debois$elm_mdl$Material_Options$attribute(
+		_elm_lang$html$Html_Events$onMouseOver(_p0));
+};
 var _debois$elm_mdl$Demo_Badges$model = {unread: 1, mdl: _debois$elm_mdl$Material$model, code: _elm_lang$core$Maybe$Nothing, codebox: _debois$elm_mdl$Demo_Code$model};
 var _debois$elm_mdl$Demo_Badges$Model = F4(
 	function (a, b, c, d) {
@@ -13626,7 +13636,7 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_debois$elm_mdl$Material_Badge$add('3'),
-										_debois$elm_mdl$Material_Options$onHover(
+										_debois$elm_mdl$Demo_Badges$onHover(
 										_debois$elm_mdl$Demo_Badges$SetCode(c1))
 									]),
 								_elm_lang$core$Native_List.fromArray(
@@ -13645,7 +13655,7 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_debois$elm_mdl$Material_Badge$add('♥'),
-										_debois$elm_mdl$Material_Options$onHover(
+										_debois$elm_mdl$Demo_Badges$onHover(
 										_debois$elm_mdl$Demo_Badges$SetCode(c2))
 									]),
 								_elm_lang$core$Native_List.fromArray(
@@ -13664,7 +13674,7 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 								_elm_lang$html$Html$span,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_debois$elm_mdl$Material_Options$onHover(
+										_debois$elm_mdl$Demo_Badges$onHover(
 										_debois$elm_mdl$Demo_Badges$SetCode(c3))
 									]),
 								_elm_lang$core$Native_List.fromArray(
@@ -13691,7 +13701,7 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 									[
 										_debois$elm_mdl$Material_Badge$add('5'),
 										_debois$elm_mdl$Material_Badge$noBackground,
-										_debois$elm_mdl$Material_Options$onHover(
+										_debois$elm_mdl$Demo_Badges$onHover(
 										_debois$elm_mdl$Demo_Badges$SetCode(c4))
 									]),
 								_elm_lang$core$Native_List.fromArray(
@@ -13711,7 +13721,7 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 									[
 										_debois$elm_mdl$Material_Badge$add('8'),
 										_debois$elm_mdl$Material_Badge$overlap,
-										_debois$elm_mdl$Material_Options$onHover(
+										_debois$elm_mdl$Demo_Badges$onHover(
 										_debois$elm_mdl$Demo_Badges$SetCode(c5))
 									]),
 								_elm_lang$core$Native_List.fromArray(
@@ -13732,7 +13742,7 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 										_debois$elm_mdl$Material_Badge$add('13'),
 										_debois$elm_mdl$Material_Badge$overlap,
 										_debois$elm_mdl$Material_Badge$noBackground,
-										_debois$elm_mdl$Material_Options$onHover(
+										_debois$elm_mdl$Demo_Badges$onHover(
 										_debois$elm_mdl$Demo_Badges$SetCode(c6))
 									]),
 								_elm_lang$core$Native_List.fromArray(
@@ -13817,10 +13827,10 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 var _debois$elm_mdl$Demo_Badges$Increase = {ctor: 'Increase'};
 var _debois$elm_mdl$Demo_Badges$update = F2(
 	function (action, model) {
-		var _p0 = action;
-		switch (_p0.ctor) {
+		var _p1 = action;
+		switch (_p1.ctor) {
 			case 'Mdl':
-				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Badges$Mdl, _p0._0, model);
+				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Badges$Mdl, _p1._0, model);
 			case 'Decrease':
 				return {
 					ctor: '_Tuple2',
@@ -13859,7 +13869,7 @@ var _debois$elm_mdl$Demo_Badges$update = F2(
 						},
 						A2(
 							_debois$elm_mdl$Demo_Code$update,
-							_debois$elm_mdl$Demo_Code$Set(_p0._0),
+							_debois$elm_mdl$Demo_Code$Set(_p1._0),
 							model.codebox)));
 			default:
 				return A2(
@@ -13872,7 +13882,7 @@ var _debois$elm_mdl$Demo_Badges$update = F2(
 								model,
 								{codebox: codebox});
 						},
-						A2(_debois$elm_mdl$Demo_Code$update, _p0._0, model.codebox)));
+						A2(_debois$elm_mdl$Demo_Code$update, _p1._0, model.codebox)));
 		}
 	});
 
@@ -14260,7 +14270,7 @@ var _debois$elm_mdl$Demo_Buttons$view = function (model) {
 			]));
 };
 
-var _debois$elm_mdl$Material_Card$contentBlock = function (block) {
+var _debois$elm_mdl$Material_Card$block = function (block) {
 	var _p0 = block;
 	switch (_p0.ctor) {
 		case 'Title':
@@ -14305,340 +14315,86 @@ var _debois$elm_mdl$Material_Card$contentBlock = function (block) {
 				_p0._1);
 	}
 };
-var _debois$elm_mdl$Material_Card$card = F2(
-	function (styling, contentBlocks) {
+var _debois$elm_mdl$Material_Card$view = F2(
+	function (styling, views) {
 		return A2(
 			_debois$elm_mdl$Material_Options$div,
 			A2(
-				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card'),
-				styling),
-			A2(_elm_lang$core$List$map, _debois$elm_mdl$Material_Card$contentBlock, contentBlocks));
+				_elm_lang$core$List$append,
+				styling,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Options$cs('mdl-card'),
+						A2(_debois$elm_mdl$Material_Options$css, 'min-height', '0px')
+					])),
+			A2(_elm_lang$core$List$map, _debois$elm_mdl$Material_Card$block, views));
 	});
-var _debois$elm_mdl$Material_Card$h6 = F2(
-	function (styling, content) {
-		return A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h6,
+var _debois$elm_mdl$Material_Card$subhead = function (styling) {
+	return _debois$elm_mdl$Material_Options$span(
+		A2(
+			_elm_lang$core$List_ops['::'],
+			_debois$elm_mdl$Material_Options$cs('mdl-card__subtitle-text'),
 			A2(
 				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-				styling),
-			content);
-	});
-var _debois$elm_mdl$Material_Card$h5 = F2(
-	function (styling, content) {
-		return A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h5,
+				A2(_debois$elm_mdl$Material_Options$css, 'padding-top', '8px'),
+				styling)));
+};
+var _debois$elm_mdl$Material_Card$head = function (styling) {
+	return A2(
+		_debois$elm_mdl$Material_Options$styled,
+		_elm_lang$html$Html$h1,
+		A2(
+			_elm_lang$core$List_ops['::'],
+			_debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
 			A2(
 				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-				styling),
-			content);
-	});
-var _debois$elm_mdl$Material_Card$h4 = F2(
-	function (styling, content) {
-		return A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h4,
-			A2(
-				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-				styling),
-			content);
-	});
-var _debois$elm_mdl$Material_Card$h3 = F2(
-	function (styling, content) {
-		return A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h3,
-			A2(
-				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-				styling),
-			content);
-	});
-var _debois$elm_mdl$Material_Card$h2 = F2(
-	function (styling, content) {
-		return A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h2,
-			A2(
-				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-				styling),
-			content);
-	});
-var _debois$elm_mdl$Material_Card$h1 = F2(
-	function (styling, content) {
-		return A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h1,
-			A2(
-				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-				styling),
-			content);
-	});
-var _debois$elm_mdl$Material_Card$subTitle = F2(
-	function (styling, content) {
-		return A2(
-			_debois$elm_mdl$Material_Options$span,
-			A2(
-				_elm_lang$core$List_ops['::'],
-				_debois$elm_mdl$Material_Options$cs('mdl-card__subtitle-text'),
-				styling),
-			content);
-	});
+				A2(_debois$elm_mdl$Material_Options$css, 'align-self', 'flex-start'),
+				styling)));
+};
 var _debois$elm_mdl$Material_Card$expand = _debois$elm_mdl$Material_Options$cs('mdl-card--expand');
 var _debois$elm_mdl$Material_Card$border = _debois$elm_mdl$Material_Options$cs('mdl-card--border');
-var _debois$elm_mdl$Material_Card$height = function (h) {
-	return A2(_debois$elm_mdl$Material_Options$css, 'height', h);
-};
-var _debois$elm_mdl$Material_Card$width = function (w) {
-	return A2(_debois$elm_mdl$Material_Options$css, 'width', w);
-};
 var _debois$elm_mdl$Material_Card$Actions = F2(
 	function (a, b) {
 		return {ctor: 'Actions', _0: a, _1: b};
 	});
-var _debois$elm_mdl$Material_Card$actions = F2(
-	function (styling, content) {
-		return A2(_debois$elm_mdl$Material_Card$Actions, styling, content);
-	});
+var _debois$elm_mdl$Material_Card$actions = _debois$elm_mdl$Material_Card$Actions;
 var _debois$elm_mdl$Material_Card$SupportingText = F2(
 	function (a, b) {
 		return {ctor: 'SupportingText', _0: a, _1: b};
 	});
-var _debois$elm_mdl$Material_Card$supportingText = F2(
-	function (styling, content) {
-		return A2(_debois$elm_mdl$Material_Card$SupportingText, styling, content);
-	});
+var _debois$elm_mdl$Material_Card$text = _debois$elm_mdl$Material_Card$SupportingText;
 var _debois$elm_mdl$Material_Card$Media = F2(
 	function (a, b) {
 		return {ctor: 'Media', _0: a, _1: b};
 	});
-var _debois$elm_mdl$Material_Card$media = F2(
-	function (styling, content) {
-		return A2(_debois$elm_mdl$Material_Card$Media, styling, content);
-	});
+var _debois$elm_mdl$Material_Card$media = _debois$elm_mdl$Material_Card$Media;
 var _debois$elm_mdl$Material_Card$Menu = F2(
 	function (a, b) {
 		return {ctor: 'Menu', _0: a, _1: b};
 	});
 var _debois$elm_mdl$Material_Card$menu = F2(
-	function (styling, content) {
-		return A2(_debois$elm_mdl$Material_Card$Menu, styling, content);
+	function (styling, block) {
+		return A2(_debois$elm_mdl$Material_Card$Menu, styling, block);
 	});
 var _debois$elm_mdl$Material_Card$Title = F2(
 	function (a, b) {
 		return {ctor: 'Title', _0: a, _1: b};
 	});
 var _debois$elm_mdl$Material_Card$title = F2(
-	function (styling, content) {
-		return A2(_debois$elm_mdl$Material_Card$Title, styling, content);
-	});
-
-var _debois$elm_mdl$Demo_Cards$references = _elm_lang$core$Native_List.fromArray(
-	[
-		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Card'),
-		_debois$elm_mdl$Demo_Page$mds('https://material.google.com/components/cards.html'),
-		_debois$elm_mdl$Demo_Page$mdl('https://getmdl.io/components/#cards-section')
-	]);
-var _debois$elm_mdl$Demo_Cards$srcUrl = 'https://github.com/debois/elm-mdl/blob/master/demo/Demo/Card.elm';
-var _debois$elm_mdl$Demo_Cards$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://getmdl.io/components/#cards-section', '\n> The Material Design Lite (MDL) card component is a user interface element\n> representing a virtual piece of paper that contains related data — such as a\n> photo, some text, and a link — that are all about a single subject.\n>\n> Cards are a convenient means of coherently displaying related content that is\n> composed of different types of objects. They are also well-suited for presenting\n> similar objects whose size or supported actions can vary considerably, like\n> photos with captions of variable length. Cards have a constant width and a\n> variable height, depending on their content.\n>\n> Cards are a fairly new feature in user interfaces, and allow users an access\n> point to more complex and detailed information. Their design and use is an\n> important factor in the overall user experience. See the card component\'s\n> Material Design specifications page for details.\n');
-var _debois$elm_mdl$Demo_Cards$model = {mdl: _debois$elm_mdl$Material$model};
-var _debois$elm_mdl$Demo_Cards$Model = function (a) {
-	return {mdl: a};
-};
-var _debois$elm_mdl$Demo_Cards$Mdl = function (a) {
-	return {ctor: 'Mdl', _0: a};
-};
-var _debois$elm_mdl$Demo_Cards$update = F2(
-	function (action, model) {
-		var _p0 = action;
-		return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Cards$Mdl, _p0._0, model);
-	});
-var _debois$elm_mdl$Demo_Cards$view = function (model) {
-	return A5(
-		_debois$elm_mdl$Demo_Page$body2,
-		'Cards',
-		_debois$elm_mdl$Demo_Cards$srcUrl,
-		_debois$elm_mdl$Demo_Cards$intro,
-		_debois$elm_mdl$Demo_Cards$references,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$div,
+	function (styling, block) {
+		return A2(
+			_debois$elm_mdl$Material_Card$Title,
+			A2(
+				_elm_lang$core$List$append,
+				styling,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$style(
-						_elm_lang$core$Native_List.fromArray(
-							[
-								{ctor: '_Tuple2', _0: 'display', _1: 'flex'}
-							]))
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_debois$elm_mdl$Material_Card$card,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Elevation$e2,
-								A2(_debois$elm_mdl$Material_Options$css, 'margin', '5px')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Card$title,
-								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Card$expand]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_debois$elm_mdl$Material_Card$h2,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html$text('Welcome')
-											]))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Card$supportingText,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('\nLorem ipsum dolor sit amet, consectetur adipiscing elit.\nMauris sagittis pellentesque lacus eleifend lacinia...\n')
-									])),
-								A2(
-								_debois$elm_mdl$Material_Card$actions,
-								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Card$border]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A5(
-										_debois$elm_mdl$Material_Button$render,
-										_debois$elm_mdl$Demo_Cards$Mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[0]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[_debois$elm_mdl$Material_Button$colored, _debois$elm_mdl$Material_Button$ripple]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html$text('Get started')
-											]))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Card$menu,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A5(
-										_debois$elm_mdl$Material_Button$render,
-										_debois$elm_mdl$Demo_Cards$Mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[1]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[_debois$elm_mdl$Material_Button$icon, _debois$elm_mdl$Material_Button$ripple]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Icon$i('share')
-											]))
-									]))
-							])),
-						A2(
-						_debois$elm_mdl$Material_Card$card,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Elevation$e2,
-								A2(_debois$elm_mdl$Material_Options$css, 'margin', '5px'),
-								_debois$elm_mdl$Material_Card$width('256px'),
-								_debois$elm_mdl$Material_Card$height('256px'),
-								A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/elm.png\') center / cover')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Card$title,
-								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Card$expand]),
-								_elm_lang$core$Native_List.fromArray(
-									[])),
-								A2(
-								_debois$elm_mdl$Material_Card$actions,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(_debois$elm_mdl$Material_Options$css, 'background', 'rgba(0, 0, 0, 0.2)'),
-										A2(_debois$elm_mdl$Material_Options$css, 'font-weight', 'bold'),
-										A2(_debois$elm_mdl$Material_Options$css, 'font-size', '14px'),
-										_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('elm.png')
-									]))
-							])),
-						A2(
-						_debois$elm_mdl$Material_Card$card,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Elevation$e2,
-								A2(_debois$elm_mdl$Material_Options$css, 'margin', '5px')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Card$title,
-								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Card$expand]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_debois$elm_mdl$Material_Card$h2,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html$text('Title')
-											])),
-										A2(
-										_debois$elm_mdl$Material_Card$subTitle,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html$text('Subtitle')
-											]))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Card$actions,
-								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Card$border]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A5(
-										_debois$elm_mdl$Material_Button$render,
-										_debois$elm_mdl$Demo_Cards$Mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[2]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[_debois$elm_mdl$Material_Button$colored, _debois$elm_mdl$Material_Button$ripple]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html$text('Do something')
-											]))
-									]))
-							]))
-					]))
-			]));
-};
+						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'flex-end'),
+						A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'column'),
+						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start')
+					])),
+			block);
+	});
 
 var _debois$elm_mdl$Material_Typography$tableStriped = _debois$elm_mdl$Material_Options$cs('mdl-typography--table-striped');
 var _debois$elm_mdl$Material_Typography$nowrap = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-nowrap');
@@ -14795,6 +14551,513 @@ var _debois$elm_mdl$Material_Typography$Center = {ctor: 'Center'};
 var _debois$elm_mdl$Material_Typography$center = _debois$elm_mdl$Material_Options$cs(
 	_debois$elm_mdl$Material_Typography$alignName(_debois$elm_mdl$Material_Typography$Center));
 
+var _debois$elm_mdl$Demo_Cards$references = _elm_lang$core$Native_List.fromArray(
+	[
+		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Card'),
+		_debois$elm_mdl$Demo_Page$mds('https://material.google.com/components/cards.html'),
+		_debois$elm_mdl$Demo_Page$mdl('https://getmdl.io/components/#cards-section')
+	]);
+var _debois$elm_mdl$Demo_Cards$srcUrl = 'https://github.com/debois/elm-mdl/blob/master/demo/Demo/Card.elm';
+var _debois$elm_mdl$Demo_Cards$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://getmdl.io/components/#cards-section', '\n> The Material Design Lite (MDL) card component is a user interface element\n> representing a virtual piece of paper that contains related data — such as a\n> photo, some text, and a link — that are all about a single subject.\n>\n> Cards are a convenient means of coherently displaying related content that is\n> composed of different types of objects. They are also well-suited for presenting\n> similar objects whose size or supported actions can vary considerably, like\n> photos with captions of variable length. Cards have a constant width and a\n> variable height, depending on their content.\n>\n> Cards are a fairly new feature in user interfaces, and allow users an access\n> point to more complex and detailed information. Their design and use is an\n> important factor in the overall user experience. See the card component\'s\n> Material Design specifications page for details.\n');
+var _debois$elm_mdl$Demo_Cards$right = _debois$elm_mdl$Material_Options$many(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'auto'),
+			A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+			A2(_debois$elm_mdl$Material_Options$css, 'padding', '5ex 2ex')
+		]));
+var _debois$elm_mdl$Demo_Cards$left = _debois$elm_mdl$Material_Options$many(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'padding', '5ex 2ex'),
+			A2(_debois$elm_mdl$Material_Options$css, 'max-width', '768px')
+		]));
+var _debois$elm_mdl$Demo_Cards$block = _debois$elm_mdl$Material_Options$many(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+			A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'column'),
+			A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+		]));
+var _debois$elm_mdl$Demo_Cards$view1 = function (_p0) {
+	var _p1 = _p0;
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_debois$elm_mdl$Material_Grid$cell,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Tablet, 8),
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4),
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Desktop, 6)
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'height', '1rem')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+					_p1._0,
+					A2(
+					_elm_lang$core$Maybe$withDefault,
+					A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+					_p1._2),
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'height', '1rem')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				])),
+			A2(
+			_debois$elm_mdl$Material_Grid$cell,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Tablet, 8),
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4),
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Desktop, 6),
+					_debois$elm_mdl$Material_Grid$align(_debois$elm_mdl$Material_Grid$Bottom)
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_debois$elm_mdl$Demo_Code$code(_p1._1)
+				]))
+		]);
+};
+var _debois$elm_mdl$Demo_Cards$scrim = _debois$elm_mdl$Material_Options$many(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_debois$elm_mdl$Material_Options$scrim(0.6),
+			A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+			A2(_debois$elm_mdl$Material_Options$css, 'padding', '16px')
+		]));
+var _debois$elm_mdl$Demo_Cards$model = {mdl: _debois$elm_mdl$Material$model, selected: -1};
+var _debois$elm_mdl$Demo_Cards$Model = F2(
+	function (a, b) {
+		return {mdl: a, selected: b};
+	});
+var _debois$elm_mdl$Demo_Cards$Select = function (a) {
+	return {ctor: 'Select', _0: a};
+};
+var _debois$elm_mdl$Demo_Cards$dynamic = function (model) {
+	return _debois$elm_mdl$Material_Options$many(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$core$Native_Utils.eq(model.selected, 1) ? _debois$elm_mdl$Material_Elevation$e8 : _debois$elm_mdl$Material_Elevation$e2,
+				_debois$elm_mdl$Material_Elevation$transition(250),
+				_debois$elm_mdl$Material_Options$attribute(
+				_elm_lang$html$Html_Events$onMouseEnter(
+					_debois$elm_mdl$Demo_Cards$Select(1))),
+				_debois$elm_mdl$Material_Options$attribute(
+				_elm_lang$html$Html_Events$onMouseLeave(
+					_debois$elm_mdl$Demo_Cards$Select(-1))),
+				_debois$elm_mdl$Material_Options$attribute(
+				_elm_lang$html$Html_Events$onClick(
+					_debois$elm_mdl$Demo_Cards$Select(-1)))
+			]));
+};
+var _debois$elm_mdl$Demo_Cards$card1 = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        , Card.text [] [ text \"Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951, this one-room weekend retreat is situated 89km southwest of downtown Chicago, Illinois, United States.\" ]\n        ]';
+	var width = 512;
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Demo_Cards$dynamic(model),
+				A2(
+				_debois$elm_mdl$Material_Options$css,
+				'width',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(width),
+					'px'))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$media,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/farnsworth.jpg\') center / cover'),
+						A2(
+						_debois$elm_mdl$Material_Options$css,
+						'height',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString((width / 16) * 9),
+							'px'))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_debois$elm_mdl$Material_Card$title,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Card$head,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('The Farnsworth House')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$text,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951, this one-room weekend retreat is situated 89km southwest of downtown Chicago, Illinois, United States.')
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
+var _debois$elm_mdl$Demo_Cards$card3 = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view\n        [ css \"width\" \"384px\"\n        , css \"height\" \"384px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        , dynamic model\n        ]\n        [ Card.text [ Card.expand ] []\n        , Card.actions\n          [ css \"background\" \"rgba(0, 0, 0, 0.5)\"\n          , css \"height\" \"64px\"\n          , css \"display\" \"flex\"\n          , css \"align-items\" \"center\"\n          ]\n          [ Options.span \n              [ Color.text Color.white, Typography.title\n              ]\n              [ text \"The Elm language\" ]\n          ]\n        ]\n';
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'height', '256px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/elm.png\') center / cover'),
+				_debois$elm_mdl$Demo_Cards$dynamic(model)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$text,
+				_elm_lang$core$Native_List.fromArray(
+					[_debois$elm_mdl$Material_Card$expand]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_debois$elm_mdl$Material_Card$actions,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'background', 'rgba(0, 0, 0, 0.5)'),
+						A2(_debois$elm_mdl$Material_Options$css, 'height', '48px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Options$span,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white),
+								_debois$elm_mdl$Material_Typography$title
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('The Elm language')
+							]))
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
+var _debois$elm_mdl$Demo_Cards$card4 = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view\n        [ css \"width\" \"256px\"\n        , css \"height\" \"256px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        , dynamic model\n        ]\n        [ Card.text [ Card.expand ] []\n        , Card.actions\n          [ css \"background\" \"rgba(0, 0, 0, 0.5)\"\n          , css \"height\" \"64px\"\n          , css \"display\" \"flex\"\n          , css \"align-items\" \"center\"\n          ]\n          [ Options.span \n              [ Color.text Color.white, Typography.title\n              ]\n              [ text \"The Elm language\" ]\n          ]\n        ]\n';
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '320px'),
+				_debois$elm_mdl$Material_Color$background(
+				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Amber, _debois$elm_mdl$Material_Color$S600)),
+				_debois$elm_mdl$Demo_Cards$dynamic(model)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$title,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'align-content', 'flex-start'),
+						A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'row'),
+						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start'),
+						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'space-between')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Options$div,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Card$head,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Artificial Heart')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Card$subhead,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Jonathan Coulton')
+									]))
+							])),
+						A2(
+						_debois$elm_mdl$Material_Options$img,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Options$attribute(
+								_elm_lang$html$Html_Attributes$src('assets/artificial-heart.jpg')),
+								A2(_debois$elm_mdl$Material_Options$css, 'height', '96px'),
+								A2(_debois$elm_mdl$Material_Options$css, 'width', '96px'),
+								A2(_debois$elm_mdl$Material_Options$css, 'align-self', 'flex-end')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
+var _debois$elm_mdl$Demo_Cards$Mdl = function (a) {
+	return {ctor: 'Mdl', _0: a};
+};
+var _debois$elm_mdl$Demo_Cards$update = F2(
+	function (action, model) {
+		var _p2 = action;
+		if (_p2.ctor === 'Mdl') {
+			return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Cards$Mdl, _p2._0, model);
+		} else {
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{selected: _p2._0}),
+				_elm_lang$core$Native_List.fromArray(
+					[]));
+		}
+	});
+var _debois$elm_mdl$Demo_Cards$card11 = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Demo_Cards$dynamic(model),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '512px')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$title,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/orion.jpg\') center / cover'),
+						A2(_debois$elm_mdl$Material_Options$css, 'height', '256px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Card$head,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white),
+								_debois$elm_mdl$Demo_Cards$scrim
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Orion Multi-Purpose Crew Vehicle')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$text,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('This NASA spacecraft will eventually take astronauts to Mars. Intermediate steps include both manned and unmanned missions to and orbiting the Moon.')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$menu,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[11, 0]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Button$icon,
+								_debois$elm_mdl$Material_Button$ripple,
+								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$accentContrast)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Icon$i('share')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$actions,
+				_elm_lang$core$Native_List.fromArray(
+					[_debois$elm_mdl$Material_Card$border]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[11, 1]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$ripple]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Moon')
+							])),
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[11, 2]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$ripple]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Mars')
+							]))
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
+var _debois$elm_mdl$Demo_Cards$card2 = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"160px\"\n        , Color.background (Color.color Color.LightBlue Color.S400)\n        , Color.text Color.white\n        ]\n        [ Card.title [ ] \n            [ Card.head [ Color.text Color.white ] [ text \"Call Petronella\" ] ]\n        , Card.text [ Card.expand ] [ {- filler -} ] \n        , Card.actions \n            [ Card.border\n            , css \"display\" \"flex\"\n            , css \"justify-content\" \"space-between\"\n            , css \"align-items\" \"center\" \n            ] \n            [ Options.span [ Typography.caption ] [ text \"August 3, 2016\" ]\n            , Button.render Mdl [1] model.mdl\n                [ Button.icon\n                , Button.ripple\n                ]\n                [ Icon.i \"phone\" ]\n            ]\n        ]';
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Demo_Cards$dynamic(model),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '160px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'height', '160px'),
+				_debois$elm_mdl$Material_Color$background(
+				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$S400)),
+				_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$title,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Card$head,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Call Petronella')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$text,
+				_elm_lang$core$Native_List.fromArray(
+					[_debois$elm_mdl$Material_Card$expand]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_debois$elm_mdl$Material_Card$actions,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Card$border,
+						A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'space-between'),
+						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Options$span,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Typography$caption]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('August 3, 2016')
+							])),
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[1]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$icon, _debois$elm_mdl$Material_Button$ripple]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Icon$i('phone')
+							]))
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
+var _debois$elm_mdl$Demo_Cards$view = function (model) {
+	var cards = A2(
+		_debois$elm_mdl$Material_Grid$grid,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		A2(
+			_elm_lang$core$List$concatMap,
+			_debois$elm_mdl$Demo_Cards$view1,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_debois$elm_mdl$Demo_Cards$card1(model),
+					_debois$elm_mdl$Demo_Cards$card11(model),
+					_debois$elm_mdl$Demo_Cards$card2(model),
+					_debois$elm_mdl$Demo_Cards$card3(model),
+					_debois$elm_mdl$Demo_Cards$card4(model)
+				])));
+	return A5(
+		_debois$elm_mdl$Demo_Page$body2,
+		'Cards',
+		_debois$elm_mdl$Demo_Cards$srcUrl,
+		_debois$elm_mdl$Demo_Cards$intro,
+		_debois$elm_mdl$Demo_Cards$references,
+		_elm_lang$core$Native_List.fromArray(
+			[cards]));
+};
+
 var _debois$elm_mdl$Demo_Elevation$references = _elm_lang$core$Native_List.fromArray(
 	[
 		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Elevation'),
@@ -14805,18 +15068,15 @@ var _debois$elm_mdl$Demo_Elevation$srcUrl = 'https://github.com/debois/elm-mdl/b
 var _debois$elm_mdl$Demo_Elevation$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://github.com/google/material-design-lite/blob/master/src/shadow/README.md', '\n  > The Material Design Lite (MDL) shadow is not a component in the same sense as\n> an MDL card, menu, or textbox; it is a visual effect that can be assigned to a\n> user interface element. The effect simulates a three-dimensional positioning of\n> the element, as though it is slightly raised above the surface it rests upon —\n> a positive z-axis value, in user interface terms. The shadow starts at the\n> edges of the element and gradually fades outward, providing a realistic 3-D\n> effect.\n> \n> Shadows are a convenient and intuitive means of distinguishing an element from\n> its surroundings. A shadow can draw the user\'s eye to an object and emphasize\n> the object\'s importance, uniqueness, or immediacy.\n> \n> Shadows are a well-established feature in user interfaces, and provide users\n> with a visual clue to an object\'s intended use or value. Their design and use\n> is an important factor in the overall user experience.)\n\nThe [Material Design Specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html#elevation-shadows-elevation-android-)\npre-defines appropriate elevation for most UI elements; you need to manually\nassign shadows only to your own elements. \n\nYou are encouraged to visit the\n[Material Design specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html)\nfor details about appropriate use of shadows. \n');
 var _debois$elm_mdl$Demo_Elevation$elevate = function (_p0) {
 	var _p1 = _p0;
+	var _p2 = _p1._1;
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_debois$elm_mdl$Material_Options$css, 'height', '96px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '128px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'margin', '40px'),
 				A2(_debois$elm_mdl$Material_Options$css, 'display', 'inline-flex'),
 				A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
 				A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center'),
-				A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center'),
-				_p1._0
+				A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -14824,13 +15084,52 @@ var _debois$elm_mdl$Demo_Elevation$elevate = function (_p0) {
 				_debois$elm_mdl$Material_Options$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_debois$elm_mdl$Material_Typography$titleColorContrast,
-						A2(_debois$elm_mdl$Material_Options$css, 'box-radius', '2pt')
+						_p1._0,
+						A2(_debois$elm_mdl$Material_Options$css, 'height', '96px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '128px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '40px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'display', 'inline-flex'),
+						A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
+						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center'),
+						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text(
-						_elm_lang$core$Basics$toString(_p1._1))
+						A2(
+						_debois$elm_mdl$Material_Options$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Typography$titleColorContrast,
+								A2(_debois$elm_mdl$Material_Options$css, 'box-radius', '2pt')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(
+								_elm_lang$core$Basics$toString(_p2))
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Options$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '300px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Demo_Code$code(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'\n              Options.div\n                [ Elevation.e',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(_p2),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'\n                , css \"height\" \"96px\"\n                , css \"width\"  \"128px\"\n                , css \"margin\" \"40px\"\n                -- Center\n                , css \"display\" \"inline-flex\"\n                , css \"flex-flow\" \"row wrap\"\n                , css \"justify-content\" \"center\"\n                , css \"align-items\" \"center\"\n                ]\n                [ text \"',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(_p2),
+										'\" ]')))))
 					]))
 			]));
 };
@@ -14854,16 +15153,22 @@ var _debois$elm_mdl$Demo_Elevation$view = A5(
 					_elm_lang$html$Html$text('Below are boxes drawn at various elevations.')
 				])),
 		A2(
-			_elm_lang$core$List$map,
-			_debois$elm_mdl$Demo_Elevation$elevate,
+			F2(
+				function (x, y) {
+					return A2(_elm_lang$core$List_ops['::'], x, y);
+				}),
+			_debois$elm_mdl$Demo_Code$code('import Material.Elevation as Elevation'),
 			A2(
-				_elm_lang$core$List_ops['::'],
-				{
-					ctor: '_Tuple2',
-					_0: _debois$elm_mdl$Material_Options$cs(''),
-					_1: 0
-				},
-				_debois$elm_mdl$Material_Elevation$elevations))));
+				_elm_lang$core$List$map,
+				_debois$elm_mdl$Demo_Elevation$elevate,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					{
+						ctor: '_Tuple2',
+						_0: _debois$elm_mdl$Material_Options$cs(''),
+						_1: 0
+					},
+					_debois$elm_mdl$Material_Elevation$elevations)))));
 
 //import Maybe, Native.List //
 
@@ -16918,29 +17223,36 @@ var _elm_lang$core$Set$partition = F2(
 		};
 	});
 
-var _debois$elm_mdl$Material_Lists$subtitle = function (options) {
-	return _debois$elm_mdl$Material_Options$span(
-		A2(
-			_elm_lang$core$List_ops['::'],
-			_debois$elm_mdl$Material_Options$cs('mdl-list__item-sub-title'),
-			options));
-};
-var _debois$elm_mdl$Material_Lists$body = function (options) {
-	return _debois$elm_mdl$Material_Options$span(
-		A2(
-			_elm_lang$core$List_ops['::'],
-			_debois$elm_mdl$Material_Options$cs('mdl-list__item-text-body'),
-			options));
-};
-var _debois$elm_mdl$Material_Lists$action2 = _debois$elm_mdl$Material_Options$cs('mdl-list__item-secondary-action');
-var _debois$elm_mdl$Material_Lists$info2 = function (options) {
+var _debois$elm_mdl$Material_List$action2 = _debois$elm_mdl$Material_Options$cs('mdl-list__item-secondary-action');
+var _debois$elm_mdl$Material_List$info2 = function (options) {
 	return _debois$elm_mdl$Material_Options$span(
 		A2(
 			_elm_lang$core$List_ops['::'],
 			_debois$elm_mdl$Material_Options$cs('mdl-list__item-secondary-info'),
 			options));
 };
-var _debois$elm_mdl$Material_Lists$icon = F2(
+var _debois$elm_mdl$Material_List$content2 = function (options) {
+	return _debois$elm_mdl$Material_Options$span(
+		A2(
+			_elm_lang$core$List_ops['::'],
+			_debois$elm_mdl$Material_Options$cs('mdl-list__item-secondary-content'),
+			options));
+};
+var _debois$elm_mdl$Material_List$subtitle = function (options) {
+	return _debois$elm_mdl$Material_Options$span(
+		A2(
+			_elm_lang$core$List_ops['::'],
+			_debois$elm_mdl$Material_Options$cs('mdl-list__item-sub-title'),
+			options));
+};
+var _debois$elm_mdl$Material_List$body = function (options) {
+	return _debois$elm_mdl$Material_Options$span(
+		A2(
+			_elm_lang$core$List_ops['::'],
+			_debois$elm_mdl$Material_Options$cs('mdl-list__item-text-body'),
+			options));
+};
+var _debois$elm_mdl$Material_List$icon = F2(
 	function (i, options) {
 		return A2(
 			_debois$elm_mdl$Material_Icon$view,
@@ -16950,13 +17262,13 @@ var _debois$elm_mdl$Material_Lists$icon = F2(
 				_debois$elm_mdl$Material_Options$cs('mdl-list__item-icon'),
 				options));
 	});
-var _debois$elm_mdl$Material_Lists$avatar = _debois$elm_mdl$Material_Options$cs('mdl-list__item-avatar');
-var _debois$elm_mdl$Material_Lists$avatarImage = F2(
+var _debois$elm_mdl$Material_List$avatar = _debois$elm_mdl$Material_Options$cs('mdl-list__item-avatar');
+var _debois$elm_mdl$Material_List$avatarImage = F2(
 	function (src, options) {
 		return A4(
 			_debois$elm_mdl$Material_Options$styled$,
 			_elm_lang$html$Html$img,
-			A2(_elm_lang$core$List_ops['::'], _debois$elm_mdl$Material_Lists$avatar, options),
+			A2(_elm_lang$core$List_ops['::'], _debois$elm_mdl$Material_List$avatar, options),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html_Attributes$src(src)
@@ -16964,7 +17276,7 @@ var _debois$elm_mdl$Material_Lists$avatarImage = F2(
 			_elm_lang$core$Native_List.fromArray(
 				[]));
 	});
-var _debois$elm_mdl$Material_Lists$avatarIcon = F2(
+var _debois$elm_mdl$Material_List$avatarIcon = F2(
 	function (i, options) {
 		return A2(
 			_debois$elm_mdl$Material_Options$div,
@@ -16972,30 +17284,23 @@ var _debois$elm_mdl$Material_Lists$avatarIcon = F2(
 				[
 					_debois$elm_mdl$Material_Options$center,
 					_debois$elm_mdl$Material_Options$many(options),
-					_debois$elm_mdl$Material_Lists$avatar
+					_debois$elm_mdl$Material_List$avatar
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_debois$elm_mdl$Material_Icon$i(i)
 				]));
 	});
-var _debois$elm_mdl$Material_Lists$content2 = function (options) {
-	return _debois$elm_mdl$Material_Options$span(
-		A2(
-			_elm_lang$core$List_ops['::'],
-			_debois$elm_mdl$Material_Options$cs('mdl-list__item-secondary-content'),
-			options));
-};
-var _debois$elm_mdl$Material_Lists$content = function (options) {
+var _debois$elm_mdl$Material_List$content = function (options) {
 	return _debois$elm_mdl$Material_Options$span(
 		A2(
 			_elm_lang$core$List_ops['::'],
 			_debois$elm_mdl$Material_Options$cs('mdl-list__item-primary-content'),
 			options));
 };
-var _debois$elm_mdl$Material_Lists$withSubtitle = _debois$elm_mdl$Material_Options$cs('mdl-list__item--two-line');
-var _debois$elm_mdl$Material_Lists$withBody = _debois$elm_mdl$Material_Options$cs('mdl-list__item--three-line');
-var _debois$elm_mdl$Material_Lists$li = function (options) {
+var _debois$elm_mdl$Material_List$withSubtitle = _debois$elm_mdl$Material_Options$cs('mdl-list__item--two-line');
+var _debois$elm_mdl$Material_List$withBody = _debois$elm_mdl$Material_Options$cs('mdl-list__item--three-line');
+var _debois$elm_mdl$Material_List$li = function (options) {
 	return A2(
 		_debois$elm_mdl$Material_Options$styled,
 		_elm_lang$html$Html$li,
@@ -17004,7 +17309,7 @@ var _debois$elm_mdl$Material_Lists$li = function (options) {
 			_debois$elm_mdl$Material_Options$cs('mdl-list__item'),
 			options));
 };
-var _debois$elm_mdl$Material_Lists$ul = function (options) {
+var _debois$elm_mdl$Material_List$ul = function (options) {
 	return A2(
 		_debois$elm_mdl$Material_Options$styled,
 		_elm_lang$html$Html$ul,
@@ -17083,9 +17388,9 @@ var _debois$elm_mdl$Demo_Lists$mails = _elm_lang$core$Native_List.fromArray(
 var _debois$elm_mdl$Demo_Lists$train = function (_p2) {
 	var _p3 = _p2;
 	return A2(
-		_debois$elm_mdl$Material_Lists$li,
+		_debois$elm_mdl$Material_List$li,
 		_elm_lang$core$Native_List.fromArray(
-			[_debois$elm_mdl$Material_Lists$withSubtitle]),
+			[_debois$elm_mdl$Material_List$withSubtitle]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
@@ -17107,7 +17412,7 @@ var _debois$elm_mdl$Demo_Lists$train = function (_p2) {
 						_elm_lang$core$String$fromChar(_p3._0._0))
 					])),
 				A2(
-				_debois$elm_mdl$Material_Lists$content,
+				_debois$elm_mdl$Material_List$content,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
@@ -17121,7 +17426,7 @@ var _debois$elm_mdl$Demo_Lists$train = function (_p2) {
 								_elm_lang$html$Html$text(_p3._1)
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$subtitle,
+						_debois$elm_mdl$Material_List$subtitle,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -17135,7 +17440,7 @@ var _debois$elm_mdl$Demo_Lists$train = function (_p2) {
 					])),
 				A3(
 				_debois$elm_mdl$Material_Helpers$filter,
-				_debois$elm_mdl$Material_Lists$content2,
+				_debois$elm_mdl$Material_List$content2,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
@@ -17144,7 +17449,7 @@ var _debois$elm_mdl$Demo_Lists$train = function (_p2) {
 						_elm_lang$core$Maybe$map,
 						function (m) {
 							return A2(
-								_debois$elm_mdl$Material_Lists$info2,
+								_debois$elm_mdl$Material_List$info2,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
@@ -17231,7 +17536,7 @@ var _debois$elm_mdl$Demo_Lists$trains = function () {
 		]);
 }();
 var _debois$elm_mdl$Demo_Lists$schedule = A2(
-	_debois$elm_mdl$Material_Lists$ul,
+	_debois$elm_mdl$Material_List$ul,
 	_elm_lang$core$Native_List.fromArray(
 		[]),
 	A2(_elm_lang$core$List$map, _debois$elm_mdl$Demo_Lists$train, _debois$elm_mdl$Demo_Lists$trains));
@@ -17281,19 +17586,19 @@ var _debois$elm_mdl$Demo_Lists$basic = function (model) {
 		_debois$elm_mdl$Demo_Lists$withCode,
 		'\n   Lists.ul []\n    [ Lists.li [] [ Lists.content [] [ text \"Elm\" ] ]\n    , Lists.li [] [ Lists.content [] [ text \"F#\" ] ]\n    , Lists.li [] [ Lists.content [] [ text \"Lisp\" ] ]\n    ]\n  ',
 		A2(
-			_debois$elm_mdl$Material_Lists$ul,
+			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17302,13 +17607,13 @@ var _debois$elm_mdl$Demo_Lists$basic = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17317,13 +17622,13 @@ var _debois$elm_mdl$Demo_Lists$basic = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17338,25 +17643,25 @@ var _debois$elm_mdl$Demo_Lists$icons = function (model) {
 		_debois$elm_mdl$Demo_Lists$withCode,
 		'\n  Lists.ul []\n    [ Lists.li []\n        [ Lists.content [] \n            [ Lists.icon (Icon.view \"inbox\") []\n            , text \"Inbox\"\n            ]\n        ]\n    , Lists.li []\n        [ Lists.content [] \n            [ Lists.icon (Icon.view \"send\") []\n            , text \"Sent mail\"\n            ]\n        ]\n    , Lists.li []\n        [ Lists.content [] \n            [ Lists.icon (Icon.view \"delete\") []\n            , text \"Trash\"\n            ]\n        ]\n    ]\n    ',
 		A2(
-			_debois$elm_mdl$Material_Lists$ul,
+			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$icon,
+									_debois$elm_mdl$Material_List$icon,
 									'inbox',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17364,19 +17669,19 @@ var _debois$elm_mdl$Demo_Lists$icons = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$icon,
+									_debois$elm_mdl$Material_List$icon,
 									'send',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17384,19 +17689,19 @@ var _debois$elm_mdl$Demo_Lists$icons = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$icon,
+									_debois$elm_mdl$Material_List$icon,
 									'delete',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17410,25 +17715,25 @@ var _debois$elm_mdl$Demo_Lists$avatars = function (model) {
 		_debois$elm_mdl$Demo_Lists$withCode,
 		'\n  Lists.ul []\n    [ Lists.li []\n        [ Lists.content []\n            [ Lists.avatarImage \"assets/christoffer.jpg\" []\n            , text \"Christoffer Wilhelm Eckersberg\"\n            ]\n        ]\n     , Lists.li []\n        [ Lists.content []\n            [ Lists.avatarImage \"assets/edvard.jpg\" []\n            , text \"Edvard Munch\"\n            ]\n        ]\n     , Lists.li []\n        [ Lists.content []\n            [ Lists.avatarImage \"assets/peder.jpg\" []\n            , text \"Peder Severin Krøyer\"\n            ]\n        ]\n    ]\n',
 		A2(
-			_debois$elm_mdl$Material_Lists$ul,
+			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$avatarImage,
+									_debois$elm_mdl$Material_List$avatarImage,
 									'assets/christoffer.jpg',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17436,19 +17741,19 @@ var _debois$elm_mdl$Demo_Lists$avatars = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$avatarImage,
+									_debois$elm_mdl$Material_List$avatarImage,
 									'assets/edvard.jpg',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17456,19 +17761,19 @@ var _debois$elm_mdl$Demo_Lists$avatars = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$avatarImage,
+									_debois$elm_mdl$Material_List$avatarImage,
 									'assets/peder.jpg',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17482,25 +17787,25 @@ var _debois$elm_mdl$Demo_Lists$avatarsWithIcons = function (model) {
 		_debois$elm_mdl$Demo_Lists$withCode,
 		'\n   Lists.ul []\n    [ Lists.li []\n        [ Lists.content [] \n            [ Lists.avatarIcon \"photo_camera\" []\n            , text \"Henri Cartier-Bresson\"\n            ]\n        ]\n    , Lists.li []\n        [ Lists.content []\n            [ Lists.avatarIcon \"format_paint\" [] \n            , text \"Vincent Willem van Gogh\"\n            ]\n        ]\n     , Lists.li []\n        [ Lists.content []\n            [ Lists.avatarIcon \"assistant_photo\" [] \n            , text \"Horatio Nelson\"\n            ]\n        ]\n    ]\n  ',
 		A2(
-			_debois$elm_mdl$Material_Lists$ul,
+			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$avatarIcon,
+									_debois$elm_mdl$Material_List$avatarIcon,
 									'photo_camera',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17508,19 +17813,19 @@ var _debois$elm_mdl$Demo_Lists$avatarsWithIcons = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$avatarIcon,
+									_debois$elm_mdl$Material_List$avatarIcon,
 									'format_paint',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17528,19 +17833,19 @@ var _debois$elm_mdl$Demo_Lists$avatarsWithIcons = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$avatarIcon,
+									_debois$elm_mdl$Material_List$avatarIcon,
 									'assistant_photo',
 									_elm_lang$core$Native_List.fromArray(
 										[])),
@@ -17554,19 +17859,19 @@ var _debois$elm_mdl$Demo_Lists$info = function (model) {
 		_debois$elm_mdl$Demo_Lists$withCode,
 		'\n',
 		A2(
-			_debois$elm_mdl$Material_Lists$ul,
+			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17574,13 +17879,13 @@ var _debois$elm_mdl$Demo_Lists$info = function (model) {
 									_elm_lang$html$Html$text('MacBook')
 								])),
 							A2(
-							_debois$elm_mdl$Material_Lists$content2,
+							_debois$elm_mdl$Material_List$content2,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$info2,
+									_debois$elm_mdl$Material_List$info2,
 									_elm_lang$core$Native_List.fromArray(
 										[]),
 									_elm_lang$core$Native_List.fromArray(
@@ -17597,13 +17902,13 @@ var _debois$elm_mdl$Demo_Lists$info = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17611,13 +17916,13 @@ var _debois$elm_mdl$Demo_Lists$info = function (model) {
 									_elm_lang$html$Html$text('iMac \"27')
 								])),
 							A2(
-							_debois$elm_mdl$Material_Lists$content2,
+							_debois$elm_mdl$Material_List$content2,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									A2(
-									_debois$elm_mdl$Material_Lists$info2,
+									_debois$elm_mdl$Material_List$info2,
 									_elm_lang$core$Native_List.fromArray(
 										[]),
 									_elm_lang$core$Native_List.fromArray(
@@ -17634,13 +17939,13 @@ var _debois$elm_mdl$Demo_Lists$info = function (model) {
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17648,7 +17953,7 @@ var _debois$elm_mdl$Demo_Lists$info = function (model) {
 									_elm_lang$html$Html$text('Mac Pro')
 								])),
 							A2(
-							_debois$elm_mdl$Material_Lists$content2,
+							_debois$elm_mdl$Material_List$content2,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17673,26 +17978,26 @@ var _debois$elm_mdl$Demo_Lists$subtitle = function (model) {
 			_debois$elm_mdl$Demo_Lists$comment,
 			'Note that subtitle and body are mutually exclusive.\n                         Note also the required Lists.withSubtitle argument to Lists.li.',
 			A2(
-				_debois$elm_mdl$Material_Lists$ul,
+				_debois$elm_mdl$Material_List$ul,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_debois$elm_mdl$Material_Lists$li,
+						_debois$elm_mdl$Material_List$li,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Lists$withSubtitle]),
+							[_debois$elm_mdl$Material_List$withSubtitle]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								A2(
-								_debois$elm_mdl$Material_Lists$content,
+								_debois$elm_mdl$Material_List$content,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Mark Wright'),
 										A2(
-										_debois$elm_mdl$Material_Lists$subtitle,
+										_debois$elm_mdl$Material_List$subtitle,
 										_elm_lang$core$Native_List.fromArray(
 											[]),
 										_elm_lang$core$Native_List.fromArray(
@@ -17702,20 +18007,20 @@ var _debois$elm_mdl$Demo_Lists$subtitle = function (model) {
 									]))
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$li,
+						_debois$elm_mdl$Material_List$li,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Lists$withSubtitle]),
+							[_debois$elm_mdl$Material_List$withSubtitle]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								A2(
-								_debois$elm_mdl$Material_Lists$content,
+								_debois$elm_mdl$Material_List$content,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Kjell Isaksson'),
 										A2(
-										_debois$elm_mdl$Material_Lists$subtitle,
+										_debois$elm_mdl$Material_List$subtitle,
 										_elm_lang$core$Native_List.fromArray(
 											[]),
 										_elm_lang$core$Native_List.fromArray(
@@ -17725,20 +18030,20 @@ var _debois$elm_mdl$Demo_Lists$subtitle = function (model) {
 									]))
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$li,
+						_debois$elm_mdl$Material_List$li,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Lists$withSubtitle]),
+							[_debois$elm_mdl$Material_List$withSubtitle]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								A2(
-								_debois$elm_mdl$Material_Lists$content,
+								_debois$elm_mdl$Material_List$content,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Sergey Bubka'),
 										A2(
-										_debois$elm_mdl$Material_Lists$subtitle,
+										_debois$elm_mdl$Material_List$subtitle,
 										_elm_lang$core$Native_List.fromArray(
 											[]),
 										_elm_lang$core$Native_List.fromArray(
@@ -17758,26 +18063,26 @@ var _debois$elm_mdl$Demo_Lists$body = function (model) {
 			_debois$elm_mdl$Demo_Lists$comment,
 			'Note that body and subtitle are mutually exclusive.\n                         Note also the required Lists.withBody argument to Lists.li.',
 			A2(
-				_debois$elm_mdl$Material_Lists$ul,
+				_debois$elm_mdl$Material_List$ul,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_debois$elm_mdl$Material_Lists$li,
+						_debois$elm_mdl$Material_List$li,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Lists$withBody]),
+							[_debois$elm_mdl$Material_List$withBody]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								A2(
-								_debois$elm_mdl$Material_Lists$content,
+								_debois$elm_mdl$Material_List$content,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Robert Frost'),
 										A2(
-										_debois$elm_mdl$Material_Lists$body,
+										_debois$elm_mdl$Material_List$body,
 										_elm_lang$core$Native_List.fromArray(
 											[]),
 										_elm_lang$core$Native_List.fromArray(
@@ -17787,20 +18092,20 @@ var _debois$elm_mdl$Demo_Lists$body = function (model) {
 									]))
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$li,
+						_debois$elm_mdl$Material_List$li,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Lists$withBody]),
+							[_debois$elm_mdl$Material_List$withBody]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								A2(
-								_debois$elm_mdl$Material_Lists$content,
+								_debois$elm_mdl$Material_List$content,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Errett Bishop'),
 										A2(
-										_debois$elm_mdl$Material_Lists$body,
+										_debois$elm_mdl$Material_List$body,
 										_elm_lang$core$Native_List.fromArray(
 											[]),
 										_elm_lang$core$Native_List.fromArray(
@@ -17810,20 +18115,20 @@ var _debois$elm_mdl$Demo_Lists$body = function (model) {
 									]))
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$li,
+						_debois$elm_mdl$Material_List$li,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Lists$withBody]),
+							[_debois$elm_mdl$Material_List$withBody]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								A2(
-								_debois$elm_mdl$Material_Lists$content,
+								_debois$elm_mdl$Material_List$content,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Hunter Stockton Thompson'),
 										A2(
-										_debois$elm_mdl$Material_Lists$body,
+										_debois$elm_mdl$Material_List$body,
 										_elm_lang$core$Native_List.fromArray(
 											[]),
 										_elm_lang$core$Native_List.fromArray(
@@ -17907,19 +18212,19 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction1 = function (model) {
 		_debois$elm_mdl$Demo_Lists$withCode,
 		'  \n  let \n    star model k = \n      Button.render Mdl [k] model.mdl\n        [ Button.icon \n        , Button.accent `when` Set.member k model.toggles \n        , Button.onClick (Flip k)\n        ]\n        [ Icon.i \"star\" ]\n  in \n    Lists.ul [] \n      [ Lists.li []\n          [ Lists.content [] [ text \"Alan Turing\" ] \n          , star model 0\n          ]\n      , Lists.li []\n          [ Lists.content [] [ text \"Kurt Friedrich Gödel\" ]\n          , star model 1\n          ]\n      , Lists.li []\n          [ Lists.content [] [ text \"Georg Ferdinand Ludwig Philipp Cantor\" ] \n          , star model 2\n          ]\n      ]    \n  ',
 		A2(
-			_debois$elm_mdl$Material_Lists$ul,
+			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17929,13 +18234,13 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction1 = function (model) {
 							A2(star, model, 0)
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17945,13 +18250,13 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction1 = function (model) {
 							A2(star, model, 1)
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$li,
+					_debois$elm_mdl$Material_List$li,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$content,
+							_debois$elm_mdl$Material_List$content,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -17964,19 +18269,19 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction1 = function (model) {
 };
 var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 	var list = A2(
-		_debois$elm_mdl$Material_Lists$ul,
+		_debois$elm_mdl$Material_List$ul,
 		_elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_debois$elm_mdl$Material_Lists$li,
+				_debois$elm_mdl$Material_List$li,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_debois$elm_mdl$Material_Lists$content,
+						_debois$elm_mdl$Material_List$content,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -17984,7 +18289,7 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 								_elm_lang$html$Html$text('Include checkbox?')
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$content2,
+						_debois$elm_mdl$Material_List$content2,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -18007,13 +18312,13 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 							]))
 					])),
 				A2(
-				_debois$elm_mdl$Material_Lists$li,
+				_debois$elm_mdl$Material_List$li,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_debois$elm_mdl$Material_Lists$content,
+						_debois$elm_mdl$Material_List$content,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -18021,7 +18326,7 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 								_elm_lang$html$Html$text('Radio button!')
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$content2,
+						_debois$elm_mdl$Material_List$content2,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -18029,7 +18334,7 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 								A2(
 								_debois$elm_mdl$Material_Options$span,
 								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Lists$action2]),
+									[_debois$elm_mdl$Material_List$action2]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										A5(
@@ -18052,13 +18357,13 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 							]))
 					])),
 				A2(
-				_debois$elm_mdl$Material_Lists$li,
+				_debois$elm_mdl$Material_List$li,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_debois$elm_mdl$Material_Lists$content,
+						_debois$elm_mdl$Material_List$content,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -18066,7 +18371,7 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 								_elm_lang$html$Html$text('Include switch?')
 							])),
 						A2(
-						_debois$elm_mdl$Material_Lists$content2,
+						_debois$elm_mdl$Material_List$content2,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -18100,25 +18405,25 @@ var _debois$elm_mdl$Demo_Lists$mail = F3(
 		var k = idx + 7;
 		var starred = A2(_elm_lang$core$Set$member, k, model.toggles);
 		return A2(
-			_debois$elm_mdl$Material_Lists$li,
+			_debois$elm_mdl$Material_List$li,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Lists$withBody]),
+				[_debois$elm_mdl$Material_List$withBody]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_debois$elm_mdl$Material_Lists$content,
+					_debois$elm_mdl$Material_List$content,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$avatarImage,
+							_debois$elm_mdl$Material_List$avatarImage,
 							A2(_elm_lang$core$Basics_ops['++'], 'assets/', _p9._1),
 							_elm_lang$core$Native_List.fromArray(
 								[])),
 							_elm_lang$html$Html$text(_p9._2),
 							A2(
-							_debois$elm_mdl$Material_Lists$body,
+							_debois$elm_mdl$Material_List$body,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -18152,13 +18457,13 @@ var _debois$elm_mdl$Demo_Lists$mail = F3(
 								]))
 						])),
 					A2(
-					_debois$elm_mdl$Material_Lists$content2,
+					_debois$elm_mdl$Material_List$content2,
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_debois$elm_mdl$Material_Lists$info2,
+							_debois$elm_mdl$Material_List$info2,
 							_elm_lang$core$Native_List.fromArray(
 								[]),
 							_elm_lang$core$Native_List.fromArray(
@@ -18187,7 +18492,7 @@ var _debois$elm_mdl$Demo_Lists$mail = F3(
 	});
 var _debois$elm_mdl$Demo_Lists$inbox = function (model) {
 	return A2(
-		_debois$elm_mdl$Material_Lists$ul,
+		_debois$elm_mdl$Material_List$ul,
 		_elm_lang$core$Native_List.fromArray(
 			[]),
 		A2(
@@ -18243,19 +18548,19 @@ var _debois$elm_mdl$Demo_Lists$files = _elm_lang$core$Native_List.fromArray(
 var _debois$elm_mdl$Demo_Lists$git = function (_p10) {
 	var _p11 = _p10;
 	return A2(
-		_debois$elm_mdl$Material_Lists$li,
+		_debois$elm_mdl$Material_List$li,
 		_elm_lang$core$Native_List.fromArray(
-			[_debois$elm_mdl$Material_Lists$withSubtitle]),
+			[_debois$elm_mdl$Material_List$withSubtitle]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_debois$elm_mdl$Material_Lists$content,
+				_debois$elm_mdl$Material_List$content,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_debois$elm_mdl$Material_Lists$avatarIcon,
+						_debois$elm_mdl$Material_List$avatarIcon,
 						_elm_lang$core$Native_Utils.eq(_p11._0, _debois$elm_mdl$Demo_Lists$Folder) ? 'folder' : 'insert_drive_file',
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -18264,7 +18569,7 @@ var _debois$elm_mdl$Demo_Lists$git = function (_p10) {
 							])),
 						_elm_lang$html$Html$text(_p11._1),
 						A2(
-						_debois$elm_mdl$Material_Lists$subtitle,
+						_debois$elm_mdl$Material_List$subtitle,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
@@ -18315,7 +18620,7 @@ var _debois$elm_mdl$Demo_Lists$git = function (_p10) {
 			]));
 };
 var _debois$elm_mdl$Demo_Lists$commits = A2(
-	_debois$elm_mdl$Material_Lists$ul,
+	_debois$elm_mdl$Material_List$ul,
 	_elm_lang$core$Native_List.fromArray(
 		[]),
 	A2(_elm_lang$core$List$map, _debois$elm_mdl$Demo_Lists$git, _debois$elm_mdl$Demo_Lists$files));
