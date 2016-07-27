@@ -14874,13 +14874,25 @@ var _debois$elm_mdl$Demo_Cards$card1 = function (model) {
 						_debois$elm_mdl$Material_Button$render,
 						_debois$elm_mdl$Demo_Cards$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[11, 1]),
+							[1, 1]),
 						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Button$ripple]),
+							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$colored]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('map')
+							])),
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[1, 2]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$colored]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('explore')
 							]))
 					]))
 			]));
