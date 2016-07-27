@@ -14666,66 +14666,6 @@ var _debois$elm_mdl$Demo_Cards$dynamic = function (model) {
 					_debois$elm_mdl$Demo_Cards$Select(-1)))
 			]));
 };
-var _debois$elm_mdl$Demo_Cards$card1 = function (model) {
-	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        , Card.text [] [ text \"Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951, this one-room weekend retreat is situated 89km southwest of downtown Chicago, Illinois, United States.\" ]\n        ]';
-	var width = 512;
-	var card = A2(
-		_debois$elm_mdl$Material_Card$view,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_debois$elm_mdl$Demo_Cards$dynamic(model),
-				A2(
-				_debois$elm_mdl$Material_Options$css,
-				'width',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(width),
-					'px'))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Card$media,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/farnsworth.jpg\') center / cover'),
-						A2(
-						_debois$elm_mdl$Material_Options$css,
-						'height',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_elm_lang$core$Basics$toString((width / 16) * 9),
-							'px'))
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A2(
-				_debois$elm_mdl$Material_Card$title,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_debois$elm_mdl$Material_Card$head,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text('The Farnsworth House')
-							]))
-					])),
-				A2(
-				_debois$elm_mdl$Material_Card$text,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951, this one-room weekend retreat is situated 89km southwest of downtown Chicago, Illinois, United States.')
-					]))
-			]));
-	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
-};
 var _debois$elm_mdl$Demo_Cards$card3 = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
 	var code = '\n      Card.view\n        [ css \"width\" \"384px\"\n        , css \"height\" \"384px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        , dynamic model\n        ]\n        [ Card.text [ Card.expand ] []\n        , Card.actions\n          [ css \"background\" \"rgba(0, 0, 0, 0.5)\"\n          , css \"height\" \"64px\"\n          , css \"display\" \"flex\"\n          , css \"align-items\" \"center\"\n          ]\n          [ Options.span \n              [ Color.text Color.white, Typography.title\n              ]\n              [ text \"The Elm language\" ]\n          ]\n        ]\n';
@@ -14867,6 +14807,85 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 						[]));
 		}
 	});
+var _debois$elm_mdl$Demo_Cards$card1 = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        , Card.text [] [ text \"Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951, this one-room weekend retreat is situated 89km southwest of downtown Chicago, Illinois, United States.\" ]\n        ]';
+	var width = 384;
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Demo_Cards$dynamic(model),
+				A2(
+				_debois$elm_mdl$Material_Options$css,
+				'width',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(width),
+					'px'))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$media,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/farnsworth.jpg\') center / cover'),
+						A2(
+						_debois$elm_mdl$Material_Options$css,
+						'height',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString((width / 16) * 9),
+							'px'))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_debois$elm_mdl$Material_Card$title,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Card$head,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Farnsworth House')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$text,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951 ...')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$actions,
+				_elm_lang$core$Native_List.fromArray(
+					[_debois$elm_mdl$Material_Card$border]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[11, 1]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$ripple]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('map')
+							]))
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
 var _debois$elm_mdl$Demo_Cards$card11 = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
 	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
