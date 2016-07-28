@@ -14815,21 +14815,9 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 						[]));
 		}
 	});
-var _debois$elm_mdl$Demo_Cards$farnsworth = function (model) {
+var _debois$elm_mdl$Demo_Cards$table = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = A2(
-		_elm_lang$core$Basics_ops['++'],
-		'\n      Card.view \n        [ dynamic 0 model\n        , css \"width\" \"',
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Cards$wide),
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'px\" \n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString((_debois$elm_mdl$Demo_Cards$wide / 16) * 9),
-					'px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"Farnsworth House\" ] ]\n        , Card.text [] [ text \"Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951 ...\" ]\n        , Card.actions [ Card.border ] \n            [ Button.render Mdl [0,0] model.mdl\n                [ Button.ripple, Button.colored ]\n                [ text \"map\" ] \n            , Button.render Mdl [0,1] model.mdl\n                [ Button.ripple, Button.colored ]\n                [ text \"explore\" ] \n            ]\n        ]'))));
+	var code = '\n      Card.view \n        [ dynamic 0 model\n        , css \"width\" \"192px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/table.jpg\') center / cover\"\n            , css \"height\" \"192px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"Farnsworth House\" ] ]\n        , Card.text [] [ text \"Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951 ...\" ]\n        , Card.actions [ Card.border ] \n            [ Button.render Mdl [0,0] model.mdl\n                [ Button.ripple, Button.colored ]\n                [ text \"map\" ] \n            , Button.render Mdl [0,1] model.mdl\n                [ Button.ripple, Button.colored ]\n                [ text \"explore\" ] \n            ]\n        ]';
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
@@ -14849,7 +14837,7 @@ var _debois$elm_mdl$Demo_Cards$farnsworth = function (model) {
 				_debois$elm_mdl$Material_Card$media,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/farnsworth.jpg\') center / cover'),
+						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/table.jpg\') center / cover'),
 						A2(
 						_debois$elm_mdl$Material_Options$css,
 						'height',
@@ -14872,100 +14860,16 @@ var _debois$elm_mdl$Demo_Cards$farnsworth = function (model) {
 							[]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Farnsworth House')
-							]))
-					])),
-				A2(
-				_debois$elm_mdl$Material_Card$text,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951 ...')
-					])),
-				A2(
-				_debois$elm_mdl$Material_Card$actions,
-				_elm_lang$core$Native_List.fromArray(
-					[_debois$elm_mdl$Material_Card$border]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A5(
-						_debois$elm_mdl$Material_Button$render,
-						_debois$elm_mdl$Demo_Cards$Mdl,
-						_elm_lang$core$Native_List.fromArray(
-							[0, 0]),
-						model.mdl,
-						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$colored]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text('map')
+								_elm_lang$html$Html$text('Table mountain')
 							])),
-						A5(
-						_debois$elm_mdl$Material_Button$render,
-						_debois$elm_mdl$Demo_Cards$Mdl,
-						_elm_lang$core$Native_List.fromArray(
-							[0, 1]),
-						model.mdl,
-						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$colored]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text('explore')
-							]))
-					]))
-			]));
-	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
-};
-var _debois$elm_mdl$Demo_Cards$orion = function (model) {
-	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
-	var card = A2(
-		_debois$elm_mdl$Material_Card$view,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_debois$elm_mdl$Demo_Cards$dynamic, 1, model),
-				A2(
-				_debois$elm_mdl$Material_Options$css,
-				'width',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Cards$wide),
-					'px'))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Card$title,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/orion.jpg\') center / cover'),
-						A2(_debois$elm_mdl$Material_Options$css, 'height', '256px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
 						A2(
-						_debois$elm_mdl$Material_Card$head,
+						_debois$elm_mdl$Material_Card$subhead,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white),
-								_debois$elm_mdl$Material_Options$scrim(0.6),
-								A2(_debois$elm_mdl$Material_Options$css, 'padding', '16px'),
-								A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text('Orion Multi-Purpose Crew Vehicle')
+								_elm_lang$html$Html$text('Cape Town, South Africa')
 							]))
-					])),
-				A2(
-				_debois$elm_mdl$Material_Card$text,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('This NASA spacecraft will eventually take astronauts to Mars. Intermediate steps include both manned and unmanned missions to and orbiting the Moon.')
 					])),
 				A2(
 				_debois$elm_mdl$Material_Card$menu,
@@ -14977,7 +14881,7 @@ var _debois$elm_mdl$Demo_Cards$orion = function (model) {
 						_debois$elm_mdl$Material_Button$render,
 						_debois$elm_mdl$Demo_Cards$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[11, 0]),
+							[1]),
 						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -14989,6 +14893,53 @@ var _debois$elm_mdl$Demo_Cards$orion = function (model) {
 							[
 								_debois$elm_mdl$Material_Icon$i('share')
 							]))
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
+var _debois$elm_mdl$Demo_Cards$pomegranate = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/table.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Demo_Cards$dynamic, 1, model),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$title,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/pomegranate.jpg\') center / cover'),
+						A2(_debois$elm_mdl$Material_Options$css, 'height', '256px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Card$head,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white),
+								_debois$elm_mdl$Material_Options$scrim(0.75),
+								A2(_debois$elm_mdl$Material_Options$css, 'padding', '16px'),
+								A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Grenadine')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$text,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Non-alcoholic syrup used for both its tart and sweet flavour as well as its deep red color.')
 					])),
 				A2(
 				_debois$elm_mdl$Material_Card$actions,
@@ -15000,25 +14951,25 @@ var _debois$elm_mdl$Demo_Cards$orion = function (model) {
 						_debois$elm_mdl$Material_Button$render,
 						_debois$elm_mdl$Demo_Cards$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[11, 1]),
+							[2, 0]),
 						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Button$ripple]),
+							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$accent]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Moon')
+								_elm_lang$html$Html$text('Ingredients')
 							])),
 						A5(
 						_debois$elm_mdl$Material_Button$render,
 						_debois$elm_mdl$Demo_Cards$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[11, 2]),
+							[2, 1]),
 						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Button$ripple]),
+							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$accent]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Mars')
+								_elm_lang$html$Html$text('Cocktails')
 							]))
 					]))
 			]));
@@ -15100,7 +15051,7 @@ var _debois$elm_mdl$Demo_Cards$reminder = function (model) {
 };
 var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view \n        [ dynamic 6 model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/farnsworth.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
+	var code = '\n      Card.view \n        [ dynamic 6 model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/table.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
 	var cell = A2(_debois$elm_mdl$Material_Options$css, 'width', '96px');
 	var row = function (_p3) {
 		var _p4 = _p3;
@@ -15215,7 +15166,7 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(_debois$elm_mdl$Demo_Cards$dynamic, 5, model),
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '256')
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -15247,7 +15198,7 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 						_debois$elm_mdl$Material_Options$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								A2(_debois$elm_mdl$Material_Options$css, 'padding', '2rem')
+								A2(_debois$elm_mdl$Material_Options$css, 'padding', '2rem 2rem 0 2rem')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -15317,8 +15268,8 @@ var _debois$elm_mdl$Demo_Cards$view = function (model) {
 			_debois$elm_mdl$Demo_Cards$view1,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_debois$elm_mdl$Demo_Cards$farnsworth(model),
-					_debois$elm_mdl$Demo_Cards$orion(model),
+					_debois$elm_mdl$Demo_Cards$table(model),
+					_debois$elm_mdl$Demo_Cards$pomegranate(model),
 					_debois$elm_mdl$Demo_Cards$weather(model),
 					_debois$elm_mdl$Demo_Cards$elm(model),
 					_debois$elm_mdl$Demo_Cards$playing(model),
