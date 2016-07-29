@@ -10210,7 +10210,7 @@ var _debois$elm_mdl$Material_Menu$containerGeometry = F2(
 				_debois$elm_mdl$Material_Menu$toPx(geometry.menu.offsetLeft)) : _debois$elm_mdl$Material_Options$nop
 			]);
 	});
-var _debois$elm_mdl$Material_Menu$view$ = F4(
+var _debois$elm_mdl$Material_Menu$view = F4(
 	function (lift, model, properties, items) {
 		var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Menu$defaultConfig, properties);
 		var config = summary.config;
@@ -10382,10 +10382,9 @@ var _debois$elm_mdl$Material_Menu$view$ = F4(
 						]))
 				]));
 	});
-var _debois$elm_mdl$Material_Menu$view = _debois$elm_mdl$Material_Menu$view$(_elm_lang$core$Basics$identity);
 var _debois$elm_mdl$Material_Menu$render = A5(
 	_debois$elm_parts$Parts$create,
-	_debois$elm_mdl$Material_Menu$view$,
+	_debois$elm_mdl$Material_Menu$view,
 	_debois$elm_mdl$Material_Menu$update,
 	function (_) {
 		return _.menu;
@@ -12891,9 +12890,9 @@ var _debois$elm_mdl$Demo_Code$code = function (str) {
 			[
 				A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'auto'),
 				_debois$elm_mdl$Material_Elevation$e2,
-				A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '1rem'),
-				A2(_debois$elm_mdl$Material_Options$css, 'margin-bottom', '1rem'),
-				A2(_debois$elm_mdl$Material_Options$css, 'border-radius', '2px')
+				A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'border-radius', '2px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'font-size', '10pt')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -12919,6 +12918,7 @@ var _debois$elm_mdl$Demo_Code$html = function (str) {
 				A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '1rem'),
 				A2(_debois$elm_mdl$Material_Options$css, 'margin-bottom', '1rem'),
 				A2(_debois$elm_mdl$Material_Options$css, 'border-radius', '2px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'font-size', '10pt'),
 				_debois$elm_mdl$Material_Elevation$e2
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -14633,23 +14633,36 @@ var _debois$elm_mdl$Demo_Cards$view1 = function (_p0) {
 				]))
 		]);
 };
-var _debois$elm_mdl$Demo_Cards$wide = 384;
-var _debois$elm_mdl$Demo_Cards$model = {mdl: _debois$elm_mdl$Material$model, raised: -1, tab: 0, code: -1};
-var _debois$elm_mdl$Demo_Cards$Model = F4(
-	function (a, b, c, d) {
-		return {mdl: a, raised: b, tab: c, code: d};
+var _debois$elm_mdl$Demo_Cards$wide = 400;
+var _debois$elm_mdl$Demo_Cards$white = _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white);
+var _debois$elm_mdl$Demo_Cards$margin2 = A2(_debois$elm_mdl$Material_Options$css, 'margin', '4px');
+var _debois$elm_mdl$Demo_Cards$margin1 = A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px');
+var _debois$elm_mdl$Demo_Cards$model = {mdl: _debois$elm_mdl$Material$model, raised: -1, tab: 0, code1: _debois$elm_mdl$Demo_Code$model, code2: _debois$elm_mdl$Demo_Code$model, clicks: 0};
+var _debois$elm_mdl$Demo_Cards$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {mdl: a, raised: b, tab: c, code1: d, code2: e, clicks: f};
 	});
+var _debois$elm_mdl$Demo_Cards$Click = {ctor: 'Click'};
 var _debois$elm_mdl$Demo_Cards$SetTab = function (a) {
 	return {ctor: 'SetTab', _0: a};
 };
-var _debois$elm_mdl$Demo_Cards$ShowCode = function (a) {
-	return {ctor: 'ShowCode', _0: a};
+var _debois$elm_mdl$Demo_Cards$CodeMsg2 = function (a) {
+	return {ctor: 'CodeMsg2', _0: a};
+};
+var _debois$elm_mdl$Demo_Cards$CodeMsg1 = function (a) {
+	return {ctor: 'CodeMsg1', _0: a};
+};
+var _debois$elm_mdl$Demo_Cards$ShowCode2 = function (a) {
+	return {ctor: 'ShowCode2', _0: a};
+};
+var _debois$elm_mdl$Demo_Cards$ShowCode1 = function (a) {
+	return {ctor: 'ShowCode1', _0: a};
 };
 var _debois$elm_mdl$Demo_Cards$Raise = function (a) {
 	return {ctor: 'Raise', _0: a};
 };
-var _debois$elm_mdl$Demo_Cards$dynamic = F2(
-	function (k, model) {
+var _debois$elm_mdl$Demo_Cards$dynamic = F3(
+	function (k, showcode, model) {
 		return _debois$elm_mdl$Material_Options$many(
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -14662,13 +14675,12 @@ var _debois$elm_mdl$Demo_Cards$dynamic = F2(
 					_elm_lang$html$Html_Events$onMouseLeave(
 						_debois$elm_mdl$Demo_Cards$Raise(-1))),
 					_debois$elm_mdl$Material_Options$attribute(
-					_elm_lang$html$Html_Events$onClick(
-						_debois$elm_mdl$Demo_Cards$ShowCode(k)))
+					_elm_lang$html$Html_Events$onClick(showcode))
 				]));
 	});
 var _debois$elm_mdl$Demo_Cards$elm = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view\n        [ css \"width\" \"384px\"\n        , css \"height\" \"384px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        , dynamic 4 model\n        ]\n        [ Card.text [ Card.expand ] []\n        , Card.actions\n          [ css \"background\" \"rgba(0, 0, 0, 0.5)\"\n          , css \"height\" \"64px\"\n          , css \"display\" \"flex\"\n          , css \"align-items\" \"center\"\n          ]\n          [ Options.span \n              [ Color.text Color.white, Typography.title\n              ]\n              [ text \"The Elm language\" ]\n          ]\n        ]\n';
+	var code = '\n      Card.view\n        [ css \"width\" \"256px\"\n        , css \"height\" \"256px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        ]\n        [ Card.text [ Card.expand ] [] -- Filler \n        , Card.text\n            [ css \"background\" \"rgba(0, 0, 0, 0.5)\" ] -- Non-gradient scrim\n            [ Options.span \n                [ white, Typography.title ]\n                [ text \"Elm programming\" ]\n            ]\n        ]\n';
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
@@ -14676,7 +14688,12 @@ var _debois$elm_mdl$Demo_Cards$elm = function (model) {
 				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px'),
 				A2(_debois$elm_mdl$Material_Options$css, 'height', '256px'),
 				A2(_debois$elm_mdl$Material_Options$css, 'background', 'url(\'assets/elm.png\') center / cover'),
-				A2(_debois$elm_mdl$Demo_Cards$dynamic, 3, model)
+				A3(
+				_debois$elm_mdl$Demo_Cards$dynamic,
+				3,
+				_debois$elm_mdl$Demo_Cards$ShowCode1(code),
+				model),
+				_debois$elm_mdl$Demo_Cards$margin1
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -14687,26 +14704,20 @@ var _debois$elm_mdl$Demo_Cards$elm = function (model) {
 				_elm_lang$core$Native_List.fromArray(
 					[])),
 				A2(
-				_debois$elm_mdl$Material_Card$actions,
+				_debois$elm_mdl$Material_Card$text,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(_debois$elm_mdl$Material_Options$css, 'background', 'rgba(0, 0, 0, 0.5)'),
-						A2(_debois$elm_mdl$Material_Options$css, 'height', '48px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
-						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
+						A2(_debois$elm_mdl$Material_Options$css, 'background', 'rgba(0, 0, 0, 0.5)')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
 						_debois$elm_mdl$Material_Options$span,
 						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white),
-								_debois$elm_mdl$Material_Typography$title
-							]),
+							[_debois$elm_mdl$Demo_Cards$white, _debois$elm_mdl$Material_Typography$title]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('The Elm language')
+								_elm_lang$html$Html$text('Elm programming')
 							]))
 					]))
 			]));
@@ -14714,15 +14725,32 @@ var _debois$elm_mdl$Demo_Cards$elm = function (model) {
 };
 var _debois$elm_mdl$Demo_Cards$playing = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view\n        [ css \"width\" \"256px\"\n        , css \"height\" \"256px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        , dynamic 4 model\n        ]\n        [ Card.text [ Card.expand ] []\n        , Card.actions\n          [ css \"background\" \"rgba(0, 0, 0, 0.5)\"\n          , css \"height\" \"64px\"\n          , css \"display\" \"flex\"\n          , css \"align-items\" \"center\"\n          ]\n          [ Options.span \n              [ Color.text Color.white, Typography.title\n              ]\n              [ text \"The Elm language\" ]\n          ]\n        ]\n';
+	var code = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'\n      Card.view\n        [ css \"width\" \"',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Cards$wide),
+			'px\"\n        , Color.background (Color.color Color.Amber Color.S600)\n        ]\n        [ Card.title \n            [ css \"align-content\" \"flex-start\" \n            , css \"flex-direction\" \"row\" \n            , css \"align-items\" \"flex-start\"\n            , css \"justify-content\" \"space-between\"\n            ] \n            [ Options.div \n                []\n                [ Card.head [ white ] [ text \"Artificial Heart\" ]\n                , Card.subhead [ white ] [ text \"Jonathan Coulton\" ] \n                ]\n            , Options.img \n                [ Options.attribute <| Html.Attributes.src \"assets/artificial-heart.jpg\" \n                , css \"height\" \"96px\"\n                , css \"width\" \"96px\"\n                ]\n                []\n            ]\n        ]\n'));
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '320px'),
+				A2(
+				_debois$elm_mdl$Material_Options$css,
+				'width',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Cards$wide),
+					'px')),
 				_debois$elm_mdl$Material_Color$background(
 				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Amber, _debois$elm_mdl$Material_Color$S600)),
-				A2(_debois$elm_mdl$Demo_Cards$dynamic, 5, model)
+				A3(
+				_debois$elm_mdl$Demo_Cards$dynamic,
+				5,
+				_debois$elm_mdl$Demo_Cards$ShowCode2(code),
+				model),
+				_debois$elm_mdl$Demo_Cards$margin2
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -14746,9 +14774,7 @@ var _debois$elm_mdl$Demo_Cards$playing = function (model) {
 								A2(
 								_debois$elm_mdl$Material_Card$head,
 								_elm_lang$core$Native_List.fromArray(
-									[
-										_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
-									]),
+									[_debois$elm_mdl$Demo_Cards$white]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Artificial Heart')
@@ -14756,9 +14782,7 @@ var _debois$elm_mdl$Demo_Cards$playing = function (model) {
 								A2(
 								_debois$elm_mdl$Material_Card$subhead,
 								_elm_lang$core$Native_List.fromArray(
-									[
-										_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
-									]),
+									[_debois$elm_mdl$Demo_Cards$white]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Jonathan Coulton')
@@ -14771,8 +14795,7 @@ var _debois$elm_mdl$Demo_Cards$playing = function (model) {
 								_debois$elm_mdl$Material_Options$attribute(
 								_elm_lang$html$Html_Attributes$src('assets/artificial-heart.jpg')),
 								A2(_debois$elm_mdl$Material_Options$css, 'height', '96px'),
-								A2(_debois$elm_mdl$Material_Options$css, 'width', '96px'),
-								A2(_debois$elm_mdl$Material_Options$css, 'align-self', 'flex-end')
+								A2(_debois$elm_mdl$Material_Options$css, 'width', '96px')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[]))
@@ -14780,12 +14803,196 @@ var _debois$elm_mdl$Demo_Cards$playing = function (model) {
 			]));
 	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
 };
+var _debois$elm_mdl$Demo_Cards$aux = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A3(
+			_debois$elm_mdl$Material_Options$styled,
+			_elm_lang$html$Html$h1,
+			_elm_lang$core$Native_List.fromArray(
+				[_debois$elm_mdl$Material_Typography$headline]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Setup')
+				])),
+			_debois$elm_mdl$Demo_Code$code('\n      import Material.Card as Card\n\n      white : Options.Property c m \n      white = \n        Color.text Color.white \n    '),
+			A3(
+			_debois$elm_mdl$Material_Options$styled,
+			_elm_lang$html$Html$h1,
+			_elm_lang$core$Native_List.fromArray(
+				[_debois$elm_mdl$Material_Typography$headline]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Card click')
+				])),
+			A2(
+			_elm_lang$html$Html$p,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('To react to a card-wide click event, register an onClick handler as indicated below. Be aware that clicks in the action block is ignored in order to not confuse the a click on a control in that block with a click on the entire card.')
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+					A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start'),
+					A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Card$view,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'width', '128px'),
+							_debois$elm_mdl$Material_Color$background(
+							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$S500)),
+							_debois$elm_mdl$Material_Options$attribute(
+							_elm_lang$html$Html_Events$onClick(_debois$elm_mdl$Demo_Cards$Click)),
+							A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px'),
+							A2(_debois$elm_mdl$Material_Options$css, 'flex-shrink', '0')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_debois$elm_mdl$Material_Card$title,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_Card$head,
+									_elm_lang$core$Native_List.fromArray(
+										[_debois$elm_mdl$Demo_Cards$white]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Click anywhere')
+										]))
+								])),
+							A2(
+							_debois$elm_mdl$Material_Card$text,
+							_elm_lang$core$Native_List.fromArray(
+								[_debois$elm_mdl$Demo_Cards$white]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(model.clicks),
+										' clicks so far.'))
+								])),
+							A2(
+							_debois$elm_mdl$Material_Card$actions,
+							_elm_lang$core$Native_List.fromArray(
+								[_debois$elm_mdl$Material_Card$border, _debois$elm_mdl$Demo_Cards$white]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('(not here)')
+								]))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'flex-grow', '1')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_debois$elm_mdl$Demo_Code$code('\n            Card.view  \n              [ css \"width\" \"128px\" \n              , Color.background (Color.color Color.Pink Color.S500)\n              -- Click\n              , Options.attribute <| Html.Events.onClick Click\n              ]\n              [ Card.title [] [ Card.head [ white ] [ text \"Click anywhere\" ] ] \n              , Card.text [ white ] [ text <| toString model.clicks ++ \" clicks so far.\" ]\n              , Card.actions [ Card.border, white ] [ text \"(not here)\" ]\n              ]')
+						]))
+				])),
+			A3(
+			_debois$elm_mdl$Material_Options$styled,
+			_elm_lang$html$Html$h1,
+			_elm_lang$core$Native_List.fromArray(
+				[_debois$elm_mdl$Material_Typography$headline]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Elevation animation')
+				])),
+			A2(
+			_elm_lang$html$Html$p,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('If desired, use Elevation.transition to install elevation transitions, e.g., on hover, as demonstrated in the example below.')
+				])),
+			function () {
+			var k = 12;
+			return A2(
+				_debois$elm_mdl$Material_Options$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start'),
+						A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Card$view,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Options$css, 'height', '128px'),
+								A2(_debois$elm_mdl$Material_Options$css, 'width', '128px'),
+								_debois$elm_mdl$Material_Color$background(
+								A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$S500)),
+								A2(
+								_elm_lang$core$Debug$log,
+								'',
+								_elm_lang$core$Native_Utils.eq(model.raised, k)) ? _debois$elm_mdl$Material_Elevation$e8 : _debois$elm_mdl$Material_Elevation$e2,
+								_debois$elm_mdl$Material_Elevation$transition(250),
+								_debois$elm_mdl$Material_Options$attribute(
+								_elm_lang$html$Html_Events$onMouseEnter(
+									_debois$elm_mdl$Demo_Cards$Raise(k))),
+								_debois$elm_mdl$Material_Options$attribute(
+								_elm_lang$html$Html_Events$onMouseLeave(
+									_debois$elm_mdl$Demo_Cards$Raise(-1))),
+								A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px'),
+								A2(_debois$elm_mdl$Material_Options$css, 'flex-shrink', '0')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Card$title,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_debois$elm_mdl$Material_Card$head,
+										_elm_lang$core$Native_List.fromArray(
+											[_debois$elm_mdl$Demo_Cards$white]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Hover here')
+											]))
+									]))
+							])),
+						A2(
+						_debois$elm_mdl$Material_Options$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Options$css, 'flex-grow', '1')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Demo_Code$code('\n                Card.view  \n                    [ css \"height\" \"128px\"\n                    , css \"width\" \"128px\" \n                    , Color.background (Color.color Color.Brown Color.S500)\n                    -- Elevation\n                    , if model.raised == k then Elevation.e8 else Elevation.e2\n                    , Elevation.transition 250\n                    , Options.attribute <| onMouseEnter (Raise k)\n                    , Options.attribute <| onMouseLeave (Raise -1)\n                    ]\n                    [ Card.title [] [ Card.head [ white ] [ text \"Hover here\" ] ] ]')
+							]))
+					]));
+		}()
+		]);
+};
 var _debois$elm_mdl$Demo_Cards$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
 };
 var _debois$elm_mdl$Demo_Cards$update = F2(
 	function (action, model) {
-		var _p2 = action;
+		var _p2 = A2(_elm_lang$core$Debug$log, '', action);
 		switch (_p2.ctor) {
 			case 'Mdl':
 				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Cards$Mdl, _p2._0, model);
@@ -14805,31 +15012,105 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 						{tab: _p2._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
+			case 'ShowCode1':
+				return A2(
+					_debois$elm_mdl$Material_Helpers$map2nd,
+					_elm_lang$core$Platform_Cmd$map(_debois$elm_mdl$Demo_Cards$CodeMsg1),
+					A2(
+						_debois$elm_mdl$Material_Helpers$map1st,
+						function (code) {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{code1: code});
+						},
+						A2(
+							_debois$elm_mdl$Demo_Code$update,
+							_debois$elm_mdl$Demo_Code$Set(_p2._0),
+							model.code1)));
+			case 'ShowCode2':
+				return A2(
+					_debois$elm_mdl$Material_Helpers$map2nd,
+					_elm_lang$core$Platform_Cmd$map(_debois$elm_mdl$Demo_Cards$CodeMsg2),
+					A2(
+						_debois$elm_mdl$Material_Helpers$map1st,
+						function (code) {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{code2: code});
+						},
+						A2(
+							_debois$elm_mdl$Demo_Code$update,
+							_debois$elm_mdl$Demo_Code$Set(_p2._0),
+							model.code2)));
+			case 'CodeMsg1':
+				return A2(
+					_debois$elm_mdl$Material_Helpers$map2nd,
+					_elm_lang$core$Platform_Cmd$map(_debois$elm_mdl$Demo_Cards$CodeMsg1),
+					A2(
+						_debois$elm_mdl$Material_Helpers$map1st,
+						function (code) {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{code1: code});
+						},
+						A2(_debois$elm_mdl$Demo_Code$update, _p2._0, model.code1)));
+			case 'CodeMsg2':
+				return A2(
+					_debois$elm_mdl$Material_Helpers$map2nd,
+					_elm_lang$core$Platform_Cmd$map(_debois$elm_mdl$Demo_Cards$CodeMsg2),
+					A2(
+						_debois$elm_mdl$Material_Helpers$map1st,
+						function (code) {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{code2: code});
+						},
+						A2(_debois$elm_mdl$Demo_Code$update, _p2._0, model.code2)));
 			default:
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{code: _p2._0}),
+						{clicks: model.clicks + 1}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
 		}
 	});
 var _debois$elm_mdl$Demo_Cards$table = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view \n        [ dynamic 0 model\n        , css \"width\" \"192px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/table.jpg\') center / cover\"\n            , css \"height\" \"192px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"Farnsworth House\" ] ]\n        , Card.text [] [ text \"Designed and constructed by Ludwig Mies van der Rohe between 1945 and 1951 ...\" ]\n        , Card.actions [ Card.border ] \n            [ Button.render Mdl [0,0] model.mdl\n                [ Button.ripple, Button.colored ]\n                [ text \"map\" ] \n            , Button.render Mdl [0,1] model.mdl\n                [ Button.ripple, Button.colored ]\n                [ text \"explore\" ] \n            ]\n        ]';
+	var code = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'\n      Card.view \n        [ css \"width\" \"',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Cards$wide),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'px\")\n        , Color.background (Color.color Color.DeepPurple Color.S300)\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/table.jpg\') center / cover\"\n            , css \"height\" \"',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString((_debois$elm_mdl$Demo_Cards$wide / 16) * 9),
+					'px\")\n            ]\n            []\n        , Card.title [ ] \n            [ Card.head [ white ] [ text \"Table mountain\" ] \n            , Card.subhead [ white ] [ text \"Cape Town, South Africa\" ]\n            ]\n        , Card.menu []\n            [ Button.render Mdl [0,0] model.mdl\n              [ Button.icon, Button.ripple, white ]\n              [ Icon.i \"share\" ]\n            ]\n        ] '))));
+	var white = _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white);
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_debois$elm_mdl$Demo_Cards$dynamic, 0, model),
+				A3(
+				_debois$elm_mdl$Demo_Cards$dynamic,
+				0,
+				_debois$elm_mdl$Demo_Cards$ShowCode2(code),
+				model),
 				A2(
 				_debois$elm_mdl$Material_Options$css,
 				'width',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Cards$wide),
-					'px'))
+					'px')),
+				_debois$elm_mdl$Material_Color$background(
+				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$DeepPurple, _debois$elm_mdl$Material_Color$S300)),
+				_debois$elm_mdl$Demo_Cards$margin2
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -14857,7 +15138,7 @@ var _debois$elm_mdl$Demo_Cards$table = function (model) {
 						A2(
 						_debois$elm_mdl$Material_Card$head,
 						_elm_lang$core$Native_List.fromArray(
-							[]),
+							[white]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('Table mountain')
@@ -14865,7 +15146,7 @@ var _debois$elm_mdl$Demo_Cards$table = function (model) {
 						A2(
 						_debois$elm_mdl$Material_Card$subhead,
 						_elm_lang$core$Native_List.fromArray(
-							[]),
+							[white]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('Cape Town, South Africa')
@@ -14881,14 +15162,10 @@ var _debois$elm_mdl$Demo_Cards$table = function (model) {
 						_debois$elm_mdl$Material_Button$render,
 						_debois$elm_mdl$Demo_Cards$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[1]),
+							[0, 0]),
 						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Button$icon,
-								_debois$elm_mdl$Material_Button$ripple,
-								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
-							]),
+							[_debois$elm_mdl$Material_Button$icon, _debois$elm_mdl$Material_Button$ripple, white]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_debois$elm_mdl$Material_Icon$i('share')
@@ -14897,15 +15174,20 @@ var _debois$elm_mdl$Demo_Cards$table = function (model) {
 			]));
 	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
 };
-var _debois$elm_mdl$Demo_Cards$pomegranate = function (model) {
+var _debois$elm_mdl$Demo_Cards$grenadine = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/table.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
+	var code = '\n      Card.view \n        [ dynamic 1 (ShowCode1 code) model\n        , css \"width\" \"256px\"\n        ]\n        [ Card.title \n            [ css \"background\" \"url(\'assets/pomegranate.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            , css \"padding\" \"0\" -- Clear default padding to encompass scrim\n            ] \n            [ Card.head \n                [ white\n                , Options.scrim 0.75\n                , css \"padding\" \"16px\" -- Restore default padding inside scrim\n                , css \"width\" \"100%\"\n                ] \n                [ text \"Grenadine\" ]\n            ]\n        , Card.text [] \n            [ text \"Non-alcoholic syrup used for both its tart and sweet flavour as well as its deep red color.\" ]\n        , Card.actions \n            [ Card.border ] \n            [ Button.render Mdl [1,0] model.mdl\n                [ Button.ripple, Button.accent ]\n                [ text \"Ingredients\" ] \n            , Button.render Mdl [1,1] model.mdl\n                [ Button.ripple, Button.accent ]\n                [ text \"Cocktails\" ] \n            ]\n        ] \n';
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_debois$elm_mdl$Demo_Cards$dynamic, 1, model),
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px')
+				A3(
+				_debois$elm_mdl$Demo_Cards$dynamic,
+				1,
+				_debois$elm_mdl$Demo_Cards$ShowCode1(code),
+				model),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px'),
+				_debois$elm_mdl$Demo_Cards$margin1
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -14923,7 +15205,7 @@ var _debois$elm_mdl$Demo_Cards$pomegranate = function (model) {
 						_debois$elm_mdl$Material_Card$head,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white),
+								_debois$elm_mdl$Demo_Cards$white,
 								_debois$elm_mdl$Material_Options$scrim(0.75),
 								A2(_debois$elm_mdl$Material_Options$css, 'padding', '16px'),
 								A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
@@ -14951,7 +15233,7 @@ var _debois$elm_mdl$Demo_Cards$pomegranate = function (model) {
 						_debois$elm_mdl$Material_Button$render,
 						_debois$elm_mdl$Demo_Cards$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[2, 0]),
+							[1, 0]),
 						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
 							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$accent]),
@@ -14963,7 +15245,7 @@ var _debois$elm_mdl$Demo_Cards$pomegranate = function (model) {
 						_debois$elm_mdl$Material_Button$render,
 						_debois$elm_mdl$Demo_Cards$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-							[2, 1]),
+							[1, 1]),
 						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
 							[_debois$elm_mdl$Material_Button$ripple, _debois$elm_mdl$Material_Button$accent]),
@@ -14977,17 +15259,21 @@ var _debois$elm_mdl$Demo_Cards$pomegranate = function (model) {
 };
 var _debois$elm_mdl$Demo_Cards$reminder = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view \n        [ dynamic model\n        , css \"width\" \"160px\"\n        , Color.background (Color.color Color.LightBlue Color.S400)\n        , Color.text Color.white\n        ]\n        [ Card.title [ ] \n            [ Card.head [ Color.text Color.white ] [ text \"Call Petronella\" ] ]\n        , Card.text [ Card.expand ] [ {- filler -} ] \n        , Card.actions \n            [ Card.border\n            , css \"display\" \"flex\"\n            , css \"justify-content\" \"space-between\"\n            , css \"align-items\" \"center\" \n            ] \n            [ Options.span [ Typography.caption ] [ text \"August 3, 2016\" ]\n            , Button.render Mdl [1] model.mdl\n                [ Button.icon\n                , Button.ripple\n                ]\n                [ Icon.i \"phone\" ]\n            ]\n        ]';
+	var code = '\n      Card.view\n        [ css \"width\" \"192px\"\n        , css \"height\" \"192px\"\n        , Color.background (Color.color Color.LightBlue Color.S400)\n        ]\n        [ Card.title [] [ Card.head [ white ] [ text \"Call Petronella\" ] ]\n        , Card.text [ Card.expand ]  [] -- Filler\n        , Card.actions \n            [ Card.border\n            -- Modify flexbox to accomodate small text in action block\n            , css \"display\" \"flex\"\n            , css \"justify-content\" \"space-between\"\n            , css \"align-items\" \"center\" \n            , css \"padding\" \"8px 16px 8px 16px\"\n            , white\n            ] \n            [ Options.span [ Typography.caption ] [ text \"August 3, 2016\" ]\n            , Button.render Mdl [1] model.mdl\n                [ Button.icon, Button.ripple ]\n                [ Icon.i \"phone\" ]\n            ]\n        ]\n';
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_debois$elm_mdl$Demo_Cards$dynamic, 2, model),
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '160px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'height', '160px'),
+				A3(
+				_debois$elm_mdl$Demo_Cards$dynamic,
+				2,
+				_debois$elm_mdl$Demo_Cards$ShowCode2(code),
+				model),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '192px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'height', '192px'),
 				_debois$elm_mdl$Material_Color$background(
 				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$S400)),
-				_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
+				_debois$elm_mdl$Demo_Cards$margin2
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -15000,9 +15286,7 @@ var _debois$elm_mdl$Demo_Cards$reminder = function (model) {
 						A2(
 						_debois$elm_mdl$Material_Card$head,
 						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white)
-							]),
+							[_debois$elm_mdl$Demo_Cards$white]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('Call Petronella')
@@ -15021,7 +15305,9 @@ var _debois$elm_mdl$Demo_Cards$reminder = function (model) {
 						_debois$elm_mdl$Material_Card$border,
 						A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
 						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'space-between'),
-						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
+						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center'),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '8px 16px 8px 16px'),
+						_debois$elm_mdl$Demo_Cards$white
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -15051,8 +15337,8 @@ var _debois$elm_mdl$Demo_Cards$reminder = function (model) {
 };
 var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view \n        [ dynamic 6 model\n        , css \"width\" \"512px\"\n        ]\n        [ Card.media \n            [ css \"background\" \"url(\'assets/table.jpg\') center / cover\"\n            , css \"height\" \"256px\"\n            ]\n            []\n        , Card.title [] [ Card.head [] [ text \"The Farnsworth House\" ] ]\n        ]';
-	var cell = A2(_debois$elm_mdl$Material_Options$css, 'width', '96px');
+	var code = '\n    sun = \n      Color.color Color.Amber Color.S500\n\n    rain = \n      Color.color Color.LightBlue Color.S500\n\n    today = \n      [ (\"now\", 21, -1, Color.primary, \"cloud\")\n      , (\"16\",  21, -1, Color.primary, \"cloud\")\n      , (\"17\",  20, -1, Color.primary, \"cloud\")\n      , (\"18\",  20, -1, rain, \"grain\")\n      , (\"19\",  19, -1, rain, \"grain\")\n      , (\"20\",  19, -1, Color.primary, \"cloud_queue\")\n      , (\"21\",  28, -1, Color.primary, \"cloud_queue\")\n      ]\n      \n    next3 = \n      [ (\"thu\", 21, 14, sun, \"wb_sunny\")\n      , (\"fri\", 22, 15, rain, \"grain\")\n      , (\"sat\", 20, 13, sun, \"wb_sunny\")\n      , (\"sun\", 21, 13, rain, \"grain\")\n      , (\"mon\", 20, 13, rain, \"grain\")\n      , (\"tue\", 20, 13, sun, \"wb_sunny\")\n      , (\"wed\", 21, 15, sun, \"wb_sunny\")\n      ]\n\n    cell =\n      css \"width\" \"64px\"\n\n    row (time, high, low, color, icon) = \n      Card.subhead\n        [ css \"display\" \"flex\"\n        , css \"justify-content\" \"space-between\" \n        , css \"align-items\" \"center\"\n        , css \"padding\" \".3rem 2.5rem\" \n        ]\n        [ Options.span [ cell ] [ text time ] \n        , Options.span [ cell, css \"text-align\" \"center\" ] \n            [ Icon.view icon [ Color.text color, Icon.size18 ] ]\n        , Options.span [ cell, css \"text-align\" \"right\" ] \n            [ text <| toString high ++ \"° \"\n            , Options.span \n                [ css \"color\" \"rgba(0,0,0,0.37)\" ]\n                [ text <| if low >= 0 then toString low ++ \"°\" else \"\" ]\n            ]\n        ]\n\n    list items = \n      [ Options.div \n          [ css \"display\" \"flex\"\n          , css \"flex-direction\" \"column\"\n          , css \"padding\" \"1rem 0\"\n          , css \"color\" \"rgba(0, 0, 0, 0.54)\" \n          ]\n          (List.map row items)\n      ]\n\n    card = \n      Card.view \n        [ css \"width\" \"256px\" ]\n        [ Card.title \n            [ css \"flex-direction\" \"column\" ] \n            [ Card.head [ ] [ text \"Copenhagen\" ]\n            , Card.subhead [ ] [ text \"Wed, 14:55, mostly cloudy\" ] \n            , Options.div \n                [ css \"padding\" \"2rem 2rem 0 2rem\" ]\n                [ Options.span \n                    [ Typography.display4 \n                    , Color.text Color.primary\n                    ] \n                    [ text \"21°\" ]\n                ]\n            ]\n        , Card.actions [ ]\n            [ Tabs.render Mdl [5,2] model.mdl\n                [ Tabs.ripple\n                , Tabs.onSelectTab SetTab\n                , Tabs.activeTab model.tab\n                ]\n                [ Tabs.label [] [ text \"Today\" ] \n                , Tabs.label [] [ text \"7-day\" ] \n                ]\n                (list (if model.tab == 0 then today else next3))\n            ]\n         ] \n';
+	var cell = A2(_debois$elm_mdl$Material_Options$css, 'width', '64px');
 	var row = function (_p3) {
 		var _p4 = _p3;
 		var _p5 = _p4._2;
@@ -15153,20 +15439,25 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 	var sun = A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Amber, _debois$elm_mdl$Material_Color$S500);
 	var next3 = _elm_lang$core$Native_List.fromArray(
 		[
-			{ctor: '_Tuple5', _0: 'thursday', _1: 21, _2: 14, _3: sun, _4: 'wb_sunny'},
-			{ctor: '_Tuple5', _0: 'friday', _1: 22, _2: 15, _3: rain, _4: 'grain'},
-			{ctor: '_Tuple5', _0: 'saturday', _1: 20, _2: 13, _3: sun, _4: 'wb_sunny'},
-			{ctor: '_Tuple5', _0: 'sunday', _1: 21, _2: 13, _3: rain, _4: 'grain'},
-			{ctor: '_Tuple5', _0: 'monday', _1: 20, _2: 13, _3: rain, _4: 'grain'},
-			{ctor: '_Tuple5', _0: 'tuesday', _1: 20, _2: 13, _3: sun, _4: 'wb_sunny'},
-			{ctor: '_Tuple5', _0: 'wednesday', _1: 21, _2: 15, _3: sun, _4: 'wb_sunny'}
+			{ctor: '_Tuple5', _0: 'thu', _1: 21, _2: 14, _3: sun, _4: 'wb_sunny'},
+			{ctor: '_Tuple5', _0: 'fri', _1: 22, _2: 15, _3: rain, _4: 'grain'},
+			{ctor: '_Tuple5', _0: 'sat', _1: 20, _2: 13, _3: sun, _4: 'wb_sunny'},
+			{ctor: '_Tuple5', _0: 'sun', _1: 21, _2: 13, _3: rain, _4: 'grain'},
+			{ctor: '_Tuple5', _0: 'mon', _1: 20, _2: 13, _3: rain, _4: 'grain'},
+			{ctor: '_Tuple5', _0: 'tue', _1: 20, _2: 13, _3: sun, _4: 'wb_sunny'},
+			{ctor: '_Tuple5', _0: 'wed', _1: 21, _2: 15, _3: sun, _4: 'wb_sunny'}
 		]);
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_debois$elm_mdl$Demo_Cards$dynamic, 5, model),
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px')
+				A3(
+				_debois$elm_mdl$Demo_Cards$dynamic,
+				6,
+				_debois$elm_mdl$Demo_Cards$ShowCode1(code),
+				model),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '256px'),
+				_debois$elm_mdl$Demo_Cards$margin1
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -15258,31 +15549,186 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 			]));
 	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
 };
-var _debois$elm_mdl$Demo_Cards$view = function (model) {
-	var cards = A2(
-		_debois$elm_mdl$Material_Grid$grid,
+var _debois$elm_mdl$Demo_Cards$event = function (model) {
+	var comment = _elm_lang$core$Maybe$Nothing;
+	var code = '\n      Card.view \n        [ Color.background (Color.color Color.DeepOrange Color.S400) \n        , css \"width\" \"192px\"\n        , css \"height\" \"192px\"\n        ]\n        [ Card.title [ ] [ Card.head [ white ] [ text \"Roskilde Festival\" ] ]\n        , Card.text [ white ] [ text \"Buy tickets before May\" ] \n        , Card.actions\n            [ Card.border, css \"vertical-align\" \"center\", css \"text-align\" \"right\", white ]\n            [ Button.render Mdl [8,1] model.mdl\n                [ Button.icon, Button.ripple ]\n                [ Icon.i \"favorite_border\" ]\n            , Button.render Mdl [8,2] model.mdl\n                [ Button.icon, Button.ripple ]\n                [ Icon.i \"event_available\" ]\n            ]\n        ]';
+	var card = A2(
+		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
-		A2(
-			_elm_lang$core$List$concatMap,
-			_debois$elm_mdl$Demo_Cards$view1,
+			[
+				A3(
+				_debois$elm_mdl$Demo_Cards$dynamic,
+				7,
+				_debois$elm_mdl$Demo_Cards$ShowCode2(code),
+				model),
+				_debois$elm_mdl$Material_Color$background(
+				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$DeepOrange, _debois$elm_mdl$Material_Color$S400)),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '192px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'height', '192px'),
+				_debois$elm_mdl$Demo_Cards$margin2
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Card$title,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Card$head,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Demo_Cards$white]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Roskilde Festival')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$text,
+				_elm_lang$core$Native_List.fromArray(
+					[_debois$elm_mdl$Demo_Cards$white]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Buy tickets before May')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Card$actions,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Card$border,
+						A2(_debois$elm_mdl$Material_Options$css, 'vertical-align', 'center'),
+						A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'right'),
+						_debois$elm_mdl$Demo_Cards$white
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[8, 1]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$icon, _debois$elm_mdl$Material_Button$ripple]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Icon$i('favorite_border')
+							])),
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Cards$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[8, 2]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$icon, _debois$elm_mdl$Material_Button$ripple]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Icon$i('event_available')
+							]))
+					]))
+			]));
+	return {ctor: '_Tuple3', _0: card, _1: code, _2: comment};
+};
+var _debois$elm_mdl$Demo_Cards$view = function (model) {
+	var cards2 = _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_debois$elm_mdl$Material_Options$div,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_debois$elm_mdl$Demo_Cards$table(model),
-					_debois$elm_mdl$Demo_Cards$pomegranate(model),
-					_debois$elm_mdl$Demo_Cards$weather(model),
-					_debois$elm_mdl$Demo_Cards$elm(model),
-					_debois$elm_mdl$Demo_Cards$playing(model),
-					_debois$elm_mdl$Demo_Cards$reminder(model)
-				])));
-	return A5(
-		_debois$elm_mdl$Demo_Page$body2,
-		'Cards',
-		_debois$elm_mdl$Demo_Cards$srcUrl,
-		_debois$elm_mdl$Demo_Cards$intro,
-		_debois$elm_mdl$Demo_Cards$references,
-		_elm_lang$core$Native_List.fromArray(
-			[cards]));
+					A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+					A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
+					A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-end'),
+					A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '64px')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+							A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
+							A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'space-between'),
+							A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center'),
+							A2(_debois$elm_mdl$Material_Options$css, 'min-width', '256px'),
+							A2(_debois$elm_mdl$Material_Options$css, 'max-width', '400px'),
+							A2(_debois$elm_mdl$Material_Options$css, 'flex', '1 1 auto')
+						]),
+					A2(
+						_elm_lang$core$List$map,
+						function (_p6) {
+							var _p7 = _p6;
+							return _p7._0;
+						},
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Demo_Cards$table(model),
+								_debois$elm_mdl$Demo_Cards$playing(model),
+								_debois$elm_mdl$Demo_Cards$reminder(model),
+								_debois$elm_mdl$Demo_Cards$event(model)
+							]))),
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'margin', '32px -12px'),
+							A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+						]),
+					A2(
+						_elm_lang$core$List_ops['::'],
+						_debois$elm_mdl$Demo_Code$view(model.code2),
+						_debois$elm_mdl$Demo_Cards$aux(model)))
+				]))
+		]);
+	var cards1 = _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$p,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Click a card below to see its implementation further down the page.')
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+					A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
+					A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'space-between'),
+					A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start'),
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+					A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '4rem')
+				]),
+			A2(
+				_elm_lang$core$List$map,
+				function (_p8) {
+					var _p9 = _p8;
+					return _p9._0;
+				},
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Demo_Cards$weather(model),
+						_debois$elm_mdl$Demo_Cards$grenadine(model),
+						_debois$elm_mdl$Demo_Cards$elm(model)
+					]))),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '32px 0')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_debois$elm_mdl$Demo_Code$view(model.code1)
+				]))
+		]);
+	return A6(_debois$elm_mdl$Demo_Page$body1$, 'Cards', _debois$elm_mdl$Demo_Cards$srcUrl, _debois$elm_mdl$Demo_Cards$intro, _debois$elm_mdl$Demo_Cards$references, cards1, cards2);
 };
 
 var _debois$elm_mdl$Demo_Elevation$references = _elm_lang$core$Native_List.fromArray(
