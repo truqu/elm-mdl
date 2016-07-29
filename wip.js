@@ -11428,7 +11428,11 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 							_debois$elm_mdl$Material_Options$when,
 							_debois$elm_mdl$Material_Options$cs('is-active'),
 							(_elm_lang$core$Native_Utils.eq(direction, _debois$elm_mdl$Material_Layout$Left) && model.tabScrollState.canScrollLeft) || (_elm_lang$core$Native_Utils.eq(direction, _debois$elm_mdl$Material_Layout$Right) && model.tabScrollState.canScrollRight)),
-							_debois$elm_mdl$Material_Options$many(_p25)
+							_debois$elm_mdl$Material_Options$many(_p25),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							A2(_debois$elm_mdl$Material_Options$css, 'display', 'inline-block'),
+							_elm_lang$core$Basics$not(config.fixedTabs))
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
