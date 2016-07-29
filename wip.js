@@ -15731,6 +15731,213 @@ var _debois$elm_mdl$Demo_Cards$view = function (model) {
 	return A6(_debois$elm_mdl$Demo_Page$body1$, 'Cards', _debois$elm_mdl$Demo_Cards$srcUrl, _debois$elm_mdl$Demo_Cards$intro, _debois$elm_mdl$Demo_Cards$references, cards1, cards2);
 };
 
+var _debois$elm_mdl$Material_Dialog$theDialog = 'elm-mdl-singleton-dialog';
+var _debois$elm_mdl$Material_Dialog$openOn = function () {
+	var handler = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'\n        // Don\'t mess up the elm runtime.\n        var dialog = document.getElementById(\'',
+		A2(_elm_lang$core$Basics_ops['++'], _debois$elm_mdl$Material_Dialog$theDialog, '\');\n        if (! dialog) { \n          console.log (\'Cannot display dialog: No dialog element. Use `Dialog.view` to construct one.\');\n          return;\n        }\n        if (! dialog.showModal) {\n          if (typeof dialogPolyfill !== \'undefined\' && dialogPolyfill.registerDialog) { \n            dialogPolyfill.registerDialog(dialog);\n          } else {\n            console.log (\'Cannot display dialog: Your browser does not support the <dialog> element. Get a polyfill at:\\n\\nhttps://github.com/GoogleChrome/dialog-polyfill\\n\');\n            return;\n          }\n        }\n        dialog.showModal();\n      '));
+	return function (event) {
+		return _debois$elm_mdl$Material_Options_Internal$attribute(
+			A2(
+				_elm_lang$html$Html_Attributes$attribute,
+				A2(_elm_lang$core$Basics_ops['++'], 'on', event),
+				handler));
+	};
+}();
+var _debois$elm_mdl$Material_Dialog$closeOn = function () {
+	var handler = A2(
+		_elm_lang$core$Basics_ops['++'],
+		' \n        // Don\'t mess up the elm runtime!\n\n        var dialog = document.getElementById(\'',
+		A2(_elm_lang$core$Basics_ops['++'], _debois$elm_mdl$Material_Dialog$theDialog, '\');\n        if (! dialog) { \n          console.log (\'Cannot close dialog: No dialog element. Use `Dialog.view` to construct one.\');\n          return;\n        }\n        if (! dialog.open) {\n          console.log (\'Cannot close dialog: The dialog is not open. Use `Dialog.closeOn` only on components rendered inside the dialog.\');\n          return;\n        }\n        if (! dialog.close) {\n          console.log (\'Cannot close dialog: The dialog does not have a `close` method. Perhaps you forgot a polyfill? Get one at:\\n\\nhttps://github.com/GoogleChrome/dialog-polyfill\\n\');\n          return;\n        }\n        dialog.close();'));
+	return function (event) {
+		return _debois$elm_mdl$Material_Options_Internal$attribute(
+			A2(
+				_elm_lang$html$Html_Attributes$attribute,
+				A2(_elm_lang$core$Basics_ops['++'], 'on', event),
+				handler));
+	};
+}();
+var _debois$elm_mdl$Material_Dialog$contentBlock = function (block) {
+	var _p0 = block;
+	switch (_p0.ctor) {
+		case 'Title':
+			return A2(
+				_debois$elm_mdl$Material_Options$div,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_debois$elm_mdl$Material_Options$cs('mdl-dialog__title'),
+					_p0._0),
+				_p0._1);
+		case 'Content':
+			return A2(
+				_debois$elm_mdl$Material_Options$div,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_debois$elm_mdl$Material_Options$cs('mdl-dialog__content'),
+					_p0._0),
+				_p0._1);
+		default:
+			return A2(
+				_debois$elm_mdl$Material_Options$div,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_debois$elm_mdl$Material_Options$cs('mdl-dialog__actions'),
+					_p0._0),
+				_p0._1);
+	}
+};
+var _debois$elm_mdl$Material_Dialog$view = F2(
+	function (styling, contentBlocks) {
+		return A4(
+			_debois$elm_mdl$Material_Options$styled$,
+			_elm_lang$html$Html$node('dialog'),
+			A2(
+				_elm_lang$core$List_ops['::'],
+				_debois$elm_mdl$Material_Options$cs('mdl-dialog'),
+				styling),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$id(_debois$elm_mdl$Material_Dialog$theDialog)
+				]),
+			A2(_elm_lang$core$List$map, _debois$elm_mdl$Material_Dialog$contentBlock, contentBlocks));
+	});
+var _debois$elm_mdl$Material_Dialog$fullWidth = _debois$elm_mdl$Material_Options$cs('mdl-dialog__actions--full-width');
+var _debois$elm_mdl$Material_Dialog$Actions = F2(
+	function (a, b) {
+		return {ctor: 'Actions', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Dialog$actions = _debois$elm_mdl$Material_Dialog$Actions;
+var _debois$elm_mdl$Material_Dialog$Content = F2(
+	function (a, b) {
+		return {ctor: 'Content', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Dialog$content = _debois$elm_mdl$Material_Dialog$Content;
+var _debois$elm_mdl$Material_Dialog$Title = F2(
+	function (a, b) {
+		return {ctor: 'Title', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Dialog$title = _debois$elm_mdl$Material_Dialog$Title;
+
+var _debois$elm_mdl$Demo_Dialog$references = _elm_lang$core$Native_List.fromArray(
+	[
+		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Card'),
+		_debois$elm_mdl$Demo_Page$mds('https://material.google.com/components/dialog.html'),
+		_debois$elm_mdl$Demo_Page$mdl('https://getmdl.io/components/#dialog-section')
+	]);
+var _debois$elm_mdl$Demo_Dialog$srcUrl = 'https://github.com/debois/elm-mdl/blob/master/demo/Demo/Dialog.elm';
+var _debois$elm_mdl$Demo_Dialog$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://getmdl.io/components/#dialog-section', '\n> The Material Design Lite (MDL) dialog component allows for verification of user\n> actions, simple data input, and alerts to provide extra information to users.\n>\n> To use the dialog component, you must be using a browser that supports the\n> dialog element. Only Chrome and Opera have native support at the time of\n> writing. For other browsers you will need to include the dialog polyfill\n> or create your own.\n');
+var _debois$elm_mdl$Demo_Dialog$model = {mdl: _debois$elm_mdl$Material$model};
+var _debois$elm_mdl$Demo_Dialog$Model = function (a) {
+	return {mdl: a};
+};
+var _debois$elm_mdl$Demo_Dialog$Mdl = function (a) {
+	return {ctor: 'Mdl', _0: a};
+};
+var _debois$elm_mdl$Demo_Dialog$update = F2(
+	function (action, model) {
+		var _p0 = action;
+		return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Dialog$Mdl, _p0._0, model);
+	});
+var _debois$elm_mdl$Demo_Dialog$element = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Dialog$view,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Dialog$title,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Greetings')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Dialog$content,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$p,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('A strange game—the only winning move is not to play.')
+							])),
+						A2(
+						_elm_lang$html$Html$p,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('How about a nice game of chess?')
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Dialog$actions,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Dialog$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[0]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Dialog$closeOn('click')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Chess')
+							])),
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_debois$elm_mdl$Demo_Dialog$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[1]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[_debois$elm_mdl$Material_Button$disabled]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('GTNW')
+							]))
+					]))
+			]));
+};
+var _debois$elm_mdl$Demo_Dialog$view = function (model) {
+	return A5(
+		_debois$elm_mdl$Demo_Page$body2,
+		'Dialog',
+		_debois$elm_mdl$Demo_Dialog$srcUrl,
+		_debois$elm_mdl$Demo_Dialog$intro,
+		_debois$elm_mdl$Demo_Dialog$references,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A5(
+				_debois$elm_mdl$Material_Button$render,
+				_debois$elm_mdl$Demo_Dialog$Mdl,
+				_elm_lang$core$Native_List.fromArray(
+					[1]),
+				model.mdl,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Dialog$openOn('click')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Open dialog')
+					]))
+			]));
+};
+
 var _debois$elm_mdl$Demo_Elevation$references = _elm_lang$core$Native_List.fromArray(
 	[
 		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Elevation'),
@@ -24473,7 +24680,7 @@ var _debois$elm_mdl$Main$nth = F2(
 		return _elm_lang$core$List$head(
 			A2(_elm_lang$core$List$drop, k, xs));
 	});
-var _debois$elm_mdl$Main$model = {mdl: _debois$elm_mdl$Material$model, buttons: _debois$elm_mdl$Demo_Buttons$model, badges: _debois$elm_mdl$Demo_Badges$model, layout: _debois$elm_mdl$Demo_Layout$model, menus: _debois$elm_mdl$Demo_Menus$model, textfields: _debois$elm_mdl$Demo_Textfields$model, toggles: _debois$elm_mdl$Demo_Toggles$model, snackbar: _debois$elm_mdl$Demo_Snackbar$model, tables: _debois$elm_mdl$Demo_Tables$model, loading: _debois$elm_mdl$Demo_Loading$model, footers: _debois$elm_mdl$Demo_Footer$model, tooltip: _debois$elm_mdl$Demo_Tooltip$model, tabs: _debois$elm_mdl$Demo_Tabs$model, slider: _debois$elm_mdl$Demo_Slider$model, typography: _debois$elm_mdl$Demo_Typography$model, cards: _debois$elm_mdl$Demo_Cards$model, lists: _debois$elm_mdl$Demo_Lists$model, selectedTab: 0, transparentHeader: false};
+var _debois$elm_mdl$Main$model = {mdl: _debois$elm_mdl$Material$model, buttons: _debois$elm_mdl$Demo_Buttons$model, badges: _debois$elm_mdl$Demo_Badges$model, layout: _debois$elm_mdl$Demo_Layout$model, menus: _debois$elm_mdl$Demo_Menus$model, textfields: _debois$elm_mdl$Demo_Textfields$model, toggles: _debois$elm_mdl$Demo_Toggles$model, snackbar: _debois$elm_mdl$Demo_Snackbar$model, tables: _debois$elm_mdl$Demo_Tables$model, loading: _debois$elm_mdl$Demo_Loading$model, footers: _debois$elm_mdl$Demo_Footer$model, tooltip: _debois$elm_mdl$Demo_Tooltip$model, tabs: _debois$elm_mdl$Demo_Tabs$model, slider: _debois$elm_mdl$Demo_Slider$model, typography: _debois$elm_mdl$Demo_Typography$model, cards: _debois$elm_mdl$Demo_Cards$model, lists: _debois$elm_mdl$Demo_Lists$model, dialog: _debois$elm_mdl$Demo_Dialog$model, selectedTab: 0, transparentHeader: false};
 var _debois$elm_mdl$Main$Model = function (a) {
 	return function (b) {
 		return function (c) {
@@ -24493,7 +24700,9 @@ var _debois$elm_mdl$Main$Model = function (a) {
 																return function (q) {
 																	return function (r) {
 																		return function (s) {
-																			return {mdl: a, buttons: b, badges: c, layout: d, menus: e, textfields: f, toggles: g, snackbar: h, tables: i, loading: j, footers: k, tooltip: l, tabs: m, slider: n, typography: o, cards: p, lists: q, selectedTab: r, transparentHeader: s};
+																			return function (t) {
+																				return {mdl: a, buttons: b, badges: c, layout: d, menus: e, textfields: f, toggles: g, snackbar: h, tables: i, loading: j, footers: k, tooltip: l, tabs: m, slider: n, typography: o, cards: p, lists: q, dialog: r, selectedTab: s, transparentHeader: t};
+																			};
 																		};
 																	};
 																};
@@ -24512,6 +24721,9 @@ var _debois$elm_mdl$Main$Model = function (a) {
 			};
 		};
 	};
+};
+var _debois$elm_mdl$Main$DialogMsg = function (a) {
+	return {ctor: 'DialogMsg', _0: a};
 };
 var _debois$elm_mdl$Main$ToggleHeader = {ctor: 'ToggleHeader'};
 var _debois$elm_mdl$Main$header = function (model) {
@@ -24677,9 +24889,23 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 	},
 		{
 		ctor: '_Tuple3',
+		_0: 'Dialog',
+		_1: 'dialog',
+		_2: function (_p4) {
+			return A2(
+				_elm_lang$html$Html_App$map,
+				_debois$elm_mdl$Main$DialogMsg,
+				_debois$elm_mdl$Demo_Dialog$view(
+					function (_) {
+						return _.dialog;
+					}(_p4)));
+		}
+	},
+		{
+		ctor: '_Tuple3',
 		_0: 'Elevation',
 		_1: 'elevation',
-		_2: function (_p4) {
+		_2: function (_p5) {
 			return _debois$elm_mdl$Demo_Elevation$view;
 		}
 	},
@@ -24687,21 +24913,21 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 		ctor: '_Tuple3',
 		_0: 'Footers',
 		_1: 'footers',
-		_2: function (_p5) {
+		_2: function (_p6) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$FooterMsg,
 				_debois$elm_mdl$Demo_Footer$view(
 					function (_) {
 						return _.footers;
-					}(_p5)));
+					}(_p6)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Grid',
 		_1: 'grid',
-		_2: function (_p6) {
+		_2: function (_p7) {
 			return _debois$elm_mdl$Demo_Grid$view;
 		}
 	},
@@ -24709,192 +24935,192 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 		ctor: '_Tuple3',
 		_0: 'Layout',
 		_1: 'layout',
-		_2: function (_p7) {
+		_2: function (_p8) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$LayoutMsg,
 				_debois$elm_mdl$Demo_Layout$view(
 					function (_) {
 						return _.layout;
-					}(_p7)));
+					}(_p8)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Lists',
 		_1: 'lists',
-		_2: function (_p8) {
+		_2: function (_p9) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$ListsMsg,
 				_debois$elm_mdl$Demo_Lists$view(
 					function (_) {
 						return _.lists;
-					}(_p8)));
+					}(_p9)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Loading',
 		_1: 'loading',
-		_2: function (_p9) {
+		_2: function (_p10) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$LoadingMsg,
 				_debois$elm_mdl$Demo_Loading$view(
 					function (_) {
 						return _.loading;
-					}(_p9)));
+					}(_p10)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Menus',
 		_1: 'menus',
-		_2: function (_p10) {
+		_2: function (_p11) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$MenusMsg,
 				_debois$elm_mdl$Demo_Menus$view(
 					function (_) {
 						return _.menus;
-					}(_p10)));
+					}(_p11)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Sliders',
 		_1: 'sliders',
-		_2: function (_p11) {
+		_2: function (_p12) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$SliderMsg,
 				_debois$elm_mdl$Demo_Slider$view(
 					function (_) {
 						return _.slider;
-					}(_p11)));
+					}(_p12)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Snackbar',
 		_1: 'snackbar',
-		_2: function (_p12) {
+		_2: function (_p13) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$SnackbarMsg,
 				_debois$elm_mdl$Demo_Snackbar$view(
 					function (_) {
 						return _.snackbar;
-					}(_p12)));
+					}(_p13)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Textfields',
 		_1: 'textfields',
-		_2: function (_p13) {
+		_2: function (_p14) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TextfieldMsg,
 				_debois$elm_mdl$Demo_Textfields$view(
 					function (_) {
 						return _.textfields;
-					}(_p13)));
+					}(_p14)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Tables',
 		_1: 'tables',
-		_2: function (_p14) {
+		_2: function (_p15) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TablesMsg,
 				_debois$elm_mdl$Demo_Tables$view(
 					function (_) {
 						return _.tables;
-					}(_p14)));
+					}(_p15)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Tabs',
 		_1: 'tabs',
-		_2: function (_p15) {
+		_2: function (_p16) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TabMsg,
 				_debois$elm_mdl$Demo_Tabs$view(
 					function (_) {
 						return _.tabs;
-					}(_p15)));
+					}(_p16)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Toggles',
 		_1: 'toggles',
-		_2: function (_p16) {
+		_2: function (_p17) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TogglesMsg,
 				_debois$elm_mdl$Demo_Toggles$view(
 					function (_) {
 						return _.toggles;
-					}(_p16)));
+					}(_p17)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Tooltips',
 		_1: 'tooltips',
-		_2: function (_p17) {
+		_2: function (_p18) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TooltipMsg,
 				_debois$elm_mdl$Demo_Tooltip$view(
 					function (_) {
 						return _.tooltip;
-					}(_p17)));
+					}(_p18)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Typography',
 		_1: 'typography',
-		_2: function (_p18) {
+		_2: function (_p19) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TypographyMsg,
 				_debois$elm_mdl$Demo_Typography$view(
 					function (_) {
 						return _.typography;
-					}(_p18)));
+					}(_p19)));
 		}
 	}
 	]);
 var _debois$elm_mdl$Main$tabTitles = A2(
 	_elm_lang$core$List$map,
-	function (_p19) {
-		var _p20 = _p19;
-		return _elm_lang$html$Html$text(_p20._0);
+	function (_p20) {
+		var _p21 = _p20;
+		return _elm_lang$html$Html$text(_p21._0);
 	},
 	_debois$elm_mdl$Main$tabs);
 var _debois$elm_mdl$Main$tabViews = _elm_lang$core$Array$fromList(
 	A2(
 		_elm_lang$core$List$map,
-		function (_p21) {
-			var _p22 = _p21;
-			return _p22._2;
+		function (_p22) {
+			var _p23 = _p22;
+			return _p23._2;
 		},
 		_debois$elm_mdl$Main$tabs));
 var _debois$elm_mdl$Main$tabUrls = _elm_lang$core$Array$fromList(
 	A2(
 		_elm_lang$core$List$map,
-		function (_p23) {
-			var _p24 = _p23;
-			return _p24._1;
+		function (_p24) {
+			var _p25 = _p24;
+			return _p25._1;
 		},
 		_debois$elm_mdl$Main$tabs));
 var _debois$elm_mdl$Main$urlOf = function (model) {
@@ -24918,9 +25144,9 @@ var _debois$elm_mdl$Main$urlTabs = _elm_lang$core$Dict$fromList(
 	A2(
 		_elm_lang$core$List$indexedMap,
 		F2(
-			function (idx, _p25) {
-				var _p26 = _p25;
-				return {ctor: '_Tuple2', _0: _p26._1, _1: idx};
+			function (idx, _p26) {
+				var _p27 = _p26;
+				return {ctor: '_Tuple2', _0: _p27._1, _1: idx};
 			}),
 		_debois$elm_mdl$Main$tabs));
 var _debois$elm_mdl$Main$Mdl = function (a) {
@@ -24928,14 +25154,14 @@ var _debois$elm_mdl$Main$Mdl = function (a) {
 };
 var _debois$elm_mdl$Main$update = F2(
 	function (action, model) {
-		var _p27 = action;
-		switch (_p27.ctor) {
+		var _p28 = action;
+		switch (_p28.ctor) {
 			case 'SelectTab':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{selectedTab: _p27._0}),
+						{selectedTab: _p28._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ToggleHeader':
@@ -24949,7 +25175,7 @@ var _debois$elm_mdl$Main$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Mdl':
-				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Main$Mdl, _p27._0, model);
+				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Main$Mdl, _p28._0, model);
 			case 'ButtonsMsg':
 				return A6(
 					_debois$elm_mdl$Material_Helpers$lift,
@@ -24964,7 +25190,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$ButtonsMsg,
 					_debois$elm_mdl$Demo_Buttons$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'BadgesMsg':
 				return A6(
@@ -24980,7 +25206,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$BadgesMsg,
 					_debois$elm_mdl$Demo_Badges$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'LayoutMsg':
 				return A6(
@@ -24996,7 +25222,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$LayoutMsg,
 					_debois$elm_mdl$Demo_Layout$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'MenusMsg':
 				return A6(
@@ -25012,7 +25238,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$MenusMsg,
 					_debois$elm_mdl$Demo_Menus$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'TextfieldMsg':
 				return A6(
@@ -25028,7 +25254,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TextfieldMsg,
 					_debois$elm_mdl$Demo_Textfields$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'SnackbarMsg':
 				return A6(
@@ -25044,7 +25270,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$SnackbarMsg,
 					_debois$elm_mdl$Demo_Snackbar$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'TogglesMsg':
 				return A6(
@@ -25060,7 +25286,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TogglesMsg,
 					_debois$elm_mdl$Demo_Toggles$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'TablesMsg':
 				return A6(
@@ -25076,7 +25302,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TablesMsg,
 					_debois$elm_mdl$Demo_Tables$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'LoadingMsg':
 				return A6(
@@ -25092,7 +25318,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$LoadingMsg,
 					_debois$elm_mdl$Demo_Loading$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'FooterMsg':
 				return A6(
@@ -25108,7 +25334,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$FooterMsg,
 					_debois$elm_mdl$Demo_Footer$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'SliderMsg':
 				return A6(
@@ -25124,7 +25350,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$SliderMsg,
 					_debois$elm_mdl$Demo_Slider$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'TooltipMsg':
 				return A6(
@@ -25140,7 +25366,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TooltipMsg,
 					_debois$elm_mdl$Demo_Tooltip$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'TabMsg':
 				return A6(
@@ -25156,7 +25382,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TabMsg,
 					_debois$elm_mdl$Demo_Tabs$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'TypographyMsg':
 				return A6(
@@ -25172,7 +25398,7 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$TypographyMsg,
 					_debois$elm_mdl$Demo_Typography$update,
-					_p27._0,
+					_p28._0,
 					model);
 			case 'CardsMsg':
 				return A6(
@@ -25188,9 +25414,9 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$CardsMsg,
 					_debois$elm_mdl$Demo_Cards$update,
-					_p27._0,
+					_p28._0,
 					model);
-			default:
+			case 'ListsMsg':
 				return A6(
 					_debois$elm_mdl$Material_Helpers$lift,
 					function (_) {
@@ -25204,7 +25430,23 @@ var _debois$elm_mdl$Main$update = F2(
 						}),
 					_debois$elm_mdl$Main$ListsMsg,
 					_debois$elm_mdl$Demo_Lists$update,
-					_p27._0,
+					_p28._0,
+					model);
+			default:
+				return A6(
+					_debois$elm_mdl$Material_Helpers$lift,
+					function (_) {
+						return _.dialog;
+					},
+					F2(
+						function (m, x) {
+							return _elm_lang$core$Native_Utils.update(
+								m,
+								{dialog: x});
+						}),
+					_debois$elm_mdl$Main$DialogMsg,
+					_debois$elm_mdl$Demo_Dialog$update,
+					_p28._0,
 					model);
 		}
 	});
@@ -25232,7 +25474,11 @@ var _debois$elm_mdl$Main$view$ = function (model) {
 							A2(_elm_lang$html$Html_Attributes$attribute, 'src', 'assets/highlight.pack.js')
 						]),
 					_elm_lang$core$Native_List.fromArray(
-						[]))
+						[])),
+					A2(
+					_elm_lang$html$Html_App$map,
+					_debois$elm_mdl$Main$DialogMsg,
+					_debois$elm_mdl$Demo_Dialog$element(model.dialog))
 				]));
 	}(
 		A4(
@@ -25249,10 +25495,10 @@ var _debois$elm_mdl$Main$view$ = function (model) {
 					A2(
 					_debois$elm_mdl$Material_Options$when,
 					function () {
-						var _p28 = model.layout.header;
-						switch (_p28.ctor) {
+						var _p29 = model.layout.header;
+						switch (_p29.ctor) {
 							case 'Waterfall':
-								return _debois$elm_mdl$Material_Layout$waterfall(_p28._0);
+								return _debois$elm_mdl$Material_Layout$waterfall(_p29._0);
 							case 'Seamed':
 								return _debois$elm_mdl$Material_Layout$seamed;
 							case 'Standard':
@@ -25292,15 +25538,15 @@ var _debois$elm_mdl$Main$location2messages = function (location) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			function () {
-			var _p29 = A2(_elm_lang$core$String$dropLeft, 1, location.hash);
-			if (_p29 === '') {
+			var _p30 = A2(_elm_lang$core$String$dropLeft, 1, location.hash);
+			if (_p30 === '') {
 				return _debois$elm_mdl$Main$SelectTab(0);
 			} else {
 				return _debois$elm_mdl$Main$SelectTab(
 					A2(
 						_elm_lang$core$Maybe$withDefault,
 						-1,
-						A2(_elm_lang$core$Dict$get, _p29, _debois$elm_mdl$Main$urlTabs)));
+						A2(_elm_lang$core$Dict$get, _p30, _debois$elm_mdl$Main$urlTabs)));
 			}
 		}()
 		]);
@@ -25320,13 +25566,13 @@ var _debois$elm_mdl$Main$main = {
 				_1: _debois$elm_mdl$Material_Layout$sub0(_debois$elm_mdl$Main$Mdl)
 			},
 			view: _debois$elm_mdl$Main$view,
-			subscriptions: function (_p30) {
+			subscriptions: function (_p31) {
 				return A2(
 					_debois$elm_mdl$Material_Layout$subs,
 					_debois$elm_mdl$Main$Mdl,
 					function (_) {
 						return _.mdl;
-					}(_p30));
+					}(_p31));
 			},
 			update: _debois$elm_mdl$Main$update
 		})
