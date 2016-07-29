@@ -22208,6 +22208,7 @@ var _debois$elm_mdl$Demo_Toggles$Model = F5(
 	function (a, b, c, d, e) {
 		return {mdl: a, toggles: b, radios: c, counter: d, counting: e};
 	});
+var _debois$elm_mdl$Demo_Toggles$AutoCount = {ctor: 'AutoCount'};
 var _debois$elm_mdl$Demo_Toggles$ToggleCounting = {ctor: 'ToggleCounting'};
 var _debois$elm_mdl$Demo_Toggles$Update = function (a) {
 	return {ctor: 'Update', _0: a};
@@ -22256,7 +22257,15 @@ var _debois$elm_mdl$Demo_Toggles$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{counter: model.counter + 1}),
-					_1: model.counting ? A2(_debois$elm_mdl$Material_Helpers$delay, _debois$elm_mdl$Demo_Toggles$delay, _debois$elm_mdl$Demo_Toggles$Inc) : _elm_lang$core$Platform_Cmd$none
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'AutoCount':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{counter: model.counter + 1}),
+					_1: model.counting ? A2(_debois$elm_mdl$Material_Helpers$delay, _debois$elm_mdl$Demo_Toggles$delay, _debois$elm_mdl$Demo_Toggles$AutoCount) : _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Update':
 				return {
@@ -22272,7 +22281,7 @@ var _debois$elm_mdl$Demo_Toggles$update = F2(
 						{
 							counting: _elm_lang$core$Basics$not(model.counting)
 						}),
-					_1: _elm_lang$core$Basics$not(model.counting) ? A2(_debois$elm_mdl$Material_Helpers$delay, _debois$elm_mdl$Demo_Toggles$delay, _debois$elm_mdl$Demo_Toggles$Inc) : _elm_lang$core$Platform_Cmd$none
+					_1: _elm_lang$core$Basics$not(model.counting) ? A2(_debois$elm_mdl$Material_Helpers$delay, _debois$elm_mdl$Demo_Toggles$delay, _debois$elm_mdl$Demo_Toggles$AutoCount) : _elm_lang$core$Platform_Cmd$none
 				};
 			default:
 				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Toggles$Mdl, _p0._0, model);
