@@ -11450,10 +11450,10 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 						]));
 			});
 		return A2(
-			_elm_lang$html$Html$div,
+			_debois$elm_mdl$Material_Options$div,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_elm_lang$html$Html_Attributes$class('mdl-layout__tab-bar-container')
+					_debois$elm_mdl$Material_Options$cs('mdl-layout__tab-bar-container')
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -11463,6 +11463,7 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 					_elm_lang$core$Native_List.fromArray(
 						[
 							_debois$elm_mdl$Material_Options$cs('mdl-layout__tab-bar'),
+							A2(_debois$elm_mdl$Material_Options$css, 'position', 'relative'),
 							A2(_debois$elm_mdl$Material_Options$css, 'scroll-behavior', 'smooth'),
 							config.rippleTabs ? _debois$elm_mdl$Material_Options$many(
 							_elm_lang$core$Native_List.fromArray(
