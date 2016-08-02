@@ -11557,23 +11557,23 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 var _debois$elm_mdl$Material_Layout$view = F4(
 	function (lift, model, options, _p26) {
 		var _p27 = _p26;
-		var _p34 = _p27.tabs;
-		var _p33 = _p27.header;
-		var _p32 = _p27.drawer;
+		var _p35 = _p27.tabs;
+		var _p34 = _p27.header;
+		var _p33 = _p27.drawer;
 		var drawerIsVisible = model.isDrawerOpen;
 		var hasDrawer = !_elm_lang$core$Native_Utils.eq(
-			_p32,
+			_p33,
 			_elm_lang$core$Native_List.fromArray(
 				[]));
 		var hasTabs = _elm_lang$core$Basics$not(
 			_elm_lang$core$List$isEmpty(
-				_elm_lang$core$Basics$fst(_p34)));
+				_elm_lang$core$Basics$fst(_p35)));
 		var hasHeader = hasTabs || _elm_lang$core$Basics$not(
-			_elm_lang$core$List$isEmpty(_p33));
+			_elm_lang$core$List$isEmpty(_p34));
 		var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Layout$defaultConfig, options);
 		var config = summary.config;
 		var _p28 = function () {
-			var _p29 = {ctor: '_Tuple3', _0: _p32, _1: _p33, _2: config.fixedHeader};
+			var _p29 = {ctor: '_Tuple3', _0: _p33, _1: _p34, _2: config.fixedHeader};
 			if ((_p29.ctor === '_Tuple3') && (_p29._0.ctor === '::')) {
 				if ((_p29._1.ctor === '::') && (_p29._2 === true)) {
 					return {
@@ -11598,7 +11598,7 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 		var headerDrawerButton = _p28._1;
 		var drawerIsFixed = config.fixedDrawer && _elm_lang$core$Basics$not(model.isSmallScreen);
 		var tabsElems = _elm_lang$core$Basics$not(hasTabs) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
-			A4(_debois$elm_mdl$Material_Layout$tabsView, lift, config, model, _p34));
+			A4(_debois$elm_mdl$Material_Layout$tabsView, lift, config, model, _p35));
 		return A2(
 			_elm_lang$html$Html$div,
 			_elm_lang$core$Native_List.fromArray(
@@ -11666,12 +11666,12 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 									lift,
 									config,
 									model,
-									{ctor: '_Tuple3', _0: headerDrawerButton, _1: _p33, _2: tabsElems}))) : _elm_lang$core$Maybe$Nothing,
+									{ctor: '_Tuple3', _0: headerDrawerButton, _1: _p34, _2: tabsElems}))) : _elm_lang$core$Maybe$Nothing,
 							_elm_lang$core$Basics$not(hasDrawer) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
 							{
 								ctor: '_Tuple2',
 								_0: 'elm-mdl-drawer',
-								_1: A3(_debois$elm_mdl$Material_Layout$drawerView, lift, drawerIsVisible, _p32)
+								_1: A3(_debois$elm_mdl$Material_Layout$drawerView, lift, drawerIsVisible, _p33)
 							}),
 							_elm_lang$core$Basics$not(hasDrawer) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
 							{
@@ -11696,25 +11696,39 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 										return {ctor: '_Tuple2', _0: v0, _1: v1};
 									}),
 								_elm_lang$core$Basics$toString(config.selectedTab),
-								A2(
+								A3(
+									_debois$elm_mdl$Material_Options$styled,
 									_elm_lang$html$Html$main$,
-									A2(
-										_elm_lang$core$List_ops['::'],
-										_elm_lang$html$Html_Attributes$class('mdl-layout__content'),
-										_debois$elm_mdl$Material_Layout$isWaterfall(config.mode) ? _elm_lang$core$Native_List.fromArray(
-											[
-												A2(
-												_elm_lang$html$Html_Events$on,
-												'scroll',
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Options$cs('mdl-layout__content'),
+											A2(
+											_debois$elm_mdl$Material_Options$when,
+											A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'visible'),
+											_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
+											A2(
+											_debois$elm_mdl$Material_Options$when,
+											A2(_debois$elm_mdl$Material_Options$css, 'overflow-x', 'visible'),
+											_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
+											A2(
+											_debois$elm_mdl$Material_Options$when,
+											A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'visible'),
+											_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
+											A2(
+											_debois$elm_mdl$Material_Options$when,
+											function (_p31) {
+												return _debois$elm_mdl$Material_Options_Internal$attribute(
+													A2(_elm_lang$html$Html_Events$on, 'scroll', _p31));
+											}(
 												A2(
 													_elm_lang$core$Json_Decode$map,
-													function (_p31) {
+													function (_p32) {
 														return lift(
-															A2(_debois$elm_mdl$Material_Layout$ScrollPane, config.fixedHeader, _p31));
+															A2(_debois$elm_mdl$Material_Layout$ScrollPane, config.fixedHeader, _p32));
 													},
-													_debois$elm_dom$DOM$target(_debois$elm_dom$DOM$scrollTop)))
-											]) : _elm_lang$core$Native_List.fromArray(
-											[])),
+													_debois$elm_dom$DOM$target(_debois$elm_dom$DOM$scrollTop))),
+											_debois$elm_mdl$Material_Layout$isWaterfall(config.mode))
+										]),
 									_p27.main)))
 						]))
 				]));
@@ -12795,6 +12809,7 @@ var _debois$elm_mdl$Material_Elevation$transition = function (duration) {
 				_elm_lang$core$Basics$toString(duration),
 				'ms ease-in-out 0s')));
 };
+var _debois$elm_mdl$Material_Elevation$e0 = _debois$elm_mdl$Material_Options$nop;
 var _debois$elm_mdl$Material_Elevation$shadow = function (z) {
 	return _debois$elm_mdl$Material_Options$cs(
 		A2(
@@ -12812,16 +12827,18 @@ var _debois$elm_mdl$Material_Elevation$e6 = _debois$elm_mdl$Material_Elevation$s
 var _debois$elm_mdl$Material_Elevation$e8 = _debois$elm_mdl$Material_Elevation$shadow(8);
 var _debois$elm_mdl$Material_Elevation$e16 = _debois$elm_mdl$Material_Elevation$shadow(16);
 var _debois$elm_mdl$Material_Elevation$e24 = _debois$elm_mdl$Material_Elevation$shadow(24);
-var _debois$elm_mdl$Material_Elevation$elevations = _elm_lang$core$Native_List.fromArray(
-	[
-		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e2, _1: 2},
-		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e3, _1: 3},
-		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e4, _1: 4},
-		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e6, _1: 6},
-		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e8, _1: 8},
-		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e16, _1: 16},
-		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e24, _1: 24}
-	]);
+var _debois$elm_mdl$Material_Elevation$elevations = _elm_lang$core$Array$fromList(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e0, _1: 0},
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e2, _1: 2},
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e3, _1: 3},
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e4, _1: 4},
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e6, _1: 6},
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e8, _1: 8},
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e16, _1: 16},
+			{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e24, _1: 24}
+		]));
 
 var _debois$elm_mdl$Demo_Code$dropWhile = F2(
 	function (f, xs) {
@@ -12888,113 +12905,121 @@ var _debois$elm_mdl$Demo_Code$trim = function (s) {
 			_elm_lang$core$String$dropLeft(k),
 			lines));
 };
-var _debois$elm_mdl$Demo_Code$code = function (str) {
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'auto'),
-				_debois$elm_mdl$Material_Elevation$e2,
-				A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'border-radius', '2px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'font-size', '10pt')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_evancz$elm_markdown$Markdown$toHtml,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'```elm\n',
+var _debois$elm_mdl$Demo_Code$code = F2(
+	function (options, str) {
+		return A2(
+			_debois$elm_mdl$Material_Options$div,
+			A2(
+				_elm_lang$core$List_ops['::'],
+				_debois$elm_mdl$Material_Options$many(
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'auto'),
+							A2(_debois$elm_mdl$Material_Options$css, 'border-radius', '2px'),
+							A2(_debois$elm_mdl$Material_Options$css, 'font-size', '10pt'),
+							_debois$elm_mdl$Material_Elevation$e2
+						])),
+				options),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_evancz$elm_markdown$Markdown$toHtml,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						_debois$elm_mdl$Demo_Code$trim(str),
-						'\n```')))
-			]));
-};
-var _debois$elm_mdl$Demo_Code$html = function (str) {
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'auto'),
-				A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '1rem'),
-				A2(_debois$elm_mdl$Material_Options$css, 'margin-bottom', '1rem'),
-				A2(_debois$elm_mdl$Material_Options$css, 'border-radius', '2px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'font-size', '10pt'),
-				_debois$elm_mdl$Material_Elevation$e2
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_evancz$elm_markdown$Markdown$toHtml,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'```html\n',
+						'```elm\n',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_debois$elm_mdl$Demo_Code$trim(str),
+							'\n```')))
+				]));
+	});
+var _debois$elm_mdl$Demo_Code$html = F2(
+	function (options, str) {
+		return A2(
+			_debois$elm_mdl$Material_Options$div,
+			A2(
+				_elm_lang$core$List_ops['::'],
+				_debois$elm_mdl$Material_Options$many(
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'auto'),
+							A2(_debois$elm_mdl$Material_Options$css, 'border-radius', '2px'),
+							A2(_debois$elm_mdl$Material_Options$css, 'font-size', '10pt'),
+							_debois$elm_mdl$Material_Elevation$e2
+						])),
+				options),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_evancz$elm_markdown$Markdown$toHtml,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						_debois$elm_mdl$Demo_Code$trim(str),
-						'\n```')))
-			]));
-};
+						'```html\n',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_debois$elm_mdl$Demo_Code$trim(str),
+							'\n```')))
+				]));
+	});
 var _debois$elm_mdl$Demo_Code$delay = 200;
-var _debois$elm_mdl$Demo_Code$view = function (state) {
-	var body = function () {
-		var _p3 = state;
-		switch (_p3.ctor) {
-			case 'Idle':
-				return _elm_lang$html$Html$text('');
-			case 'First':
-				return _debois$elm_mdl$Demo_Code$code(_p3._0);
-			case 'FadingIn':
-				return _debois$elm_mdl$Demo_Code$code(_p3._0);
-			case 'FadingOut':
-				return _debois$elm_mdl$Demo_Code$code(_p3._0._0);
-			default:
-				return _debois$elm_mdl$Demo_Code$code(_p3._0);
-		}
-	}();
-	var opacity = function () {
-		var _p4 = state;
-		switch (_p4.ctor) {
-			case 'Idle':
-				return 0;
-			case 'First':
-				return 0;
-			case 'FadingIn':
-				return 1.0;
-			case 'FadingOut':
-				return 0;
-			default:
-				return 1.0;
-		}
-	}();
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Options$css,
-				'transition',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'opacity ',
+var _debois$elm_mdl$Demo_Code$view = F2(
+	function (state, options) {
+		var body = function () {
+			var _p3 = state;
+			switch (_p3.ctor) {
+				case 'Idle':
+					return _elm_lang$html$Html$text('');
+				case 'First':
+					return A2(_debois$elm_mdl$Demo_Code$code, options, _p3._0);
+				case 'FadingIn':
+					return A2(_debois$elm_mdl$Demo_Code$code, options, _p3._0);
+				case 'FadingOut':
+					return A2(_debois$elm_mdl$Demo_Code$code, options, _p3._0._0);
+				default:
+					return A2(_debois$elm_mdl$Demo_Code$code, options, _p3._0);
+			}
+		}();
+		var opacity = function () {
+			var _p4 = state;
+			switch (_p4.ctor) {
+				case 'Idle':
+					return 0;
+				case 'First':
+					return 0;
+				case 'FadingIn':
+					return 1.0;
+				case 'FadingOut':
+					return 0;
+				default:
+					return 1.0;
+			}
+		}();
+		return A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$css,
+					'transition',
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Code$delay),
-						'ms ease-in-out'))),
-				A2(
-				_debois$elm_mdl$Material_Options$css,
-				'opacity',
-				_elm_lang$core$Basics$toString(opacity))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[body]));
-};
+						'opacity ',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(_debois$elm_mdl$Demo_Code$delay),
+							'ms ease-in-out'))),
+					A2(
+					_debois$elm_mdl$Material_Options$css,
+					'opacity',
+					_elm_lang$core$Basics$toString(opacity))
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[body]));
+	});
 var _debois$elm_mdl$Demo_Code$FadingOut = function (a) {
 	return {ctor: 'FadingOut', _0: a};
 };
@@ -13500,10 +13525,7 @@ var _debois$elm_mdl$Demo_Page$body1$ = F6(
 						])),
 					A2(
 					_debois$elm_mdl$Material_Options$div,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(_debois$elm_mdl$Material_Options$css, 'height', '5rem')
-						]),
+					_debois$elm_mdl$Demo_Page$boxed,
 					_elm_lang$core$Native_List.fromArray(
 						[])),
 					A2(
@@ -13758,12 +13780,11 @@ var _debois$elm_mdl$Demo_Badges$view = function (model) {
 						]))
 				])),
 			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
+			_debois$elm_mdl$Demo_Code$view,
+			model.codebox,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_debois$elm_mdl$Demo_Code$view(model.codebox)
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '20px 0')
 				]))
 		]);
 	var demo2 = _elm_lang$core$Native_List.fromArray(
@@ -14270,7 +14291,13 @@ var _debois$elm_mdl$Demo_Buttons$view = function (model) {
 										A2(_elm_lang$core$Basics_ops['++'], str, '\':'));
 								},
 								A2(_elm_lang$core$Maybe$map, _debois$elm_mdl$Demo_Buttons$describe, model.last)))),
-						_debois$elm_mdl$Demo_Code$view(model.code)
+						A2(
+						_debois$elm_mdl$Demo_Code$view,
+						model.code,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Options$css, 'margin', '20px')
+							]))
 					]))
 			]));
 };
@@ -14403,160 +14430,33 @@ var _debois$elm_mdl$Material_Card$title = F2(
 			block);
 	});
 
+var _debois$elm_mdl$Material_Typography$uppercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-uppercase');
+var _debois$elm_mdl$Material_Typography$lowercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-lowercase');
+var _debois$elm_mdl$Material_Typography$capitalize = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-capitalize');
+var _debois$elm_mdl$Material_Typography$justify = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-justify');
+var _debois$elm_mdl$Material_Typography$right = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-right');
+var _debois$elm_mdl$Material_Typography$left = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-left');
+var _debois$elm_mdl$Material_Typography$center = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-center');
 var _debois$elm_mdl$Material_Typography$tableStriped = _debois$elm_mdl$Material_Options$cs('mdl-typography--table-striped');
 var _debois$elm_mdl$Material_Typography$nowrap = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-nowrap');
-var _debois$elm_mdl$Material_Typography$forcePreferred = function (style) {
-	var _p0 = style;
-	switch (_p0.ctor) {
-		case 'Body1':
-			return 'mdl-typography--body-1-force-preferred-font';
-		case 'Body2':
-			return 'mdl-typography--body-2-force-preferred-font';
-		default:
-			return '';
-	}
+var _debois$elm_mdl$Material_Typography$contrast = function (x) {
+	return A2(
+		_debois$elm_mdl$Material_Options$css,
+		'opacity',
+		_elm_lang$core$Basics$toString(x));
 };
-var _debois$elm_mdl$Material_Typography$colorContrast = function (style) {
-	var _p1 = style;
-	switch (_p1.ctor) {
-		case 'Display1':
-			return 'mdl-typography--display-1-color-contrast';
-		case 'Body2':
-			return 'mdl-typography--body-2-color-contrast';
-		case 'Subheading':
-			return 'mdl-typography--subhead-color-contrast';
-		case 'Title':
-			return 'mdl-typography--title-color-contrast';
-		case 'Caption':
-			return 'mdl-typography--caption-color-contrast';
-		default:
-			return '';
-	}
-};
-var _debois$elm_mdl$Material_Typography$styleName = function (style) {
-	var _p2 = style;
-	switch (_p2.ctor) {
-		case 'Display4':
-			return 'mdl-typography--display-4';
-		case 'Display3':
-			return 'mdl-typography--display-3';
-		case 'Display2':
-			return 'mdl-typography--display-2';
-		case 'Display1':
-			return 'mdl-typography--display-1';
-		case 'Headline':
-			return 'mdl-typography--display-1';
-		case 'Title':
-			return 'mdl-typography--title';
-		case 'Subheading':
-			return 'mdl-typography--subhead';
-		case 'Body2':
-			return 'mdl-typography--body-2';
-		case 'Body1':
-			return 'mdl-typography--body-1';
-		case 'Caption':
-			return 'mdl-typography--caption';
-		case 'Button':
-			return 'mdl-typography--button';
-		default:
-			return 'mdl-typography--menu';
-	}
-};
-var _debois$elm_mdl$Material_Typography$transformName = function (transform) {
-	var _p3 = transform;
-	switch (_p3.ctor) {
-		case 'Capitalize':
-			return 'mdl-typography--text-capitalize';
-		case 'Lowercase':
-			return 'mdl-typography--text-lowercase';
-		default:
-			return 'mdl-typography--text-uppercase';
-	}
-};
-var _debois$elm_mdl$Material_Typography$alignName = function (align) {
-	var _p4 = align;
-	switch (_p4.ctor) {
-		case 'Center':
-			return 'mdl-typography--text-center';
-		case 'Left':
-			return 'mdl-typography--text-left';
-		case 'Right':
-			return 'mdl-typography--text-right';
-		default:
-			return 'mdl-typography--text-justify';
-	}
-};
-var _debois$elm_mdl$Material_Typography$Menu = {ctor: 'Menu'};
-var _debois$elm_mdl$Material_Typography$menu = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Menu));
-var _debois$elm_mdl$Material_Typography$Button = {ctor: 'Button'};
-var _debois$elm_mdl$Material_Typography$button = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Button));
-var _debois$elm_mdl$Material_Typography$Caption = {ctor: 'Caption'};
-var _debois$elm_mdl$Material_Typography$caption = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Caption));
-var _debois$elm_mdl$Material_Typography$captionColorContrast = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$colorContrast(_debois$elm_mdl$Material_Typography$Caption));
-var _debois$elm_mdl$Material_Typography$Body1 = {ctor: 'Body1'};
-var _debois$elm_mdl$Material_Typography$body1 = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Body1));
-var _debois$elm_mdl$Material_Typography$body1ForcePreferred = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$forcePreferred(_debois$elm_mdl$Material_Typography$Body1));
-var _debois$elm_mdl$Material_Typography$Body2 = {ctor: 'Body2'};
-var _debois$elm_mdl$Material_Typography$body2 = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Body2));
-var _debois$elm_mdl$Material_Typography$body2ForcePreferred = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$forcePreferred(_debois$elm_mdl$Material_Typography$Body2));
-var _debois$elm_mdl$Material_Typography$body2ColorContrast = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$colorContrast(_debois$elm_mdl$Material_Typography$Body2));
-var _debois$elm_mdl$Material_Typography$Subheading = {ctor: 'Subheading'};
-var _debois$elm_mdl$Material_Typography$subheading = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Subheading));
-var _debois$elm_mdl$Material_Typography$subheadingColorContrast = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$colorContrast(_debois$elm_mdl$Material_Typography$Subheading));
-var _debois$elm_mdl$Material_Typography$Title = {ctor: 'Title'};
-var _debois$elm_mdl$Material_Typography$title = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Title));
-var _debois$elm_mdl$Material_Typography$titleColorContrast = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$colorContrast(_debois$elm_mdl$Material_Typography$Title));
-var _debois$elm_mdl$Material_Typography$Headline = {ctor: 'Headline'};
-var _debois$elm_mdl$Material_Typography$headline = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Headline));
-var _debois$elm_mdl$Material_Typography$Display1 = {ctor: 'Display1'};
-var _debois$elm_mdl$Material_Typography$display1 = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Display1));
-var _debois$elm_mdl$Material_Typography$display1ColorContrast = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Display1));
-var _debois$elm_mdl$Material_Typography$Display2 = {ctor: 'Display2'};
-var _debois$elm_mdl$Material_Typography$display2 = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Display2));
-var _debois$elm_mdl$Material_Typography$Display3 = {ctor: 'Display3'};
-var _debois$elm_mdl$Material_Typography$display3 = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Display3));
-var _debois$elm_mdl$Material_Typography$Display4 = {ctor: 'Display4'};
-var _debois$elm_mdl$Material_Typography$display4 = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$styleName(_debois$elm_mdl$Material_Typography$Display4));
-var _debois$elm_mdl$Material_Typography$Uppercase = {ctor: 'Uppercase'};
-var _debois$elm_mdl$Material_Typography$uppercase = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$transformName(_debois$elm_mdl$Material_Typography$Uppercase));
-var _debois$elm_mdl$Material_Typography$Lowercase = {ctor: 'Lowercase'};
-var _debois$elm_mdl$Material_Typography$lowercase = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$transformName(_debois$elm_mdl$Material_Typography$Lowercase));
-var _debois$elm_mdl$Material_Typography$Capitalize = {ctor: 'Capitalize'};
-var _debois$elm_mdl$Material_Typography$capitalize = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$transformName(_debois$elm_mdl$Material_Typography$Capitalize));
-var _debois$elm_mdl$Material_Typography$Justify = {ctor: 'Justify'};
-var _debois$elm_mdl$Material_Typography$justify = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$alignName(_debois$elm_mdl$Material_Typography$Justify));
-var _debois$elm_mdl$Material_Typography$Right = {ctor: 'Right'};
-var _debois$elm_mdl$Material_Typography$right = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$alignName(_debois$elm_mdl$Material_Typography$Right));
-var _debois$elm_mdl$Material_Typography$Left = {ctor: 'Left'};
-var _debois$elm_mdl$Material_Typography$left = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$alignName(_debois$elm_mdl$Material_Typography$Left));
-var _debois$elm_mdl$Material_Typography$Center = {ctor: 'Center'};
-var _debois$elm_mdl$Material_Typography$center = _debois$elm_mdl$Material_Options$cs(
-	_debois$elm_mdl$Material_Typography$alignName(_debois$elm_mdl$Material_Typography$Center));
+var _debois$elm_mdl$Material_Typography$menu = _debois$elm_mdl$Material_Options$cs('mdl-typography--menu-color-contrast');
+var _debois$elm_mdl$Material_Typography$button = _debois$elm_mdl$Material_Options$cs('mdl-typography--button-color-contrast');
+var _debois$elm_mdl$Material_Typography$caption = _debois$elm_mdl$Material_Options$cs('mdl-typography--caption-force-preferred-font-color-contrast');
+var _debois$elm_mdl$Material_Typography$body2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-2-force-preferred-font-color-contrast');
+var _debois$elm_mdl$Material_Typography$body1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-1-force-preferred-font-color-contrast');
+var _debois$elm_mdl$Material_Typography$subhead = _debois$elm_mdl$Material_Options$cs('mdl-typography--subhead-color-contrast');
+var _debois$elm_mdl$Material_Typography$title = _debois$elm_mdl$Material_Options$cs('mdl-typography--title-color-contrast');
+var _debois$elm_mdl$Material_Typography$headline = _debois$elm_mdl$Material_Options$cs('mdl-typography--headline-color-contrast');
+var _debois$elm_mdl$Material_Typography$display4 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-4-color-contrast');
+var _debois$elm_mdl$Material_Typography$display3 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-3-color-contrast');
+var _debois$elm_mdl$Material_Typography$display2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-2-color-contrast');
+var _debois$elm_mdl$Material_Typography$display1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-1-color-contrast');
 
 var _debois$elm_mdl$Demo_Cards$references = _elm_lang$core$Native_List.fromArray(
 	[
@@ -14566,82 +14466,10 @@ var _debois$elm_mdl$Demo_Cards$references = _elm_lang$core$Native_List.fromArray
 	]);
 var _debois$elm_mdl$Demo_Cards$srcUrl = 'https://github.com/debois/elm-mdl/blob/master/demo/Demo/Card.elm';
 var _debois$elm_mdl$Demo_Cards$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://getmdl.io/components/#cards-section', '\n> The Material Design Lite (MDL) card component is a user interface element\n> representing a virtual piece of paper that contains related data — such as a\n> photo, some text, and a link — that are all about a single subject.\n>\n> Cards are a convenient means of coherently displaying related content that is\n> composed of different types of objects. They are also well-suited for presenting\n> similar objects whose size or supported actions can vary considerably, like\n> photos with captions of variable length. Cards have a constant width and a\n> variable height, depending on their content.\n>\n> Cards are a fairly new feature in user interfaces, and allow users an access\n> point to more complex and detailed information. Their design and use is an\n> important factor in the overall user experience. See the card component\'s\n> Material Design specifications page for details.\n');
-var _debois$elm_mdl$Demo_Cards$right = _debois$elm_mdl$Material_Options$many(
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'auto'),
-			A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-			A2(_debois$elm_mdl$Material_Options$css, 'padding', '5ex 2ex')
-		]));
-var _debois$elm_mdl$Demo_Cards$left = _debois$elm_mdl$Material_Options$many(
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(_debois$elm_mdl$Material_Options$css, 'padding', '5ex 2ex'),
-			A2(_debois$elm_mdl$Material_Options$css, 'max-width', '768px')
-		]));
-var _debois$elm_mdl$Demo_Cards$block = _debois$elm_mdl$Material_Options$many(
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
-			A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'column'),
-			A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
-		]));
-var _debois$elm_mdl$Demo_Cards$view1 = function (_p0) {
-	var _p1 = _p0;
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_debois$elm_mdl$Material_Grid$cell,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 8)
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_debois$elm_mdl$Material_Options$div,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(_debois$elm_mdl$Material_Options$css, 'height', '1rem')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[])),
-					_p1._0,
-					A2(
-					_elm_lang$core$Maybe$withDefault,
-					A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[])),
-					_p1._2),
-					A2(
-					_debois$elm_mdl$Material_Options$div,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(_debois$elm_mdl$Material_Options$css, 'height', '1rem')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[]))
-				])),
-			A2(
-			_debois$elm_mdl$Material_Grid$cell,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 4),
-					_debois$elm_mdl$Material_Grid$align(_debois$elm_mdl$Material_Grid$Bottom)
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_debois$elm_mdl$Demo_Code$code(_p1._1)
-				]))
-		]);
-};
 var _debois$elm_mdl$Demo_Cards$wide = 400;
 var _debois$elm_mdl$Demo_Cards$white = _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$white);
-var _debois$elm_mdl$Demo_Cards$margin2 = A2(_debois$elm_mdl$Material_Options$css, 'margin', '4px');
-var _debois$elm_mdl$Demo_Cards$margin1 = A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px');
+var _debois$elm_mdl$Demo_Cards$margin2 = A2(_debois$elm_mdl$Material_Options$css, 'margin', '4px 8px 4px 0px');
+var _debois$elm_mdl$Demo_Cards$margin1 = A2(_debois$elm_mdl$Material_Options$css, 'margin', '0');
 var _debois$elm_mdl$Demo_Cards$model = {mdl: _debois$elm_mdl$Material$model, raised: -1, tab: 0, code1: _debois$elm_mdl$Demo_Code$model, code2: _debois$elm_mdl$Demo_Code$model, clicks: 0};
 var _debois$elm_mdl$Demo_Cards$Model = F6(
 	function (a, b, c, d, e, f) {
@@ -14685,7 +14513,7 @@ var _debois$elm_mdl$Demo_Cards$dynamic = F3(
 	});
 var _debois$elm_mdl$Demo_Cards$elm = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view\n        [ css \"width\" \"256px\"\n        , css \"height\" \"256px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        ]\n        [ Card.text [ Card.expand ] [] -- Filler \n        , Card.text\n            [ css \"background\" \"rgba(0, 0, 0, 0.5)\" ] -- Non-gradient scrim\n            [ Options.span \n                [ white, Typography.title ]\n                [ text \"Elm programming\" ]\n            ]\n        ]\n';
+	var code = '\n      Card.view\n        [ css \"width\" \"256px\"\n        , css \"height\" \"256px\"\n        , css \"background\" \"url(\'assets/elm.png\') center / cover\"\n        ]\n        [ Card.text [ Card.expand ] [] -- Filler \n        , Card.text\n            [ css \"background\" \"rgba(0, 0, 0, 0.5)\" ] -- Non-gradient scrim\n            [ Options.span \n                [ white, Typography.title, Typography.contrast 1.0 ]\n                [ text \"Elm programming\" ]\n            ]\n        ]\n';
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
@@ -14719,7 +14547,11 @@ var _debois$elm_mdl$Demo_Cards$elm = function (model) {
 						A2(
 						_debois$elm_mdl$Material_Options$span,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Demo_Cards$white, _debois$elm_mdl$Material_Typography$title]),
+							[
+								_debois$elm_mdl$Demo_Cards$white,
+								_debois$elm_mdl$Material_Typography$title,
+								_debois$elm_mdl$Material_Typography$contrast(1.0)
+							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('Elm programming')
@@ -14811,21 +14643,23 @@ var _debois$elm_mdl$Demo_Cards$playing = function (model) {
 var _debois$elm_mdl$Demo_Cards$aux = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
-			A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h1,
+			A2(
+			_elm_lang$html$Html$h4,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$headline]),
+				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Setup')
 				])),
-			_debois$elm_mdl$Demo_Code$code('\n      import Material.Card as Card\n\n      white : Options.Property c m \n      white = \n        Color.text Color.white \n    '),
-			A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h1,
+			A2(
+			_debois$elm_mdl$Demo_Code$code,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$headline]),
+				[]),
+			'\n      import Material.Card as Card\n\n      white : Options.Property c m \n      white = \n        Color.text Color.white \n    '),
+			A2(
+			_elm_lang$html$Html$h4,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Card click')
@@ -14857,7 +14691,7 @@ var _debois$elm_mdl$Demo_Cards$aux = function (model) {
 							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$S500)),
 							_debois$elm_mdl$Material_Options$attribute(
 							_elm_lang$html$Html_Events$onClick(_debois$elm_mdl$Demo_Cards$Click)),
-							A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px'),
+							A2(_debois$elm_mdl$Material_Options$css, 'margin', '0 16px 0 0'),
 							A2(_debois$elm_mdl$Material_Options$css, 'flex-shrink', '0')
 						]),
 					_elm_lang$core$Native_List.fromArray(
@@ -14906,14 +14740,17 @@ var _debois$elm_mdl$Demo_Cards$aux = function (model) {
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_debois$elm_mdl$Demo_Code$code('\n            Card.view  \n              [ css \"width\" \"128px\" \n              , Color.background (Color.color Color.Pink Color.S500)\n              -- Click\n              , Options.attribute <| Html.Events.onClick Click\n              ]\n              [ Card.title [] [ Card.head [ white ] [ text \"Click anywhere\" ] ] \n              , Card.text [ white ] [ text <| toString model.clicks ++ \" clicks so far.\" ]\n              , Card.actions [ Card.border, white ] [ text \"(not here)\" ]\n              ]')
+							A2(
+							_debois$elm_mdl$Demo_Code$code,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							'\n            Card.view  \n              [ css \"width\" \"128px\" \n              , Color.background (Color.color Color.Pink Color.S500)\n              -- Click\n              , Options.attribute <| Html.Events.onClick Click\n              ]\n              [ Card.title [] [ Card.head [ white ] [ text \"Click anywhere\" ] ] \n              , Card.text [ white ] [ text <| toString model.clicks ++ \" clicks so far.\" ]\n              , Card.actions [ Card.border, white ] [ text \"(not here)\" ]\n              ]')
 						]))
 				])),
-			A3(
-			_debois$elm_mdl$Material_Options$styled,
-			_elm_lang$html$Html$h1,
+			A2(
+			_elm_lang$html$Html$h4,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$headline]),
+				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Elevation animation')
@@ -14957,7 +14794,7 @@ var _debois$elm_mdl$Demo_Cards$aux = function (model) {
 								_debois$elm_mdl$Material_Options$attribute(
 								_elm_lang$html$Html_Events$onMouseLeave(
 									_debois$elm_mdl$Demo_Cards$Raise(-1))),
-								A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px'),
+								A2(_debois$elm_mdl$Material_Options$css, 'margin', '0 16px 0 0'),
 								A2(_debois$elm_mdl$Material_Options$css, 'flex-shrink', '0')
 							]),
 						_elm_lang$core$Native_List.fromArray(
@@ -14986,7 +14823,11 @@ var _debois$elm_mdl$Demo_Cards$aux = function (model) {
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_debois$elm_mdl$Demo_Code$code('\n                Card.view  \n                    [ css \"height\" \"128px\"\n                    , css \"width\" \"128px\" \n                    , Color.background (Color.color Color.Brown Color.S500)\n                    -- Elevation\n                    , if model.raised == k then Elevation.e8 else Elevation.e2\n                    , Elevation.transition 250\n                    , Options.attribute <| onMouseEnter (Raise k)\n                    , Options.attribute <| onMouseLeave (Raise -1)\n                    ]\n                    [ Card.title [] [ Card.head [ white ] [ text \"Hover here\" ] ] ]')
+								A2(
+								_debois$elm_mdl$Demo_Code$code,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								'\n                Card.view  \n                    [ css \"height\" \"128px\"\n                    , css \"width\" \"128px\" \n                    , Color.background (Color.color Color.Brown Color.S500)\n                    -- Elevation\n                    , if model.raised == k then Elevation.e8 else Elevation.e2\n                    , Elevation.transition 250\n                    , Options.attribute <| onMouseEnter (Raise k)\n                    , Options.attribute <| onMouseLeave (Raise -1)\n                    ]\n                    [ Card.title [] [ Card.head [ white ] [ text \"Hover here\" ] ] ]')
 							]))
 					]));
 		}()
@@ -14997,16 +14838,16 @@ var _debois$elm_mdl$Demo_Cards$Mdl = function (a) {
 };
 var _debois$elm_mdl$Demo_Cards$update = F2(
 	function (action, model) {
-		var _p2 = A2(_elm_lang$core$Debug$log, '', action);
-		switch (_p2.ctor) {
+		var _p0 = A2(_elm_lang$core$Debug$log, '', action);
+		switch (_p0.ctor) {
 			case 'Mdl':
-				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Cards$Mdl, _p2._0, model);
+				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Cards$Mdl, _p0._0, model);
 			case 'Raise':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{raised: _p2._0}),
+						{raised: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
 			case 'SetTab':
@@ -15014,7 +14855,7 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{tab: _p2._0}),
+						{tab: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
 			case 'ShowCode1':
@@ -15030,7 +14871,7 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 						},
 						A2(
 							_debois$elm_mdl$Demo_Code$update,
-							_debois$elm_mdl$Demo_Code$Set(_p2._0),
+							_debois$elm_mdl$Demo_Code$Set(_p0._0),
 							model.code1)));
 			case 'ShowCode2':
 				return A2(
@@ -15045,7 +14886,7 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 						},
 						A2(
 							_debois$elm_mdl$Demo_Code$update,
-							_debois$elm_mdl$Demo_Code$Set(_p2._0),
+							_debois$elm_mdl$Demo_Code$Set(_p0._0),
 							model.code2)));
 			case 'CodeMsg1':
 				return A2(
@@ -15058,7 +14899,7 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 								model,
 								{code1: code});
 						},
-						A2(_debois$elm_mdl$Demo_Code$update, _p2._0, model.code1)));
+						A2(_debois$elm_mdl$Demo_Code$update, _p0._0, model.code1)));
 			case 'CodeMsg2':
 				return A2(
 					_debois$elm_mdl$Material_Helpers$map2nd,
@@ -15070,7 +14911,7 @@ var _debois$elm_mdl$Demo_Cards$update = F2(
 								model,
 								{code2: code});
 						},
-						A2(_debois$elm_mdl$Demo_Code$update, _p2._0, model.code2)));
+						A2(_debois$elm_mdl$Demo_Code$update, _p0._0, model.code2)));
 			default:
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
@@ -15264,7 +15105,7 @@ var _debois$elm_mdl$Demo_Cards$grenadine = function (model) {
 };
 var _debois$elm_mdl$Demo_Cards$reminder = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
-	var code = '\n      Card.view\n        [ css \"width\" \"192px\"\n        , css \"height\" \"192px\"\n        , Color.background (Color.color Color.LightBlue Color.S400)\n        ]\n        [ Card.title [] [ Card.head [ white ] [ text \"Call Petronella\" ] ]\n        , Card.text [ Card.expand ]  [] -- Filler\n        , Card.actions \n            [ Card.border\n            -- Modify flexbox to accomodate small text in action block\n            , css \"display\" \"flex\"\n            , css \"justify-content\" \"space-between\"\n            , css \"align-items\" \"center\" \n            , css \"padding\" \"8px 16px 8px 16px\"\n            , white\n            ] \n            [ Options.span [ Typography.caption ] [ text \"August 3, 2016\" ]\n            , Button.render Mdl [1] model.mdl\n                [ Button.icon, Button.ripple ]\n                [ Icon.i \"phone\" ]\n            ]\n        ]\n';
+	var code = '\n      Card.view\n        [ css \"width\" \"192px\"\n        , css \"height\" \"192px\"\n        , Color.background (Color.color Color.LightBlue Color.S400)\n        ]\n        [ Card.title [] [ Card.head [ white ] [ text \"Call Petronella\" ] ]\n        , Card.text [ Card.expand ]  [] -- Filler\n        , Card.actions \n            [ Card.border\n            -- Modify flexbox to accomodate small text in action block\n            , css \"display\" \"flex\"\n            , css \"justify-content\" \"space-between\"\n            , css \"align-items\" \"center\" \n            , css \"padding\" \"8px 16px 8px 16px\"\n            , white\n            ] \n            [ Options.span [ Typography.caption, Typography.contrast 0.87 ] [ text \"August 3, 2016\" ]\n            , Button.render Mdl [1] model.mdl\n                [ Button.icon, Button.ripple ]\n                [ Icon.i \"phone\" ]\n            ]\n        ]\n';
 	var card = A2(
 		_debois$elm_mdl$Material_Card$view,
 		_elm_lang$core$Native_List.fromArray(
@@ -15319,7 +15160,10 @@ var _debois$elm_mdl$Demo_Cards$reminder = function (model) {
 						A2(
 						_debois$elm_mdl$Material_Options$span,
 						_elm_lang$core$Native_List.fromArray(
-							[_debois$elm_mdl$Material_Typography$caption]),
+							[
+								_debois$elm_mdl$Material_Typography$caption,
+								_debois$elm_mdl$Material_Typography$contrast(0.87)
+							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('August 3, 2016')
@@ -15344,9 +15188,9 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 	var comment = _elm_lang$core$Maybe$Nothing;
 	var code = '\n    sun = \n      Color.color Color.Amber Color.S500\n\n    rain = \n      Color.color Color.LightBlue Color.S500\n\n    today = \n      [ (\"now\", 21, -1, Color.primary, \"cloud\")\n      , (\"16\",  21, -1, Color.primary, \"cloud\")\n      , (\"17\",  20, -1, Color.primary, \"cloud\")\n      , (\"18\",  20, -1, rain, \"grain\")\n      , (\"19\",  19, -1, rain, \"grain\")\n      , (\"20\",  19, -1, Color.primary, \"cloud_queue\")\n      , (\"21\",  28, -1, Color.primary, \"cloud_queue\")\n      ]\n      \n    next3 = \n      [ (\"thu\", 21, 14, sun, \"wb_sunny\")\n      , (\"fri\", 22, 15, rain, \"grain\")\n      , (\"sat\", 20, 13, sun, \"wb_sunny\")\n      , (\"sun\", 21, 13, rain, \"grain\")\n      , (\"mon\", 20, 13, rain, \"grain\")\n      , (\"tue\", 20, 13, sun, \"wb_sunny\")\n      , (\"wed\", 21, 15, sun, \"wb_sunny\")\n      ]\n\n    cell =\n      css \"width\" \"64px\"\n\n    row (time, high, low, color, icon) = \n      Card.subhead\n        [ css \"display\" \"flex\"\n        , css \"justify-content\" \"space-between\" \n        , css \"align-items\" \"center\"\n        , css \"padding\" \".3rem 2.5rem\" \n        ]\n        [ Options.span [ cell ] [ text time ] \n        , Options.span [ cell, css \"text-align\" \"center\" ] \n            [ Icon.view icon [ Color.text color, Icon.size18 ] ]\n        , Options.span [ cell, css \"text-align\" \"right\" ] \n            [ text <| toString high ++ \"° \"\n            , Options.span \n                [ css \"color\" \"rgba(0,0,0,0.37)\" ]\n                [ text <| if low >= 0 then toString low ++ \"°\" else \"\" ]\n            ]\n        ]\n\n    list items = \n      [ Options.div \n          [ css \"display\" \"flex\"\n          , css \"flex-direction\" \"column\"\n          , css \"padding\" \"1rem 0\"\n          , css \"color\" \"rgba(0, 0, 0, 0.54)\" \n          ]\n          (List.map row items)\n      ]\n\n    card = \n      Card.view \n        [ css \"width\" \"256px\" ]\n        [ Card.title \n            [ css \"flex-direction\" \"column\" ] \n            [ Card.head [ ] [ text \"Copenhagen\" ]\n            , Card.subhead [ ] [ text \"Wed, 14:55, mostly cloudy\" ] \n            , Options.div \n                [ css \"padding\" \"2rem 2rem 0 2rem\" ]\n                [ Options.span \n                    [ Typography.display4 \n                    , Color.text Color.primary\n                    ] \n                    [ text \"21°\" ]\n                ]\n            ]\n        , Card.actions [ ]\n            [ Tabs.render Mdl [5,2] model.mdl\n                [ Tabs.ripple\n                , Tabs.onSelectTab SetTab\n                , Tabs.activeTab model.tab\n                ]\n                [ Tabs.label [] [ text \"Today\" ] \n                , Tabs.label [] [ text \"7-day\" ] \n                ]\n                (list (if model.tab == 0 then today else next3))\n            ]\n         ] \n';
 	var cell = A2(_debois$elm_mdl$Material_Options$css, 'width', '64px');
-	var row = function (_p3) {
-		var _p4 = _p3;
-		var _p5 = _p4._2;
+	var row = function (_p1) {
+		var _p2 = _p1;
+		var _p3 = _p2._2;
 		return A2(
 			_debois$elm_mdl$Material_Card$subhead,
 			_elm_lang$core$Native_List.fromArray(
@@ -15364,7 +15208,7 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 						[cell]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text(_p4._0)
+							_elm_lang$html$Html$text(_p2._0)
 						])),
 					A2(
 					_debois$elm_mdl$Material_Options$span,
@@ -15377,10 +15221,10 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 						[
 							A2(
 							_debois$elm_mdl$Material_Icon$view,
-							_p4._4,
+							_p2._4,
 							_elm_lang$core$Native_List.fromArray(
 								[
-									_debois$elm_mdl$Material_Color$text(_p4._3),
+									_debois$elm_mdl$Material_Color$text(_p2._3),
 									_debois$elm_mdl$Material_Icon$size18
 								]))
 						])),
@@ -15396,7 +15240,7 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 							_elm_lang$html$Html$text(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								_elm_lang$core$Basics$toString(_p4._1),
+								_elm_lang$core$Basics$toString(_p2._1),
 								'° ')),
 							A2(
 							_debois$elm_mdl$Material_Options$span,
@@ -15407,9 +15251,9 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 							_elm_lang$core$Native_List.fromArray(
 								[
 									_elm_lang$html$Html$text(
-									(_elm_lang$core$Native_Utils.cmp(_p5, 0) > -1) ? A2(
+									(_elm_lang$core$Native_Utils.cmp(_p3, 0) > -1) ? A2(
 										_elm_lang$core$Basics_ops['++'],
-										_elm_lang$core$Basics$toString(_p5),
+										_elm_lang$core$Basics$toString(_p3),
 										'°') : '')
 								]))
 						]))
@@ -15503,6 +15347,7 @@ var _debois$elm_mdl$Demo_Cards$weather = function (model) {
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_debois$elm_mdl$Material_Typography$display4,
+										_debois$elm_mdl$Material_Typography$contrast(0.87),
 										_debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$primary)
 									]),
 								_elm_lang$core$Native_List.fromArray(
@@ -15664,9 +15509,9 @@ var _debois$elm_mdl$Demo_Cards$view = function (model) {
 						]),
 					A2(
 						_elm_lang$core$List$map,
-						function (_p6) {
-							var _p7 = _p6;
-							return _p7._0;
+						function (_p4) {
+							var _p5 = _p4;
+							return _p5._0;
 						},
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -15684,7 +15529,11 @@ var _debois$elm_mdl$Demo_Cards$view = function (model) {
 						]),
 					A2(
 						_elm_lang$core$List_ops['::'],
-						_debois$elm_mdl$Demo_Code$view(model.code2),
+						A2(
+							_debois$elm_mdl$Demo_Code$view,
+							model.code2,
+							_elm_lang$core$Native_List.fromArray(
+								[])),
 						_debois$elm_mdl$Demo_Cards$aux(model)))
 				]))
 		]);
@@ -15711,9 +15560,9 @@ var _debois$elm_mdl$Demo_Cards$view = function (model) {
 				]),
 			A2(
 				_elm_lang$core$List$map,
-				function (_p8) {
-					var _p9 = _p8;
-					return _p9._0;
+				function (_p6) {
+					var _p7 = _p6;
+					return _p7._0;
 				},
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -15722,15 +15571,11 @@ var _debois$elm_mdl$Demo_Cards$view = function (model) {
 						_debois$elm_mdl$Demo_Cards$elm(model)
 					]))),
 			A2(
-			_debois$elm_mdl$Material_Options$div,
+			_debois$elm_mdl$Demo_Code$view,
+			model.code1,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-					A2(_debois$elm_mdl$Material_Options$css, 'margin', '32px 0')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_debois$elm_mdl$Demo_Code$view(model.code1)
+					A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '16px')
 				]))
 		]);
 	return A6(_debois$elm_mdl$Demo_Page$body1$, 'Cards', _debois$elm_mdl$Demo_Cards$srcUrl, _debois$elm_mdl$Demo_Cards$intro, _debois$elm_mdl$Demo_Cards$references, cards1, cards2);
@@ -15943,6 +15788,176 @@ var _debois$elm_mdl$Demo_Dialog$view = function (model) {
 			]));
 };
 
+var _debois$elm_mdl$Material_Slider$floatVal = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['target', 'valueAsNumber']),
+	_elm_lang$core$Json_Decode$float);
+var _debois$elm_mdl$Material_Slider$onChange = function (l) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (options) {
+			return _elm_lang$core$Native_Utils.update(
+				options,
+				{
+					listener: _elm_lang$core$Maybe$Just(l)
+				});
+		});
+};
+var _debois$elm_mdl$Material_Slider$disabled = _debois$elm_mdl$Material_Options$set(
+	function (options) {
+		return _elm_lang$core$Native_Utils.update(
+			options,
+			{disabled: true});
+	});
+var _debois$elm_mdl$Material_Slider$step = function (v) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (options) {
+			return _elm_lang$core$Native_Utils.update(
+				options,
+				{step: v});
+		});
+};
+var _debois$elm_mdl$Material_Slider$max = function (v) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (options) {
+			return _elm_lang$core$Native_Utils.update(
+				options,
+				{max: v});
+		});
+};
+var _debois$elm_mdl$Material_Slider$min = function (v) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (options) {
+			return _elm_lang$core$Native_Utils.update(
+				options,
+				{min: v});
+		});
+};
+var _debois$elm_mdl$Material_Slider$value = function (v) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (options) {
+			return _elm_lang$core$Native_Utils.update(
+				options,
+				{value: v});
+		});
+};
+var _debois$elm_mdl$Material_Slider$defaultConfig = {value: 50, min: 0, max: 100, step: 1, listener: _elm_lang$core$Maybe$Nothing, disabled: false};
+var _debois$elm_mdl$Material_Slider$view = function (options) {
+	var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Slider$defaultConfig, options);
+	var config = summary.config;
+	var fraction = (config.value - config.min) / (config.max - config.min);
+	var lower = A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(fraction),
+		' 1 0%');
+	var upper = A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(1 - fraction),
+		' 1 0%');
+	var background = A3(
+		_debois$elm_mdl$Material_Options$styled,
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Material_Options$cs('mdl-slider__background-flex')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Options$cs('mdl-slider__background-lower'),
+						A2(_debois$elm_mdl$Material_Options$css, 'flex', lower)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Options$cs('mdl-slider__background-upper'),
+						A2(_debois$elm_mdl$Material_Options$css, 'flex', upper)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
+			]));
+	var listeners = A2(
+		_elm_lang$core$Maybe$withDefault,
+		_debois$elm_mdl$Material_Options$nop,
+		A2(
+			_elm_lang$core$Maybe$map,
+			function (f) {
+				return _debois$elm_mdl$Material_Options$many(
+					A2(
+						_elm_lang$core$List$map,
+						_debois$elm_mdl$Material_Options_Internal$attribute,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html_Events$on,
+								'change',
+								A2(_elm_lang$core$Json_Decode$map, f, _debois$elm_mdl$Material_Slider$floatVal)),
+								A2(
+								_elm_lang$html$Html_Events$on,
+								'input',
+								A2(_elm_lang$core$Json_Decode$map, f, _debois$elm_mdl$Material_Slider$floatVal))
+							])));
+			},
+			config.listener));
+	return A5(
+		_debois$elm_mdl$Material_Options$apply,
+		summary,
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Material_Options$cs('mdl-slider__container')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A4(
+				_debois$elm_mdl$Material_Options$styled$,
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Options$cs('mdl-slider'),
+						_debois$elm_mdl$Material_Options$cs('mdl-js-slider'),
+						_debois$elm_mdl$Material_Options$cs('is-upgraded'),
+						A2(
+						_debois$elm_mdl$Material_Options$when,
+						_debois$elm_mdl$Material_Options$cs('is-lowest-value'),
+						_elm_lang$core$Native_Utils.eq(fraction, 0)),
+						listeners,
+						_debois$elm_mdl$Material_Options$disabled(config.disabled),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '8px 0')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('range'),
+						_elm_lang$html$Html_Attributes$max(
+						_elm_lang$core$Basics$toString(config.max)),
+						_elm_lang$html$Html_Attributes$min(
+						_elm_lang$core$Basics$toString(config.min)),
+						_elm_lang$html$Html_Attributes$step(
+						_elm_lang$core$Basics$toString(config.step)),
+						_elm_lang$html$Html_Attributes$value(
+						_elm_lang$core$Basics$toString(config.value)),
+						_debois$elm_mdl$Material_Helpers$blurOn('mouseup')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				background
+			]));
+};
+var _debois$elm_mdl$Material_Slider$Config = F6(
+	function (a, b, c, d, e, f) {
+		return {value: a, min: b, max: c, step: d, listener: e, disabled: f};
+	});
+
 var _debois$elm_mdl$Demo_Elevation$references = _elm_lang$core$Native_List.fromArray(
 	[
 		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Elevation'),
@@ -15951,109 +15966,214 @@ var _debois$elm_mdl$Demo_Elevation$references = _elm_lang$core$Native_List.fromA
 	]);
 var _debois$elm_mdl$Demo_Elevation$srcUrl = 'https://github.com/debois/elm-mdl/blob/master/demo/Demo/Elevation.elm';
 var _debois$elm_mdl$Demo_Elevation$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://github.com/google/material-design-lite/blob/master/src/shadow/README.md', '\n  > The Material Design Lite (MDL) shadow is not a component in the same sense as\n> an MDL card, menu, or textbox; it is a visual effect that can be assigned to a\n> user interface element. The effect simulates a three-dimensional positioning of\n> the element, as though it is slightly raised above the surface it rests upon —\n> a positive z-axis value, in user interface terms. The shadow starts at the\n> edges of the element and gradually fades outward, providing a realistic 3-D\n> effect.\n> \n> Shadows are a convenient and intuitive means of distinguishing an element from\n> its surroundings. A shadow can draw the user\'s eye to an object and emphasize\n> the object\'s importance, uniqueness, or immediacy.\n> \n> Shadows are a well-established feature in user interfaces, and provide users\n> with a visual clue to an object\'s intended use or value. Their design and use\n> is an important factor in the overall user experience.)\n\nThe [Material Design Specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html#elevation-shadows-elevation-android-)\npre-defines appropriate elevation for most UI elements; you need to manually\nassign shadows only to your own elements. \n\nYou are encouraged to visit the\n[Material Design specification](https://www.google.com/design/spec/what-is-material/elevation-shadows.html)\nfor details about appropriate use of shadows. \n');
-var _debois$elm_mdl$Demo_Elevation$elevate = function (_p0) {
-	var _p1 = _p0;
-	var _p2 = _p1._1;
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_debois$elm_mdl$Material_Options$css, 'display', 'inline-flex'),
-				A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
-				A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center'),
-				A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
+var _debois$elm_mdl$Demo_Elevation$noElevations = _elm_lang$core$Basics$toFloat(
+	_elm_lang$core$Array$length(_debois$elm_mdl$Material_Elevation$elevations));
+var _debois$elm_mdl$Demo_Elevation$elevate = F2(
+	function (model, _p0) {
+		var _p1 = _p0;
+		return A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_p1._0,
+					A2(_debois$elm_mdl$Material_Options$css, 'height', '96px'),
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '128px'),
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '40px'),
+					A2(_debois$elm_mdl$Material_Options$css, 'display', 'inline-flex'),
+					A2(
+					_debois$elm_mdl$Material_Options$when,
+					_debois$elm_mdl$Material_Elevation$transition(300),
+					model.transition),
+					_debois$elm_mdl$Material_Options$center
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_debois$elm_mdl$Material_Typography$title,
+							A2(_debois$elm_mdl$Material_Options$css, 'box-radius', '2pt')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(_p1._1))
+						]))
+				]));
+	});
+var _debois$elm_mdl$Demo_Elevation$model = {transition: false, elevation: 1, mdl: _debois$elm_mdl$Material$model};
+var _debois$elm_mdl$Demo_Elevation$Model = F3(
+	function (a, b, c) {
+		return {transition: a, elevation: b, mdl: c};
+	});
+var _debois$elm_mdl$Demo_Elevation$Mdl = function (a) {
+	return {ctor: 'Mdl', _0: a};
+};
+var _debois$elm_mdl$Demo_Elevation$update = F2(
+	function (msg, model) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
+			case 'SetElevation':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{elevation: _p2._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'FlipTransition':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							transition: _elm_lang$core$Basics$not(model.transition)
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Elevation$Mdl, _p2._0, model);
+		}
+	});
+var _debois$elm_mdl$Demo_Elevation$FlipTransition = {ctor: 'FlipTransition'};
+var _debois$elm_mdl$Demo_Elevation$SetElevation = function (a) {
+	return {ctor: 'SetElevation', _0: a};
+};
+var _debois$elm_mdl$Demo_Elevation$demo2 = function (model) {
+	var _p3 = A2(
+		_elm_lang$core$Maybe$withDefault,
+		{ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e0, _1: 0},
+		A2(_elm_lang$core$Array$get, model.elevation, _debois$elm_mdl$Material_Elevation$elevations));
+	var e = _p3._0;
+	var k = _p3._1;
+	var code = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'\n      Options.div\n        [ Elevation.e',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_elm_lang$core$Basics$toString(k),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'\n        , css \"height\" \"96px\"\n        , css \"width\"  \"128px\" ',
 				A2(
-				_debois$elm_mdl$Material_Options$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_p1._0,
-						A2(_debois$elm_mdl$Material_Options$css, 'height', '96px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'width', '128px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'margin', '40px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'display', 'inline-flex'),
-						A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
-						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center'),
-						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_debois$elm_mdl$Material_Options$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Typography$titleColorContrast,
-								A2(_debois$elm_mdl$Material_Options$css, 'box-radius', '2pt')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(_p2))
-							]))
-					])),
-				A2(
-				_debois$elm_mdl$Material_Options$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Options$css, 'width', '300px')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Demo_Code$code(
+					_elm_lang$core$Basics_ops['++'],
+					model.transition ? '\n        , Elevation.transition 300' : '',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'\n        , Options.center\n        ]\n        [ text \"',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							'\n              Options.div\n                [ Elevation.e',
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								_elm_lang$core$Basics$toString(_p2),
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									'\n                , css \"height\" \"96px\"\n                , css \"width\"  \"128px\"\n                , css \"margin\" \"40px\"\n                -- Center\n                , css \"display\" \"inline-flex\"\n                , css \"flex-flow\" \"row wrap\"\n                , css \"justify-content\" \"center\"\n                , css \"align-items\" \"center\"\n                ]\n                [ text \"',
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										_elm_lang$core$Basics$toString(_p2),
-										'\" ]')))))
-					]))
-			]));
-};
-var _debois$elm_mdl$Demo_Elevation$view = A5(
-	_debois$elm_mdl$Demo_Page$body1,
-	'Elevation',
-	_debois$elm_mdl$Demo_Elevation$srcUrl,
-	_debois$elm_mdl$Demo_Elevation$intro,
-	_debois$elm_mdl$Demo_Elevation$references,
-	A2(
-		F2(
-			function (x, y) {
-				return A2(_elm_lang$core$List_ops['::'], x, y);
-			}),
-		A2(
-			_elm_lang$html$Html$p,
+							_elm_lang$core$Basics$toString(k),
+							'\" ]'))))));
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A3(
+			_debois$elm_mdl$Material_Options$styled,
+			_elm_lang$html$Html$h4,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_elm_lang$html$Html$text('Below are boxes drawn at various elevations.')
+					_elm_lang$html$Html$text('Elevator')
 				])),
-		A2(
-			F2(
-				function (x, y) {
-					return A2(_elm_lang$core$List_ops['::'], x, y);
-				}),
-			_debois$elm_mdl$Demo_Code$code('import Material.Elevation as Elevation'),
 			A2(
-				_elm_lang$core$List$map,
-				_debois$elm_mdl$Demo_Elevation$elevate,
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+					A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center'),
+					A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Demo_Elevation$elevate,
+					model,
+					{ctor: '_Tuple2', _0: e, _1: k}),
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'column'),
+							A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center'),
+							A2(_debois$elm_mdl$Material_Options$css, 'flex-grow', '1'),
+							A2(_debois$elm_mdl$Material_Options$css, 'min-width', '256px')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_debois$elm_mdl$Material_Slider$view(
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_debois$elm_mdl$Material_Slider$onChange(
+									function (_p4) {
+										return _debois$elm_mdl$Demo_Elevation$SetElevation(
+											_elm_lang$core$Basics$floor(_p4));
+									}),
+									_debois$elm_mdl$Material_Slider$value(
+									_elm_lang$core$Basics$toFloat(model.elevation)),
+									_debois$elm_mdl$Material_Slider$min(0),
+									_debois$elm_mdl$Material_Slider$max(_debois$elm_mdl$Demo_Elevation$noElevations - 1),
+									_debois$elm_mdl$Material_Slider$step(1),
+									A2(_debois$elm_mdl$Material_Options$css, 'max-width', '384px')
+								])),
+							A5(
+							_debois$elm_mdl$Material_Toggles$switch,
+							_debois$elm_mdl$Demo_Elevation$Mdl,
+							_elm_lang$core$Native_List.fromArray(
+								[0]),
+							model.mdl,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_debois$elm_mdl$Material_Toggles$onClick(_debois$elm_mdl$Demo_Elevation$FlipTransition),
+									_debois$elm_mdl$Material_Toggles$value(model.transition),
+									A2(_debois$elm_mdl$Material_Options$css, 'margin-left', '20px'),
+									A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '24px')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Animate')
+								]))
+						]))
+				])),
+			A2(
+			_debois$elm_mdl$Demo_Code$code,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '40px')
+				]),
+			code)
+		]);
+};
+var _debois$elm_mdl$Demo_Elevation$view = function (model) {
+	var boxes = _elm_lang$core$Array$toList(
+		A2(
+			_elm_lang$core$Array$map,
+			_debois$elm_mdl$Demo_Elevation$elevate(model),
+			_debois$elm_mdl$Material_Elevation$elevations));
+	var demo1 = A2(
+		_elm_lang$core$List$append,
+		_elm_lang$core$Native_List.fromArray(
+			[
 				A2(
-					_elm_lang$core$List_ops['::'],
-					{
-						ctor: '_Tuple2',
-						_0: _debois$elm_mdl$Material_Options$cs(''),
-						_1: 0
-					},
-					_debois$elm_mdl$Material_Elevation$elevations)))));
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Below are boxes drawn at various elevations.')
+					]))
+			]),
+		boxes);
+	return A6(
+		_debois$elm_mdl$Demo_Page$body1$,
+		'Elevation',
+		_debois$elm_mdl$Demo_Elevation$srcUrl,
+		_debois$elm_mdl$Demo_Elevation$intro,
+		_debois$elm_mdl$Demo_Elevation$references,
+		demo1,
+		_debois$elm_mdl$Demo_Elevation$demo2(model));
+};
 
 //import Maybe, Native.List //
 
@@ -16790,7 +16910,13 @@ var _debois$elm_mdl$Demo_Footer$view = function (model) {
 									]))
 						})
 					])),
-				_debois$elm_mdl$Demo_Code$code(_debois$elm_mdl$Demo_Footer$miniFooterDoc),
+				A2(
+				_debois$elm_mdl$Demo_Code$code,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '20px')
+					]),
+				_debois$elm_mdl$Demo_Footer$miniFooterDoc),
 				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
@@ -17025,7 +17151,13 @@ var _debois$elm_mdl$Demo_Footer$view = function (model) {
 									]))
 						})
 					])),
-				_debois$elm_mdl$Demo_Code$code(_debois$elm_mdl$Demo_Footer$megaFooterDoc)
+				A2(
+				_debois$elm_mdl$Demo_Code$code,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin-top', '20px')
+					]),
+				_debois$elm_mdl$Demo_Footer$megaFooterDoc)
 			]));
 };
 var _debois$elm_mdl$Demo_Footer$model = {mdl: _debois$elm_mdl$Material$model};
@@ -17541,7 +17673,10 @@ var _debois$elm_mdl$Demo_Layout$view = function (model) {
 					_elm_lang$core$Native_List.fromArray(
 						[])),
 					_debois$elm_mdl$Demo_Layout$explain('To use this colour scheme (and to use elm-mdl in general), you must load custom CSS.'),
-					_debois$elm_mdl$Demo_Code$html(
+					A2(
+					_debois$elm_mdl$Demo_Code$html,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
 					A2(
 						_elm_lang$core$String$join,
 						'\n',
@@ -17558,7 +17693,10 @@ var _debois$elm_mdl$Demo_Layout$view = function (model) {
 									'\'>'))
 							]))),
 					_debois$elm_mdl$Demo_Layout$explain('For quick experiments, you can alternatively load CSS directly from Elm as follows.\n                       NB! This approach will cause flickering on load and so is\n                       not suitable anything but quick experiments.'),
-					_debois$elm_mdl$Demo_Code$code(
+					A2(
+					_debois$elm_mdl$Demo_Code$code,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'import Material.Scheme as Scheme\n    import Material.Color as Color\n\n    -- Wrap your main html, say, \"contents\" like this: \n    myView = \n      Scheme.topWithScheme ',
@@ -17945,7 +18083,10 @@ var _debois$elm_mdl$Demo_Layout$view = function (model) {
 							}
 						}()
 						]);
-					return _debois$elm_mdl$Demo_Code$code(
+					return A2(
+						_debois$elm_mdl$Demo_Code$code,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
 						A3(
 							_elm_lang$core$Basics$flip,
 							F2(
@@ -18258,7 +18399,11 @@ var _debois$elm_mdl$Demo_Lists$demoList = F2(
 					[half]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_debois$elm_mdl$Demo_Code$code(_p1._1)
+						A2(
+						_debois$elm_mdl$Demo_Code$code,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_p1._1)
 					]))
 			]);
 	});
@@ -18423,7 +18568,10 @@ var _debois$elm_mdl$Demo_Lists$trains = function () {
 var _debois$elm_mdl$Demo_Lists$schedule = A2(
 	_debois$elm_mdl$Material_List$ul,
 	_elm_lang$core$Native_List.fromArray(
-		[]),
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+			A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+		]),
 	A2(_elm_lang$core$List$map, _debois$elm_mdl$Demo_Lists$train, _debois$elm_mdl$Demo_Lists$trains));
 var _debois$elm_mdl$Demo_Lists$comment = F2(
 	function (list, txt) {
@@ -18473,7 +18621,10 @@ var _debois$elm_mdl$Demo_Lists$basic = function (model) {
 		A2(
 			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+					A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -18530,7 +18681,10 @@ var _debois$elm_mdl$Demo_Lists$icons = function (model) {
 		A2(
 			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+					A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -18602,7 +18756,10 @@ var _debois$elm_mdl$Demo_Lists$avatars = function (model) {
 		A2(
 			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+					A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -18674,7 +18831,10 @@ var _debois$elm_mdl$Demo_Lists$avatarsWithIcons = function (model) {
 		A2(
 			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+					A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -18742,11 +18902,14 @@ var _debois$elm_mdl$Demo_Lists$avatarsWithIcons = function (model) {
 var _debois$elm_mdl$Demo_Lists$info = function (model) {
 	return A2(
 		_debois$elm_mdl$Demo_Lists$withCode,
-		'\n',
+		'\n  Lists.ul [] \n    [ Lists.li []\n        [ Lists.content [] [ text \"MacBook\" ] \n        , Lists.content2 [] \n            [ Lists.info2 [] [ text \"New\" ]\n            , Icon.view \"info\" [ Color.text Color.primary ]\n            ]\n        ]\n    , Lists.li []\n        [ Lists.content [] [ text \"iMac \"27\" ] \n        , Lists.content2 [] \n            [ Lists.info2 [] [ text \"Updated\" ]\n            , Icon.view \"info\" [ Color.text Color.primary ]\n            ]\n        ]\n    , Lists.li []\n        [ Lists.content [] [ text \"Mac Pro\" ] \n        , Lists.content2 [] \n            [ Icon.view \"info\" [ Color.text Color.primary ]\n            ]\n        ]\n',
 		A2(
 			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+					A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -18865,7 +19028,10 @@ var _debois$elm_mdl$Demo_Lists$subtitle = function (model) {
 			A2(
 				_debois$elm_mdl$Material_List$ul,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
@@ -18950,7 +19116,10 @@ var _debois$elm_mdl$Demo_Lists$body = function (model) {
 			A2(
 				_debois$elm_mdl$Material_List$ul,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
@@ -19099,7 +19268,10 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction1 = function (model) {
 		A2(
 			_debois$elm_mdl$Material_List$ul,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+					A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -19156,7 +19328,10 @@ var _debois$elm_mdl$Demo_Lists$secondaryAction2 = function (model) {
 	var list = A2(
 		_debois$elm_mdl$Material_List$ul,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
@@ -19379,7 +19554,10 @@ var _debois$elm_mdl$Demo_Lists$inbox = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_List$ul,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+			]),
 		A2(
 			_elm_lang$core$List$indexedMap,
 			_debois$elm_mdl$Demo_Lists$mail(model),
@@ -19507,7 +19685,10 @@ var _debois$elm_mdl$Demo_Lists$git = function (_p10) {
 var _debois$elm_mdl$Demo_Lists$commits = A2(
 	_debois$elm_mdl$Material_List$ul,
 	_elm_lang$core$Native_List.fromArray(
-		[]),
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+			A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+		]),
 	A2(_elm_lang$core$List$map, _debois$elm_mdl$Demo_Lists$git, _debois$elm_mdl$Demo_Lists$files));
 var _debois$elm_mdl$Demo_Lists$view = function (model) {
 	var demo = A2(
@@ -19862,7 +20043,13 @@ var _debois$elm_mdl$Demo_Loading$demoContainer = function (_p0) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[_p1._0])),
-				_debois$elm_mdl$Demo_Code$code(_p1._1)
+				A2(
+				_debois$elm_mdl$Demo_Code$code,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '32px 0')
+					]),
+				_p1._1)
 			]));
 };
 var _debois$elm_mdl$Demo_Loading$demoBars = function (model) {
@@ -19974,7 +20161,13 @@ var _debois$elm_mdl$Demo_Loading$view = function (model) {
 										]),
 									_elm_lang$core$Native_List.fromArray(
 										[
-											_debois$elm_mdl$Demo_Code$code('\n                               import Material.Spinner as Loading\n                               import Material.Progress as Loading\n                               ')
+											A2(
+											_debois$elm_mdl$Demo_Code$code,
+											_elm_lang$core$Native_List.fromArray(
+												[
+													A2(_debois$elm_mdl$Material_Options$css, 'margin', '24px 0')
+												]),
+											'\n                               import Material.Spinner as Loading\n                               import Material.Progress as Loading\n                               ')
 										])),
 								_debois$elm_mdl$Demo_Loading$demoBars(model)),
 							_elm_lang$core$Native_List.fromArray(
@@ -19993,7 +20186,10 @@ var _debois$elm_mdl$Demo_Loading$view = function (model) {
 											A2(
 											_debois$elm_mdl$Material_Options$span,
 											_elm_lang$core$Native_List.fromArray(
-												[_debois$elm_mdl$Material_Typography$display4]),
+												[
+													_debois$elm_mdl$Material_Typography$display4,
+													_debois$elm_mdl$Material_Typography$contrast(1.0)
+												]),
 											_elm_lang$core$Native_List.fromArray(
 												[
 													_elm_lang$html$Html$text(
@@ -20428,173 +20624,6 @@ var _debois$elm_mdl$Demo_Menus$MenuMsg = F2(
 		return {ctor: 'MenuMsg', _0: a, _1: b};
 	});
 
-var _debois$elm_mdl$Material_Slider$floatVal = A2(
-	_elm_lang$core$Json_Decode$at,
-	_elm_lang$core$Native_List.fromArray(
-		['target', 'valueAsNumber']),
-	_elm_lang$core$Json_Decode$float);
-var _debois$elm_mdl$Material_Slider$onChange = function (l) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (options) {
-			return _elm_lang$core$Native_Utils.update(
-				options,
-				{
-					listener: _elm_lang$core$Maybe$Just(l)
-				});
-		});
-};
-var _debois$elm_mdl$Material_Slider$disabled = _debois$elm_mdl$Material_Options$set(
-	function (options) {
-		return _elm_lang$core$Native_Utils.update(
-			options,
-			{disabled: true});
-	});
-var _debois$elm_mdl$Material_Slider$step = function (v) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (options) {
-			return _elm_lang$core$Native_Utils.update(
-				options,
-				{step: v});
-		});
-};
-var _debois$elm_mdl$Material_Slider$max = function (v) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (options) {
-			return _elm_lang$core$Native_Utils.update(
-				options,
-				{max: v});
-		});
-};
-var _debois$elm_mdl$Material_Slider$min = function (v) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (options) {
-			return _elm_lang$core$Native_Utils.update(
-				options,
-				{min: v});
-		});
-};
-var _debois$elm_mdl$Material_Slider$value = function (v) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (options) {
-			return _elm_lang$core$Native_Utils.update(
-				options,
-				{value: v});
-		});
-};
-var _debois$elm_mdl$Material_Slider$defaultConfig = {value: 50, min: 0, max: 100, step: 1, listener: _elm_lang$core$Maybe$Nothing, disabled: false};
-var _debois$elm_mdl$Material_Slider$view = function (options) {
-	var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Slider$defaultConfig, options);
-	var config = summary.config;
-	var fraction = (config.value - config.min) / (config.max - config.min);
-	var lower = A2(
-		_elm_lang$core$Basics_ops['++'],
-		_elm_lang$core$Basics$toString(fraction),
-		' 1 0%');
-	var upper = A2(
-		_elm_lang$core$Basics_ops['++'],
-		_elm_lang$core$Basics$toString(1 - fraction),
-		' 1 0%');
-	var background = A3(
-		_debois$elm_mdl$Material_Options$styled,
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_debois$elm_mdl$Material_Options$cs('mdl-slider__background-flex')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_debois$elm_mdl$Material_Options$styled,
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Material_Options$cs('mdl-slider__background-lower'),
-						A2(_debois$elm_mdl$Material_Options$css, 'flex', lower)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A3(
-				_debois$elm_mdl$Material_Options$styled,
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Material_Options$cs('mdl-slider__background-upper'),
-						A2(_debois$elm_mdl$Material_Options$css, 'flex', upper)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
-			]));
-	var listeners = A2(
-		_elm_lang$core$Maybe$withDefault,
-		_debois$elm_mdl$Material_Options$nop,
-		A2(
-			_elm_lang$core$Maybe$map,
-			function (f) {
-				return _debois$elm_mdl$Material_Options$many(
-					A2(
-						_elm_lang$core$List$map,
-						_debois$elm_mdl$Material_Options_Internal$attribute,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html_Events$on,
-								'change',
-								A2(_elm_lang$core$Json_Decode$map, f, _debois$elm_mdl$Material_Slider$floatVal)),
-								A2(
-								_elm_lang$html$Html_Events$on,
-								'input',
-								A2(_elm_lang$core$Json_Decode$map, f, _debois$elm_mdl$Material_Slider$floatVal))
-							])));
-			},
-			config.listener));
-	return A3(
-		_debois$elm_mdl$Material_Options$styled,
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_debois$elm_mdl$Material_Options$cs('mdl-slider__container')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A4(
-				_debois$elm_mdl$Material_Options$styled$,
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Material_Options$cs('mdl-slider'),
-						_debois$elm_mdl$Material_Options$cs('mdl-js-slider'),
-						_debois$elm_mdl$Material_Options$cs('is-upgraded'),
-						A2(
-						_debois$elm_mdl$Material_Options$when,
-						_debois$elm_mdl$Material_Options$cs('is-lowest-value'),
-						_elm_lang$core$Native_Utils.eq(fraction, 0)),
-						listeners,
-						_debois$elm_mdl$Material_Options$disabled(config.disabled),
-						A2(_debois$elm_mdl$Material_Options$css, 'padding', '8px 0')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$type$('range'),
-						_elm_lang$html$Html_Attributes$max(
-						_elm_lang$core$Basics$toString(config.max)),
-						_elm_lang$html$Html_Attributes$min(
-						_elm_lang$core$Basics$toString(config.min)),
-						_elm_lang$html$Html_Attributes$step(
-						_elm_lang$core$Basics$toString(config.step)),
-						_elm_lang$html$Html_Attributes$value(
-						_elm_lang$core$Basics$toString(config.value)),
-						_debois$elm_mdl$Material_Helpers$blurOn('mouseup')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				background
-			]));
-};
-var _debois$elm_mdl$Material_Slider$Config = F6(
-	function (a, b, c, d, e, f) {
-		return {value: a, min: b, max: c, step: d, listener: e, disabled: f};
-	});
-
 var _debois$elm_mdl$Demo_Slider$references = _elm_lang$core$Native_List.fromArray(
 	[
 		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Slider'),
@@ -20614,7 +20643,13 @@ var _debois$elm_mdl$Demo_Slider$demoContainer = function (_p0) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_p1._0,
-				_debois$elm_mdl$Demo_Code$code(_p1._1)
+				A2(
+				_debois$elm_mdl$Demo_Code$code,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '24px 0')
+					]),
+				_p1._1)
 			]));
 };
 var _debois$elm_mdl$Demo_Slider$getDef = F3(
@@ -20690,7 +20725,13 @@ var _debois$elm_mdl$Demo_Slider$view = function (model) {
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_debois$elm_mdl$Demo_Code$code('import Material.Slider as Slider')
+								A2(
+								_debois$elm_mdl$Demo_Code$code,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'margin', '24px 0')
+									]),
+								'import Material.Slider as Slider')
 							])),
 						_debois$elm_mdl$Demo_Slider$demoContainer(
 						{
@@ -21309,6 +21350,12 @@ var _debois$elm_mdl$Material_Table$th = F2(
 				[config.onClick]),
 			html);
 	});
+var _debois$elm_mdl$Material_Table$selected = _debois$elm_mdl$Material_Options$set(
+	function (self) {
+		return _elm_lang$core$Native_Utils.update(
+			self,
+			{selected: true});
+	});
 var _debois$elm_mdl$Material_Table$defaultRow = {selected: false};
 var _debois$elm_mdl$Material_Table$tr = F2(
 	function (options, html) {
@@ -21418,30 +21465,57 @@ var _debois$elm_mdl$Demo_Tables$references = _elm_lang$core$Native_List.fromArra
 	]);
 var _debois$elm_mdl$Demo_Tables$srcUrl = 'https://github.com/debois/elm-mdl/blob/master/demo/Demo/Tables.elm';
 var _debois$elm_mdl$Demo_Tables$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://www.getmdl.io/components/index.html#tables-section', '\n> The Material Design Lite (MDL) data-table component is an enhanced version of\n> the standard HTML &lt;table&gt;. A data-table consists of rows and columns of\n> well-formatted data, presented with appropriate user interaction\n> capabilities.\n\n> Tables are a ubiquitous feature of most user interfaces, regardless of a\n> site\'s content or function. Their design and use is therefore an important\n> factor in the overall user experience. See the data-table component\'s\n> Material Design specifications page for details.\n\n> The available row/column/cell types in a data-table are mostly\n> self-formatting; that is, once the data-table is defined, the individual\n> cells require very little specific attention. For example, the rows exhibit\n> shading behavior on mouseover and selection, numeric values are automatically\n> formatted by default, and the addition of a single class makes the table rows\n> individually or collectively selectable. This makes the data-table component\n> convenient and easy to code for the developer, as well as attractive and\n> intuitive for the user.\n');
-var _debois$elm_mdl$Demo_Tables$code = _debois$elm_mdl$Demo_Code$code('\n    Table.table []\n      [ Table.thead []\n          [ Table.tr []\n              [ Table.th\n                  [ Table.sorted model.order ]\n                  [ text \"Material\" ]\n              , Table.th \n                  [ Table.numeric ]\n                  [ text \"Quantity\" ]\n              , Table.th \n                  [ Table.numeric ]\n                  [ text \"Unit Price\" ]\n              ]\n          ]\n      , Table.tbody []\n          ( sortedData |> List.map (\\item ->\n             Table.tr []\n               [ Table.td [] [ text item.material ]\n               , Table.td [ Table.numeric ] [ text item.quantity ]\n               , Table.td [ Table.numeric ] [ text item.unitPrice ]\n               ]\n            )\n          )\n      ]\n\n    {- sortedData\n        : List\n            { material : String\n            , quantity : String\n            , unitPrice : String\n            }\n    -}\n  ');
+var _debois$elm_mdl$Demo_Tables$reverse = F2(
+	function (x, y) {
+		var _p0 = A2(_elm_lang$core$Basics$compare, x, y);
+		switch (_p0.ctor) {
+			case 'LT':
+				return _elm_lang$core$Basics$GT;
+			case 'GT':
+				return _elm_lang$core$Basics$LT;
+			default:
+				return _elm_lang$core$Basics$EQ;
+		}
+	});
+var _debois$elm_mdl$Demo_Tables$toggle = F2(
+	function (x, set) {
+		return A2(_elm_lang$core$Set$member, x, set) ? A2(_elm_lang$core$Set$remove, x, set) : A2(_elm_lang$core$Set$insert, x, set);
+	});
+var _debois$elm_mdl$Demo_Tables$rotate = function (order) {
+	var _p1 = order;
+	if (_p1.ctor === 'Just') {
+		if (_p1._0.ctor === 'Ascending') {
+			return _elm_lang$core$Maybe$Just(_debois$elm_mdl$Material_Table$Descending);
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	} else {
+		return _elm_lang$core$Maybe$Just(_debois$elm_mdl$Material_Table$Ascending);
+	}
+};
+var _debois$elm_mdl$Demo_Tables$model = {
+	mdl: _debois$elm_mdl$Material$model,
+	order: _elm_lang$core$Maybe$Just(_debois$elm_mdl$Material_Table$Ascending),
+	selected: _elm_lang$core$Set$empty
+};
+var _debois$elm_mdl$Demo_Tables$preamble = '\nimport Material.Table as Table\n\ntype alias Data = \n  { material : String\n  , quantity : String\n  , unitPrice : String\n  }\n\ndata : List Data\ndata = \n  [ { material = \"Acrylic (Transparent)\"   , quantity = \"25\" , unitPrice = \"$2.90\" } \n  , { material = \"Plywood (Birch)\"         , quantity = \"50\" , unitPrice = \"$1.25\" }\n  , { material = \"Laminate (Gold on Blue)\" , quantity = \"10\" , unitPrice = \"$2.35\" }\n  ]\n  ';
+var _debois$elm_mdl$Demo_Tables$key = function (_) {
+	return _.material;
+};
 var _debois$elm_mdl$Demo_Tables$data = _elm_lang$core$Native_List.fromArray(
 	[
 		{material: 'Acrylic (Transparent)', quantity: '25', unitPrice: '$2.90'},
 		{material: 'Plywood (Birch)', quantity: '50', unitPrice: '$1.25'},
 		{material: 'Laminate (Gold on Blue)', quantity: '10', unitPrice: '$2.35'}
 	]);
-var _debois$elm_mdl$Demo_Tables$model = {mdl: _debois$elm_mdl$Material$model, order: _debois$elm_mdl$Material_Table$Ascending};
-var _debois$elm_mdl$Demo_Tables$Model = F2(
-	function (a, b) {
-		return {mdl: a, order: b};
-	});
-var _debois$elm_mdl$Demo_Tables$Click = {ctor: 'Click'};
-var _debois$elm_mdl$Demo_Tables$table = function (model) {
-	var sortedData = (_elm_lang$core$Native_Utils.eq(model.order, _debois$elm_mdl$Material_Table$Descending) ? _elm_lang$core$List$reverse : function (x) {
-		return x;
-	})(
-		A2(
-			_elm_lang$core$List$sortBy,
-			function (_) {
-				return _.material;
-			},
-			_debois$elm_mdl$Demo_Tables$data));
-	return A2(
+var _debois$elm_mdl$Demo_Tables$allSelected = function (model) {
+	return _elm_lang$core$Native_Utils.eq(
+		_elm_lang$core$Set$size(model.selected),
+		_elm_lang$core$List$length(_debois$elm_mdl$Demo_Tables$data));
+};
+var _debois$elm_mdl$Demo_Tables$basic = function (model) {
+	var code = ' \n        Table.table []\n        [ Table.thead []\n          [ Table.tr []\n            [ Table.th [] [ text \"Material\" ]\n            , Table.th [ ] [ text \"Quantity\" ]\n            , Table.th [ ] [ text \"Unit Price\" ]\n            ]\n          ]\n        , Table.tbody []\n            (data |> List.map (\\item ->\n               Table.tr []\n                 [ Table.td [] [ text item.material ]\n                 , Table.td [ Table.numeric ] [ text item.quantity ]\n                 , Table.td [ Table.numeric ] [ text item.unitPrice ]\n                 ]\n               )\n            )\n        ]\n      ';
+	var table = A2(
 		_debois$elm_mdl$Material_Table$table,
 		_elm_lang$core$Native_List.fromArray(
 			[]),
@@ -21462,10 +21536,7 @@ var _debois$elm_mdl$Demo_Tables$table = function (model) {
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[
-										_debois$elm_mdl$Material_Table$sorted(model.order),
-										_debois$elm_mdl$Material_Table$onClick(_debois$elm_mdl$Demo_Tables$Click)
-									]),
+									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Material')
@@ -21473,7 +21544,7 @@ var _debois$elm_mdl$Demo_Tables$table = function (model) {
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Table$numeric]),
+									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Quantity')
@@ -21481,7 +21552,7 @@ var _debois$elm_mdl$Demo_Tables$table = function (model) {
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[_debois$elm_mdl$Material_Table$numeric]),
+									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Unit Price')
@@ -21527,46 +21598,447 @@ var _debois$elm_mdl$Demo_Tables$table = function (model) {
 										]))
 								]));
 					},
-					sortedData))
+					_debois$elm_mdl$Demo_Tables$data))
+			]));
+	return {ctor: '_Tuple3', _0: 'Static table', _1: table, _2: code};
+};
+var _debois$elm_mdl$Demo_Tables$Data = F3(
+	function (a, b, c) {
+		return {material: a, quantity: b, unitPrice: c};
+	});
+var _debois$elm_mdl$Demo_Tables$Model = F3(
+	function (a, b, c) {
+		return {mdl: a, order: b, selected: c};
+	});
+var _debois$elm_mdl$Demo_Tables$Reorder = {ctor: 'Reorder'};
+var _debois$elm_mdl$Demo_Tables$sortable = function (model) {
+	var code = A2(
+		_elm_lang$core$Basics_ops['++'],
+		' \n        Table.table []\n          [ Table.thead []\n            [ Table.tr []\n              [ Table.th\n                  [ ',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			function () {
+				var _p2 = model.order;
+				if (_p2.ctor === 'Nothing') {
+					return '';
+				} else {
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						'Table.',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(_p2._0),
+							', '));
+				}
+			}(),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'Table.onClick Reorder ]\n                  [ text \"Material\" ]\n              , Table.th [ Table.numeric ] [ text \"Quantity\" ]\n              , Table.th [ Table.numeric ] [ text \"Unit Price\" ]\n              ]\n            ]\n          , Table.tbody []\n              ( ',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					function () {
+						var _p3 = model.order;
+						if (_p3.ctor === 'Nothing') {
+							return '';
+						} else {
+							if (_p3._0.ctor === 'Ascending') {
+								return 'mySort ';
+							} else {
+								return 'mySortDescending ';
+							}
+						}
+					}(),
+					'data\n                |> List.map (\\item ->\n                     Table.tr []\n                       [ Table.td [] [ text item.material ]\n                       , Table.td [ Table.numeric ] [ text item.quantity ]\n                       , Table.td [ Table.numeric ] [ text item.unitPrice ]\n                       ]\n                   )\n              )\n          ]'))));
+	var table = function () {
+		var sort = function () {
+			var _p4 = model.order;
+			if (_p4.ctor === 'Just') {
+				if (_p4._0.ctor === 'Ascending') {
+					return _elm_lang$core$List$sortBy(
+						function (_) {
+							return _.material;
+						});
+				} else {
+					return _elm_lang$core$List$sortWith(
+						F2(
+							function (x, y) {
+								return A2(
+									_debois$elm_mdl$Demo_Tables$reverse,
+									function (_) {
+										return _.material;
+									}(x),
+									function (_) {
+										return _.material;
+									}(y));
+							}));
+				}
+			} else {
+				return _elm_lang$core$Basics$identity;
+			}
+		}();
+		return A2(
+			_debois$elm_mdl$Material_Table$table,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Table$thead,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_debois$elm_mdl$Material_Table$tr,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_Table$th,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(
+											_elm_lang$core$Maybe$withDefault,
+											_debois$elm_mdl$Material_Options$nop,
+											A2(_elm_lang$core$Maybe$map, _debois$elm_mdl$Material_Table$sorted, model.order)),
+											_debois$elm_mdl$Material_Table$onClick(_debois$elm_mdl$Demo_Tables$Reorder)
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Material')
+										])),
+									A2(
+									_debois$elm_mdl$Material_Table$th,
+									_elm_lang$core$Native_List.fromArray(
+										[_debois$elm_mdl$Material_Table$numeric]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Quantity')
+										])),
+									A2(
+									_debois$elm_mdl$Material_Table$th,
+									_elm_lang$core$Native_List.fromArray(
+										[_debois$elm_mdl$Material_Table$numeric]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Unit Price')
+										]))
+								]))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$tbody,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					A2(
+						_elm_lang$core$List$indexedMap,
+						F2(
+							function (idx, item) {
+								return A2(
+									_debois$elm_mdl$Material_Table$tr,
+									_elm_lang$core$Native_List.fromArray(
+										[]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(
+											_debois$elm_mdl$Material_Table$td,
+											_elm_lang$core$Native_List.fromArray(
+												[]),
+											_elm_lang$core$Native_List.fromArray(
+												[
+													_elm_lang$html$Html$text(item.material)
+												])),
+											A2(
+											_debois$elm_mdl$Material_Table$td,
+											_elm_lang$core$Native_List.fromArray(
+												[_debois$elm_mdl$Material_Table$numeric]),
+											_elm_lang$core$Native_List.fromArray(
+												[
+													_elm_lang$html$Html$text(item.quantity)
+												])),
+											A2(
+											_debois$elm_mdl$Material_Table$td,
+											_elm_lang$core$Native_List.fromArray(
+												[_debois$elm_mdl$Material_Table$numeric]),
+											_elm_lang$core$Native_List.fromArray(
+												[
+													_elm_lang$html$Html$text(item.unitPrice)
+												]))
+										]));
+							}),
+						sort(_debois$elm_mdl$Demo_Tables$data)))
+				]));
+	}();
+	return {ctor: '_Tuple3', _0: 'Sortable rows', _1: table, _2: code};
+};
+var _debois$elm_mdl$Demo_Tables$Toggle = function (a) {
+	return {ctor: 'Toggle', _0: a};
+};
+var _debois$elm_mdl$Demo_Tables$ToggleAll = {ctor: 'ToggleAll'};
+var _debois$elm_mdl$Demo_Tables$Mdl = function (a) {
+	return {ctor: 'Mdl', _0: a};
+};
+var _debois$elm_mdl$Demo_Tables$update = F2(
+	function (msg, model) {
+		var _p5 = msg;
+		switch (_p5.ctor) {
+			case 'Reorder':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							order: _debois$elm_mdl$Demo_Tables$rotate(model.order)
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'ToggleAll':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: _debois$elm_mdl$Demo_Tables$allSelected(model) ? _elm_lang$core$Set$empty : _elm_lang$core$Set$fromList(
+								A2(_elm_lang$core$List$map, _debois$elm_mdl$Demo_Tables$key, _debois$elm_mdl$Demo_Tables$data))
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'Toggle':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: A2(_debois$elm_mdl$Demo_Tables$toggle, _p5._0, model.selected)
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Tables$Mdl, _p5._0, model);
+		}
+	});
+var _debois$elm_mdl$Demo_Tables$selectable = function (model) {
+	var code = '\n    view : Model -> Html Msg\n    view model = \n      Table.table []\n        [ Table.thead []\n          [ Table.tr []\n            [ Table.th []\n                [ Toggles.checkbox Mdl [-1] model.mdl\n                  [ Toggles.onClick ToggleAll\n                  , Toggles.value (allSelected model)\n                  ] []\n                ]\n            , Table.th [] [ text \"Material\" ]\n            , Table.th [ Table.numeric ] [ text \"Quantity\" ]\n            , Table.th [ Table.numeric ] [ text \"Unit Price\" ]\n            ]\n          ]\n        , Table.tbody []\n            ( data\n              |> List.indexedMap (\\idx item ->\n                   Table.tr\n                     [ Table.selected `when` Set.member (key item) model.selected ]\n                     [ Table.td []\n                       [ Toggles.checkbox Mdl [idx] model.mdl\n                         [ Toggles.onClick (Toggle <| key item)\n                         , Toggles.value <| Set.member (key item) model.selected\n                         ] []\n                       ]\n                     , Table.td [] [ text item.material ]\n                     , Table.td [ Table.numeric ] [ text item.quantity ]\n                     , Table.td [ Table.numeric ] [ text item.unitPrice ]\n                     ]\n                 )\n            )\n        ]\n\n\n    type alias Model = \n      { selected : Set String \n      , ...\n      }\n\n\n    update : Msg -> Model -> (Model, Cmd Msg)\n    update msg model =\n      case msg of\n        ...\n        ToggleAll -> \n          { model\n            | selected =\n                if allSelected model then\n                  Set.empty\n                else \n                  List.map key data |> Set.fromList \n          } ! []\n\n        Toggle k ->\n          { model \n            | selected = \n                if Set.member k model.selected then\n                  Set.remove k model.selected\n                else\n                  Set.insert k model.selected \n          } ! []\n\n\n      allSelected : Model -> Bool\n      allSelected model = \n        Set.size model.selected == List.length data \n\n\n      key : Data -> String\n      key = \n        .material\n      ';
+	var table = A2(
+		_debois$elm_mdl$Material_Table$table,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Table$thead,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Table$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A5(
+										_debois$elm_mdl$Material_Toggles$checkbox,
+										_debois$elm_mdl$Demo_Tables$Mdl,
+										_elm_lang$core$Native_List.fromArray(
+											[-1]),
+										model.mdl,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_debois$elm_mdl$Material_Toggles$onClick(_debois$elm_mdl$Demo_Tables$ToggleAll),
+												_debois$elm_mdl$Material_Toggles$value(
+												_debois$elm_mdl$Demo_Tables$allSelected(model))
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[]))
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Material')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[_debois$elm_mdl$Material_Table$numeric]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Quantity')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[_debois$elm_mdl$Material_Table$numeric]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Unit Price')
+									]))
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Table$tbody,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				A2(
+					_elm_lang$core$List$indexedMap,
+					F2(
+						function (idx, item) {
+							return A2(
+								_debois$elm_mdl$Material_Table$tr,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_debois$elm_mdl$Material_Options$when,
+										_debois$elm_mdl$Material_Table$selected,
+										A2(
+											_elm_lang$core$Set$member,
+											_debois$elm_mdl$Demo_Tables$key(item),
+											model.selected))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												A5(
+												_debois$elm_mdl$Material_Toggles$checkbox,
+												_debois$elm_mdl$Demo_Tables$Mdl,
+												_elm_lang$core$Native_List.fromArray(
+													[idx]),
+												model.mdl,
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_debois$elm_mdl$Material_Toggles$onClick(
+														_debois$elm_mdl$Demo_Tables$Toggle(
+															_debois$elm_mdl$Demo_Tables$key(item))),
+														_debois$elm_mdl$Material_Toggles$value(
+														A2(
+															_elm_lang$core$Set$member,
+															_debois$elm_mdl$Demo_Tables$key(item),
+															model.selected))
+													]),
+												_elm_lang$core$Native_List.fromArray(
+													[]))
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.material)
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[_debois$elm_mdl$Material_Table$numeric]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.quantity)
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[_debois$elm_mdl$Material_Table$numeric]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.unitPrice)
+											]))
+									]));
+						}),
+					_debois$elm_mdl$Demo_Tables$data))
+			]));
+	return {ctor: '_Tuple3', _0: 'Selectable rows', _1: table, _2: code};
+};
+var _debois$elm_mdl$Demo_Tables$tables = function (model) {
+	return A2(
+		_elm_lang$core$List$concatMap,
+		function (_p6) {
+			var _p7 = _p6;
+			return _elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$h4,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(_p7._0)
+						])),
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+							A2(_debois$elm_mdl$Material_Options$css, 'flex-flow', 'row wrap'),
+							A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_debois$elm_mdl$Material_Options$div,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(_debois$elm_mdl$Material_Options$css, 'margin', '0 24px 24px 0'),
+									A2(_debois$elm_mdl$Material_Options$css, 'width', '448px')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[_p7._1])),
+							A2(
+							_debois$elm_mdl$Demo_Code$code,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(_debois$elm_mdl$Material_Options$css, 'flex-grow', '1'),
+									A2(_debois$elm_mdl$Material_Options$css, 'margin', '0 0 24px 0')
+								]),
+							_p7._2)
+						]))
+				]);
+		},
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Demo_Tables$basic(model),
+				_debois$elm_mdl$Demo_Tables$sortable(model),
+				_debois$elm_mdl$Demo_Tables$selectable(model)
 			]));
 };
 var _debois$elm_mdl$Demo_Tables$view = function (model) {
-	return A5(
-		_debois$elm_mdl$Demo_Page$body2,
+	return A6(
+		_debois$elm_mdl$Demo_Page$body1$,
 		'Tables',
 		_debois$elm_mdl$Demo_Tables$srcUrl,
 		_debois$elm_mdl$Demo_Tables$intro,
 		_debois$elm_mdl$Demo_Tables$references,
+		_debois$elm_mdl$Demo_Tables$tables(model),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_debois$elm_mdl$Demo_Tables$table(model),
-				_debois$elm_mdl$Demo_Tables$code
+				A2(
+				_elm_lang$html$Html$h4,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Import & data')
+					])),
+				A2(
+				_debois$elm_mdl$Demo_Code$code,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_debois$elm_mdl$Demo_Tables$preamble)
 			]));
 };
-var _debois$elm_mdl$Demo_Tables$MDL = function (a) {
-	return {ctor: 'MDL', _0: a};
-};
-var _debois$elm_mdl$Demo_Tables$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'Click') {
-			return _debois$elm_mdl$Material_Helpers$pure(
-				_elm_lang$core$Native_Utils.update(
-					model,
-					{
-						order: function () {
-							var _p1 = model.order;
-							if (_p1.ctor === 'Ascending') {
-								return _debois$elm_mdl$Material_Table$Descending;
-							} else {
-								return _debois$elm_mdl$Material_Table$Ascending;
-							}
-						}()
-					}));
-		} else {
-			return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Demo_Tables$MDL, _p0._0, model);
-		}
-	});
 
 var _debois$elm_mdl$Demo_Tabs$references = _elm_lang$core$Native_List.fromArray(
 	[
@@ -21576,84 +22048,17 @@ var _debois$elm_mdl$Demo_Tabs$references = _elm_lang$core$Native_List.fromArray(
 	]);
 var _debois$elm_mdl$Demo_Tabs$srcUrl = 'https://github.com/debois/elm-mdl/blob/master/demo/Demo/Tabs.elm';
 var _debois$elm_mdl$Demo_Tabs$intro = A2(_debois$elm_mdl$Demo_Page$fromMDL, 'https://getmdl.io/components/index.html#layout-section/tabs', '\n> The Material Design Lite (MDL) tab component is a user interface element that\n> allows different content blocks to share the same screen space in a mutually\n> exclusive manner. Tabs are always presented in sets of two or more, and they\n> make it easy to explore and switch among different views or functional aspects\n> of an app, or to browse categorized data sets individually. Tabs serve as\n> \"headings\" for their respective content; the active tab — the one whose content\n> is currently displayed — is always visually distinguished from the others so the\n> user knows which heading the current content belongs to.\n>\n> Tabs are an established but non-standardized feature in user interfaces, and\n> allow users to view different, but often related, blocks of content (often\n> called panels). Tabs save screen real estate and provide intuitive and logical\n> access to data while reducing navigation and associated user confusion. Their\n> design and use is an important factor in the overall user experience. See the\n> tab component\'s Material Design specifications page for details.\n');
-var _debois$elm_mdl$Demo_Tabs$exampleTab = _debois$elm_mdl$Demo_Code$code('\n     import Material.Tabs as Tabs\n\n     tabs : Model -> Html Msg\n     tabs model =\n       Tabs.render Mdl [0] model.mdl\n           [ Tabs.ripple\n           , Tabs.onSelectTab SelectTab\n           , Tabs.activeTab model.tab\n           ]\n           [ Tabs.label [] [text \"Tab One\"]\n           , Tabs.textLabel [] \"Tab Two\"\n           ]\n           [ case model.tab of\n               0 -> div [] [text \"Content of tab one\"]\n               1 -> div [] [text \"Content of tab two\"]\n               _ -> div [] []\n           ]\n\n     ');
-var _debois$elm_mdl$Demo_Tabs$extraTab = A2(
-	_elm_lang$html$Html$div,
+var _debois$elm_mdl$Demo_Tabs$exampleTab = A2(
+	_debois$elm_mdl$Demo_Code$code,
 	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$style(
-			_elm_lang$core$Native_List.fromArray(
-				[
-					{ctor: '_Tuple2', _0: 'height', _1: '380px'},
-					{ctor: '_Tuple2', _0: 'overflow-y', _1: 'scroll'}
-				]))
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Tabs enable content organization at a high level, such as switching between views, data sets, or functional aspects of an app.')
-				])),
-			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Use tabs to organize content at a high level, for example, to present different sections of a newspaper. Don’t use tabs for carousels or pagination of content. Those use cases involve viewing content, not navigating between groups of content.')
-				])),
-			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in arcu at erat porttitor ornare. Nam varius imperdiet dui, et auctor turpis aliquet non. Ut egestas vitae metus non placerat. Quisque mollis quam vitae turpis porttitor congue. In semper metus et erat tristique rutrum. Phasellus porttitor, ex eget elementum malesuada, felis erat rhoncus purus, eu dignissim metus tellus id nisi. Suspendisse id est sed urna vehicula imperdiet in vitae odio. Maecenas bibendum tellus nec diam feugiat, ut bibendum augue accumsan. Vivamus pharetra dolor sit amet ligula rhoncus pretium. Ut dictum euismod dolor, et placerat nisi placerat sed. Ut et magna finibus, pharetra dolor tempus, accumsan erat. Ut in efficitur arcu, in malesuada orci. Quisque sem nisl, malesuada vel commodo ac, viverra eget odio.\n\nVestibulum nibh velit, vestibulum auctor odio eget, bibendum pretium nisi. Vivamus accumsan feugiat luctus. Curabitur risus nulla, condimentum ac dapibus vel, vehicula a risus. Nunc vulputate neque eget urna ornare pellentesque. Morbi iaculis porta velit, at pretium augue vehicula id. Etiam iaculis libero sit amet imperdiet efficitur. Sed ornare elit et est rutrum posuere. Aliquam vehicula scelerisque risus vitae facilisis. Proin pulvinar urna sit amet justo imperdiet, at pretium nunc maximus. Pellentesque facilisis justo arcu, nec venenatis diam dignissim ut. Mauris sed sapien ac risus ullamcorper tincidunt et ac elit. Nam vestibulum massa urna, quis luctus velit eleifend id. Suspendisse potenti. Aliquam ut porttitor nibh, non aliquam urna. Sed interdum fermentum ante, eu fermentum sapien maximus vel. Suspendisse laoreet nisi eget mi fringilla, sed porttitor ex hendrerit. Aliquam eget tincidunt turpis. Ut euismod sem et nisl aliquam dapibus. Nunc ultrices ligula a pharetra consequat. Sed bibendum id diam vel interdum. Mauris luctus finibus turpis. Proin suscipit orci nec massa ornare, nec tempus orci cursus. Pellentesque semper rutrum sapien, vitae posuere sapien aliquam sodales. Vivamus eu euismod elit, id ultrices eros. Nam quam massa, blandit vel neque ut, luctus accumsan augue. Pellentesque ullamcorper est a dolor placerat, in condimentum urna sollicitudin. Mauris ut diam finibus mi accumsan porttitor quis non lectus. Mauris luctus lacinia lectus ut hendrerit. Donec orci ligula, iaculis vel sollicitudin sit amet, rhoncus sed leo.\n\nMorbi purus ante, dignissim ac volutpat quis, venenatis ut libero. Nunc quam massa, dignissim sit amet elementum in, aliquet in justo. Cras eleifend sed nisi sit amet finibus. Nulla at congue nunc, ac ullamcorper justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis semper massa, non tincidunt nibh. Maecenas suscipit augue at arcu dictum, a ultrices justo egestas. Integer sit amet nisl sed augue eleifend sollicitudin vitae ut neque.')
-				]))
-		]));
+		[]),
+	'\n     Tabs.render Mdl [0] model.mdl\n      [ Tabs.ripple\n      , Tabs.onSelectTab SelectTab\n      , Tabs.activeTab model.tab\n      ]\n      [ Tabs.label \n          [ Options.center ] \n          [ Icon.i \"info_outline\"\n          , Options.span [ css \"width\" \"4px\" ] []\n          , text \"About tabs\" \n          ]\n      , Tabs.label \n          [ Options.center ] \n          [ Icon.i \"code\"\n          , Options.span [ css \"width\" \"4px\" ] []  \n          , text \"Example\" \n          ]\n      ]\n      [ case model.tab of\n          0 -> aboutTab\n          _ -> exampleTab\n      ]\n     ');
 var _debois$elm_mdl$Demo_Tabs$aboutTab = A2(
-	_elm_lang$html$Html$div,
+	_evancz$elm_markdown$Markdown$toHtml,
 	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$style(
-			_elm_lang$core$Native_List.fromArray(
-				[
-					{ctor: '_Tuple2', _0: 'height', _1: '380px'},
-					{ctor: '_Tuple2', _0: 'overflow-y', _1: 'scroll'}
-				]))
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('The Material Design Lite (MDL) tab component is a user interface element that allows different content blocks to share the same screen space in a mutually exclusive manner. Tabs are always presented in sets of two or more, and they make it easy to explore and switch among different views or functional aspects of an app, or to browse categorized data sets individually. Tabs serve as \"headings\" for their respective content; the active tab — the one whose content is currently displayed — is always visually distinguished from the others so the user knows which heading the current content belongs to.')
-				])),
-			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Tabs are an established but non-standardized feature in user interfaces, and allow users to view different, but often related, blocks of content (often called panels). Tabs save screen real estate and provide intuitive and logical access to data while reducing navigation and associated user confusion. Their design and use is an important factor in the overall user experience. See the tab component\'s Material Design specifications page for details.')
-				])),
-			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in arcu at erat porttitor ornare. Nam varius imperdiet dui, et auctor turpis aliquet non. Ut egestas vitae metus non placerat. Quisque mollis quam vitae turpis porttitor congue. In semper metus et erat tristique rutrum. Phasellus porttitor, ex eget elementum malesuada, felis erat rhoncus purus, eu dignissim metus tellus id nisi. Suspendisse id est sed urna vehicula imperdiet in vitae odio. Maecenas bibendum tellus nec diam feugiat, ut bibendum augue accumsan. Vivamus pharetra dolor sit amet ligula rhoncus pretium. Ut dictum euismod dolor, et placerat nisi placerat sed. Ut et magna finibus, pharetra dolor tempus, accumsan erat. Ut in efficitur arcu, in malesuada orci. Quisque sem nisl, malesuada vel commodo ac, viverra eget odio.\n\nVestibulum nibh velit, vestibulum auctor odio eget, bibendum pretium nisi. Vivamus accumsan feugiat luctus. Curabitur risus nulla, condimentum ac dapibus vel, vehicula a risus. Nunc vulputate neque eget urna ornare pellentesque. Morbi iaculis porta velit, at pretium augue vehicula id. Etiam iaculis libero sit amet imperdiet efficitur. Sed ornare elit et est rutrum posuere. Aliquam vehicula scelerisque risus vitae facilisis. Proin pulvinar urna sit amet justo imperdiet, at pretium nunc maximus. Pellentesque facilisis justo arcu, nec venenatis diam dignissim ut. Mauris sed sapien ac risus ullamcorper tincidunt et ac elit. Nam vestibulum massa urna, quis luctus velit eleifend id. Suspendisse potenti. Aliquam ut porttitor nibh, non aliquam urna. Sed interdum fermentum ante, eu fermentum sapien maximus vel. Suspendisse laoreet nisi eget mi fringilla, sed porttitor ex hendrerit.')
-				]))
-		]));
-var _debois$elm_mdl$Demo_Tabs$model = {mdl: _debois$elm_mdl$Material$model, tab: 0};
+		[]),
+	'\nFrom the [Material Design specification](https://material.google.com/components/tabs.html#tabs-usage):\n\n> Use tabs to organize content at a high level, for example, to present different sections of a newspaper. Don’t use tabs for carousels or pagination of content. Those use cases involve viewing content, not navigating between groups of content.\n>\n> For more detail about using tabs for navigating top-level views, see “Tabs” in Patterns > Navigation.\n>\n> Don\'t use tabs with content that supports the swipe gesture, because swipe gestures are used for navigating between tabs. For example, avoid using tabs in a map where content is pannable, or a list where items can be dismissed with a swipe.\n>\n> Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory. Scrollable tabs should be used when there are many or a variable number of tabs.\n    ');
+var _debois$elm_mdl$Demo_Tabs$model = {mdl: _debois$elm_mdl$Material$model, tab: 1};
 var _debois$elm_mdl$Demo_Tabs$Model = F2(
 	function (a, b) {
 		return {mdl: a, tab: b};
@@ -21680,17 +22085,6 @@ var _debois$elm_mdl$Demo_Tabs$SelectTab = function (a) {
 	return {ctor: 'SelectTab', _0: a};
 };
 var _debois$elm_mdl$Demo_Tabs$view = function (model) {
-	var activeContent = function () {
-		var _p1 = model.tab;
-		switch (_p1) {
-			case 0:
-				return _debois$elm_mdl$Demo_Tabs$exampleTab;
-			case 1:
-				return _debois$elm_mdl$Demo_Tabs$aboutTab;
-			default:
-				return _debois$elm_mdl$Demo_Tabs$extraTab;
-		}
-	}();
 	return A5(
 		_debois$elm_mdl$Demo_Page$body2,
 		'Tabs',
@@ -21716,35 +22110,62 @@ var _debois$elm_mdl$Demo_Tabs$view = function (model) {
 						A2(
 						_debois$elm_mdl$Material_Tabs$label,
 						_elm_lang$core$Native_List.fromArray(
-							[]),
+							[_debois$elm_mdl$Material_Options$center]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Example')
+								_debois$elm_mdl$Material_Icon$i('info_outline'),
+								A2(
+								_debois$elm_mdl$Material_Options$span,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '4px')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
+								_elm_lang$html$Html$text('About tabs')
 							])),
 						A2(
 						_debois$elm_mdl$Material_Tabs$label,
 						_elm_lang$core$Native_List.fromArray(
-							[]),
+							[_debois$elm_mdl$Material_Options$center]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('About '),
+								_debois$elm_mdl$Material_Icon$i('code'),
 								A2(
-								_elm_lang$html$Html$strong,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
+								_debois$elm_mdl$Material_Options$span,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html$text('Tabs')
-									]))
-							])),
-						A2(
-						_debois$elm_mdl$Material_Tabs$textLabel,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						'Extra')
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '4px')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
+								_elm_lang$html$Html$text('Example')
+							]))
 					]),
 				_elm_lang$core$Native_List.fromArray(
-					[activeContent]))
+					[
+						A2(
+						_debois$elm_mdl$Material_Options$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Options$css, 'margin', '24px auto'),
+								A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start'),
+								_debois$elm_mdl$Material_Options$center,
+								A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'auto'),
+								A2(_debois$elm_mdl$Material_Options$css, 'height', '512px')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								function () {
+								var _p1 = model.tab;
+								if (_p1 === 0) {
+									return _debois$elm_mdl$Demo_Tabs$aboutTab;
+								} else {
+									return _debois$elm_mdl$Demo_Tabs$exampleTab;
+								}
+							}()
+							]))
+					]))
 			]));
 };
 
@@ -21883,248 +22304,262 @@ var _debois$elm_mdl$Demo_Textfields$view = function (model) {
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					A2(
-						_elm_lang$core$List$intersperse,
-						A2(
-							_debois$elm_mdl$Material_Grid$cell,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 1)
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[])),
-						A2(
-							_elm_lang$core$List$map,
-							function (_p2) {
-								var _p3 = _p2;
-								return A2(
-									_debois$elm_mdl$Material_Grid$cell,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 4),
-											A2(_debois$elm_mdl$Material_Grid$offset, _debois$elm_mdl$Material_Grid$Desktop, 1)
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_debois$elm_mdl$Material_Options$div,
-											_elm_lang$core$Native_List.fromArray(
-												[
-													A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
-													A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center'),
-													A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center'),
-													_debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Demo_Page$background)
-												]),
-											_elm_lang$core$Native_List.fromArray(
-												[_p3._0])),
-											_debois$elm_mdl$Demo_Code$code(_p3._1)
-										]));
-							},
-							_elm_lang$core$Native_List.fromArray(
-								[
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[0]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$onInput(_debois$elm_mdl$Demo_Textfields$Upd0)
-											])),
-									_1: '\n        Textfield.render MDL [0] model.mdl\n          [ Textfield.onInput Upd0 ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[1]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$label('Labelled')
-											])),
-									_1: '\n       Textfield.render MDL [1] model.mdl\n         [ Textfield.label \"Labelled\" ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[2]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$label('Floating label'),
-												_debois$elm_mdl$Material_Textfield$floatingLabel,
-												_debois$elm_mdl$Material_Textfield$text$
-											])),
-									_1: '\n        Textfield.render MDL [2] model.mdl\n          [ Textfield.label \"Floating label\"\n          , Textfield.floatingLabel\n          , Textfield.text\'\n          ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[3]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$label('Disabled'),
-												_debois$elm_mdl$Material_Textfield$disabled,
-												_debois$elm_mdl$Material_Textfield$value(
-												A2(
-													_elm_lang$core$Basics_ops['++'],
-													model.str0,
-													(!_elm_lang$core$Native_Utils.eq(model.str0, '')) ? ' (still disabled, though)' : ''))
-											])),
-									_1: '\n      Textfield.render MDL [3] model.mdl\n        [ Textfield.label \"Disabled\"\n        , Textfield.disabled\n        , Textfield.value <|\n            model.str0\n            ++ if model.str0 /= \"\" then\n                \" (still disabled, though)\"\n               else \"\"\n        ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[4]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$label('w/error checking'),
-												_elm_lang$core$Basics$not(
-												A2(_debois$elm_mdl$Demo_Textfields$match, model.str4, _debois$elm_mdl$Demo_Textfields$rx$)) ? _debois$elm_mdl$Material_Textfield$error(
-												A2(_elm_lang$core$Basics_ops['++'], 'Doesn\'t match ', _debois$elm_mdl$Demo_Textfields$rx)) : _debois$elm_mdl$Material_Options$nop,
-												_debois$elm_mdl$Material_Textfield$onInput(_debois$elm_mdl$Demo_Textfields$Upd4)
-											])),
-									_1: '\n    Textfield.render MDL [4] model.mdl\n      [ Textfield.label \"w/error checking\"\n      , if not <| match model.str4 rx\' then\n          Textfield.error <| \"Doesn\'t match \" ++ rx\n        else\n          Options.nop\n      , Textfield.onInput Upd4\n      ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[5]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$label('Enter password'),
-												_debois$elm_mdl$Material_Textfield$floatingLabel,
-												_debois$elm_mdl$Material_Textfield$password
-											])),
-									_1: '\n      Textfield.render MDL [5] model.mdl\n        [ Textfield.label \"Enter password\"\n        , Textfield.floatingLabel\n        , Textfield.password\n        ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[6]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$label('Default multiline textfield'),
-												_debois$elm_mdl$Material_Textfield$textarea
-											])),
-									_1: '\n      Textfield.render MDL [6] model.mdl\n        [ Textfield.label \"Default multiline textfield\"\n        , Textfield.textarea\n        ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A4(
-										_debois$elm_mdl$Material_Textfield$render,
-										_debois$elm_mdl$Demo_Textfields$MDL,
-										_elm_lang$core$Native_List.fromArray(
-											[7]),
-										model.mdl,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_debois$elm_mdl$Material_Textfield$label('Multiline with 6 rows'),
-												_debois$elm_mdl$Material_Textfield$floatingLabel,
-												_debois$elm_mdl$Material_Textfield$textarea,
-												_debois$elm_mdl$Material_Textfield$rows(6)
-											])),
-									_1: '\n      Textfield.render MDL [7] model.mdl\n        [ Textfield.label \"Multiline with 6 rows\"\n        , Textfield.floatingLabel\n        , Textfield.textarea\n        , Textfield.rows 6\n        ]\n       '
-								},
-									{
-									ctor: '_Tuple2',
-									_0: A2(
-										_elm_lang$html$Html$div,
+						_elm_lang$core$List$map,
+						function (_p2) {
+							var _p3 = _p2;
+							return A2(
+								_debois$elm_mdl$Material_Grid$cell,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4),
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Tablet, 6),
+										A2(_debois$elm_mdl$Material_Grid$offset, _debois$elm_mdl$Material_Grid$Tablet, 1),
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Desktop, 6),
+										A2(_debois$elm_mdl$Material_Grid$offset, _debois$elm_mdl$Material_Grid$Desktop, 3)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_elm_lang$html$Html$h4,
 										_elm_lang$core$Native_List.fromArray(
 											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
-												A4(
-												_debois$elm_mdl$Material_Textfield$render,
-												_debois$elm_mdl$Demo_Textfields$MDL,
-												_elm_lang$core$Native_List.fromArray(
-													[8]),
-												model.mdl,
-												_elm_lang$core$Native_List.fromArray(
-													[
-														_debois$elm_mdl$Material_Textfield$label(
+												_elm_lang$html$Html$text(_p3._0)
+											])),
+										A2(
+										_debois$elm_mdl$Material_Options$div,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_debois$elm_mdl$Material_Options$center,
+												_debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Demo_Page$background)
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[_p3._1])),
+										A2(
+										_debois$elm_mdl$Demo_Code$code,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												A2(_debois$elm_mdl$Material_Options$css, 'margin', '24px 0')
+											]),
+										_p3._2)
+									]));
+						},
+						_elm_lang$core$Native_List.fromArray(
+							[
+								{
+								ctor: '_Tuple3',
+								_0: 'Basic textfield',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[0]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$onInput(_debois$elm_mdl$Demo_Textfields$Upd0)
+										])),
+								_2: '\n        Textfield.render MDL [0] model.mdl\n          [ Textfield.onInput Upd0 ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Labelled textfield',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[1]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$label('Labelled')
+										])),
+								_2: '\n       Textfield.render MDL [1] model.mdl\n         [ Textfield.label \"Labelled\" ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Labelled textfield, floating label',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[2]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$label('Floating label'),
+											_debois$elm_mdl$Material_Textfield$floatingLabel,
+											_debois$elm_mdl$Material_Textfield$text$
+										])),
+								_2: '\n        Textfield.render MDL [2] model.mdl\n          [ Textfield.label \"Floating label\"\n          , Textfield.floatingLabel\n          , Textfield.text\'\n          ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Disabled textfield',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[3]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$label('Disabled'),
+											_debois$elm_mdl$Material_Textfield$disabled,
+											_debois$elm_mdl$Material_Textfield$value(
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												model.str0,
+												(!_elm_lang$core$Native_Utils.eq(model.str0, '')) ? ' (still disabled, though)' : ''))
+										])),
+								_2: '\n      Textfield.render MDL [3] model.mdl\n        [ Textfield.label \"Disabled\"\n        , Textfield.disabled\n        , Textfield.value <|\n            model.str0\n            ++ if model.str0 /= \"\" then\n                \" (still disabled, though)\"\n               else \"\"\n        ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Textfield with error checking',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[4]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$label('w/error checking'),
+											_elm_lang$core$Basics$not(
+											A2(_debois$elm_mdl$Demo_Textfields$match, model.str4, _debois$elm_mdl$Demo_Textfields$rx$)) ? _debois$elm_mdl$Material_Textfield$error(
+											A2(_elm_lang$core$Basics_ops['++'], 'Doesn\'t match ', _debois$elm_mdl$Demo_Textfields$rx)) : _debois$elm_mdl$Material_Options$nop,
+											_debois$elm_mdl$Material_Textfield$onInput(_debois$elm_mdl$Demo_Textfields$Upd4)
+										])),
+								_2: '\n    Textfield.render MDL [4] model.mdl\n      [ Textfield.label \"w/error checking\"\n      , if not <| match model.str4 rx\' then\n          Textfield.error <| \"Doesn\'t match \" ++ rx\n        else\n          Options.nop\n      , Textfield.onInput Upd4\n      ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Textfield for passwords',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[5]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$label('Enter password'),
+											_debois$elm_mdl$Material_Textfield$floatingLabel,
+											_debois$elm_mdl$Material_Textfield$password
+										])),
+								_2: '\n      Textfield.render MDL [5] model.mdl\n        [ Textfield.label \"Enter password\"\n        , Textfield.floatingLabel\n        , Textfield.password\n        ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Multi-line textfield',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[6]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$label('Default multiline textfield'),
+											_debois$elm_mdl$Material_Textfield$textarea
+										])),
+								_2: '\n      Textfield.render MDL [6] model.mdl\n        [ Textfield.label \"Default multiline textfield\"\n        , Textfield.textarea\n        ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Multi-line textfield, 6 rows',
+								_1: A4(
+									_debois$elm_mdl$Material_Textfield$render,
+									_debois$elm_mdl$Demo_Textfields$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[7]),
+									model.mdl,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Textfield$label('Multiline with 6 rows'),
+											_debois$elm_mdl$Material_Textfield$floatingLabel,
+											_debois$elm_mdl$Material_Textfield$textarea,
+											_debois$elm_mdl$Material_Textfield$rows(6)
+										])),
+								_2: '\n      Textfield.render MDL [7] model.mdl\n        [ Textfield.label \"Multiline with 6 rows\"\n        , Textfield.floatingLabel\n        , Textfield.textarea\n        , Textfield.rows 6\n        ]\n       '
+							},
+								{
+								ctor: '_Tuple3',
+								_0: 'Multi-line textfield with character limit',
+								_1: A2(
+									_elm_lang$html$Html$div,
+									_elm_lang$core$Native_List.fromArray(
+										[]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A4(
+											_debois$elm_mdl$Material_Textfield$render,
+											_debois$elm_mdl$Demo_Textfields$MDL,
+											_elm_lang$core$Native_List.fromArray(
+												[8]),
+											model.mdl,
+											_elm_lang$core$Native_List.fromArray(
+												[
+													_debois$elm_mdl$Material_Textfield$label(
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														'Multiline textfield (',
 														A2(
 															_elm_lang$core$Basics_ops['++'],
-															'Multiline textfield (',
+															_elm_lang$core$Basics$toString(
+																_elm_lang$core$String$length(model.str6)),
 															A2(
 																_elm_lang$core$Basics_ops['++'],
-																_elm_lang$core$Basics$toString(
-																	_elm_lang$core$String$length(model.str6)),
+																' of ',
 																A2(
 																	_elm_lang$core$Basics_ops['++'],
-																	' of ',
-																	A2(
-																		_elm_lang$core$Basics_ops['++'],
-																		_elm_lang$core$Basics$toString(
-																			_elm_lang$core$Basics$truncate(model.length)),
-																		' char limit)'))))),
-														_debois$elm_mdl$Material_Textfield$onInput(_debois$elm_mdl$Demo_Textfields$Upd6),
-														_debois$elm_mdl$Material_Textfield$textarea,
-														_debois$elm_mdl$Material_Textfield$maxlength(
-														_elm_lang$core$Basics$truncate(model.length)),
-														_debois$elm_mdl$Material_Textfield$autofocus,
-														_debois$elm_mdl$Material_Textfield$floatingLabel,
-														_debois$elm_mdl$Material_Textfield$onFocus(
-														_debois$elm_mdl$Demo_Textfields$SetFocus5(true)),
-														_debois$elm_mdl$Material_Textfield$onBlur(
-														_debois$elm_mdl$Demo_Textfields$SetFocus5(false))
-													])),
-												A3(
-												_debois$elm_mdl$Material_Options$styled,
-												_elm_lang$html$Html$p,
-												_elm_lang$core$Native_List.fromArray(
-													[
-														A2(_debois$elm_mdl$Material_Options$css, 'width', '80%')
-													]),
-												_elm_lang$core$Native_List.fromArray(
-													[
-														A2(
-														_debois$elm_mdl$Material_Options$span,
-														_elm_lang$core$Native_List.fromArray(
-															[_debois$elm_mdl$Material_Typography$caption]),
-														_elm_lang$core$Native_List.fromArray(
-															[
-																_elm_lang$html$Html$text('Drag to change the maxlength')
-															])),
-														_debois$elm_mdl$Material_Slider$view(
-														_elm_lang$core$Native_List.fromArray(
-															[
-																_debois$elm_mdl$Material_Slider$onChange(_debois$elm_mdl$Demo_Textfields$Slider),
-																_debois$elm_mdl$Material_Slider$value(model.length),
-																_debois$elm_mdl$Material_Slider$max(100),
-																_debois$elm_mdl$Material_Slider$min(1),
-																_debois$elm_mdl$Material_Slider$step(1)
-															]))
-													]))
-											])),
-									_1: '\n       Textfield.render MDL [8] model.mdl\n         [ Textfield.label\n             (\"Multiline textfield (\" ++\n                (toString (String.length model.str6))\n                ++ \" of \" ++ (toString (truncate model.length))\n                ++ \" char limit)\")\n         , Textfield.onInput Upd6\n         , Textfield.textarea\n         , Textfield.maxlength (truncate model.length)\n         , Textfield.autofocus\n         , Textfield.floatingLabel\n         ]\n       '
-								}
-								])))))));
+																	_elm_lang$core$Basics$toString(
+																		_elm_lang$core$Basics$truncate(model.length)),
+																	' char limit)'))))),
+													_debois$elm_mdl$Material_Textfield$onInput(_debois$elm_mdl$Demo_Textfields$Upd6),
+													_debois$elm_mdl$Material_Textfield$textarea,
+													_debois$elm_mdl$Material_Textfield$maxlength(
+													_elm_lang$core$Basics$truncate(model.length)),
+													_debois$elm_mdl$Material_Textfield$autofocus,
+													_debois$elm_mdl$Material_Textfield$floatingLabel,
+													_debois$elm_mdl$Material_Textfield$onFocus(
+													_debois$elm_mdl$Demo_Textfields$SetFocus5(true)),
+													_debois$elm_mdl$Material_Textfield$onBlur(
+													_debois$elm_mdl$Demo_Textfields$SetFocus5(false))
+												])),
+											A3(
+											_debois$elm_mdl$Material_Options$styled,
+											_elm_lang$html$Html$p,
+											_elm_lang$core$Native_List.fromArray(
+												[
+													A2(_debois$elm_mdl$Material_Options$css, 'width', '80%')
+												]),
+											_elm_lang$core$Native_List.fromArray(
+												[
+													A2(
+													_debois$elm_mdl$Material_Options$span,
+													_elm_lang$core$Native_List.fromArray(
+														[_debois$elm_mdl$Material_Typography$caption]),
+													_elm_lang$core$Native_List.fromArray(
+														[
+															_elm_lang$html$Html$text('Drag to change the maxlength')
+														])),
+													_debois$elm_mdl$Material_Slider$view(
+													_elm_lang$core$Native_List.fromArray(
+														[
+															_debois$elm_mdl$Material_Slider$onChange(_debois$elm_mdl$Demo_Textfields$Slider),
+															_debois$elm_mdl$Material_Slider$value(model.length),
+															_debois$elm_mdl$Material_Slider$max(100),
+															_debois$elm_mdl$Material_Slider$min(1),
+															_debois$elm_mdl$Material_Slider$step(1)
+														]))
+												]))
+										])),
+								_2: '\n       Textfield.render MDL [8] model.mdl\n         [ Textfield.label\n             (\"Multiline textfield (\" ++\n                (toString (String.length model.str6))\n                ++ \" of \" ++ (toString (truncate model.length))\n                ++ \" char limit)\")\n         , Textfield.onInput Upd6\n         , Textfield.textarea\n         , Textfield.maxlength (truncate model.length)\n         , Textfield.autofocus\n         , Textfield.floatingLabel\n         ]\n       '
+							}
+							]))))));
 };
 
 var _elm_lang$core$Native_Bitwise = function() {
@@ -22443,7 +22878,12 @@ var _debois$elm_mdl$Demo_Toggles$view = function (model) {
 								[
 									_elm_lang$html$Html$text('Switch')
 								])),
-							_debois$elm_mdl$Demo_Code$code(
+							A2(
+							_debois$elm_mdl$Demo_Code$code,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px 0')
+								]),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'Toggles.switch Mdl [0] model.mdl\n  [ Toggles.onClick MyToggleMsg\n  , Toggles.ripple\n  , Toggles.value ',
@@ -22476,7 +22916,12 @@ var _debois$elm_mdl$Demo_Toggles$view = function (model) {
 								[
 									_elm_lang$html$Html$text('Checkbox')
 								])),
-							_debois$elm_mdl$Demo_Code$code(
+							A2(
+							_debois$elm_mdl$Demo_Code$code,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px 0')
+								]),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'Toggles.checkbox Mdl [0] model.mdl\n  [ Toggles.onClick MyToggleMsg\n  , Toggles.ripple\n  , Toggles.value ',
@@ -22530,7 +22975,12 @@ var _debois$elm_mdl$Demo_Toggles$view = function (model) {
 								[
 									_elm_lang$html$Html$text('Vim')
 								])),
-							_debois$elm_mdl$Demo_Code$code(
+							A2(
+							_debois$elm_mdl$Demo_Code$code,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(_debois$elm_mdl$Material_Options$css, 'margin', '16px 0')
+								]),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'\n                  div \n                    [] \n                    [ Toggles.radio Mdl [0] model.mdl \n                        [ Toggles.value ',
@@ -22589,7 +23039,13 @@ var _debois$elm_mdl$Demo_Tooltip$demoTooltip = F3(
 							_debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Demo_Page$background)
 						]),
 					elements),
-					_debois$elm_mdl$Demo_Code$code(code)
+					A2(
+					_debois$elm_mdl$Demo_Code$code,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'margin', '24px 0')
+						]),
+					code)
 				]));
 	});
 var _debois$elm_mdl$Demo_Tooltip$model = {mdl: _debois$elm_mdl$Material$model, tooltip: _debois$elm_mdl$Material_Tooltip$defaultModel};
@@ -22648,8 +23104,7 @@ var _debois$elm_mdl$Demo_Tooltip$view = function (model) {
 						A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'column'),
 						A2(_debois$elm_mdl$Material_Options$css, 'flex-wrap', 'wrap'),
 						A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'center'),
-						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center'),
-						A2(_debois$elm_mdl$Material_Options$css, 'max-height', '90rem')
+						A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'center')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -22893,12 +23348,12 @@ var _debois$elm_mdl$Demo_Typography$demo2 = _elm_lang$core$Native_List.fromArray
 			_debois$elm_mdl$Material_Options$styled,
 			_elm_lang$html$Html$p,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$left, _debois$elm_mdl$Material_Typography$titleColorContrast]),
+				[_debois$elm_mdl$Material_Typography$left]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Left align')
 				])),
-		_1: '\n       Options.styled p\n         [ Typo.left, Typo.titleColorContrast ]\n         [ text \"Left align\" ]\n       '
+		_1: '\n       Options.styled p\n         [ Typo.left ]\n         [ text \"Left align\" ]\n       '
 	},
 		{
 		ctor: '_Tuple2',
@@ -22906,12 +23361,12 @@ var _debois$elm_mdl$Demo_Typography$demo2 = _elm_lang$core$Native_List.fromArray
 			_debois$elm_mdl$Material_Options$styled,
 			_elm_lang$html$Html$p,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$body2ColorContrast, _debois$elm_mdl$Material_Typography$center]),
+				[_debois$elm_mdl$Material_Typography$center]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Center align')
 				])),
-		_1: '\n       Options.styled p\n         [ Typo.body2ColorContrast, Typo.center ]\n         [ text \"Center align\" ]\n       '
+		_1: '\n       Options.styled p\n         [ Typo.center ]\n         [ text \"Center align\" ]\n       '
 	},
 		{
 		ctor: '_Tuple2',
@@ -22919,12 +23374,12 @@ var _debois$elm_mdl$Demo_Typography$demo2 = _elm_lang$core$Native_List.fromArray
 			_debois$elm_mdl$Material_Options$styled,
 			_elm_lang$html$Html$p,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$caption, _debois$elm_mdl$Material_Typography$right]),
+				[_debois$elm_mdl$Material_Typography$right]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Right align')
 				])),
-		_1: '\n       Options.styled p\n         [ Typo.caption, Typo.right ]\n         [ text \"Right align\" ]\n       '
+		_1: '\n       Options.styled p\n         [ Typo.right ]\n         [ text \"Right align\" ]\n       '
 	},
 		{
 		ctor: '_Tuple2',
@@ -22932,12 +23387,12 @@ var _debois$elm_mdl$Demo_Typography$demo2 = _elm_lang$core$Native_List.fromArray
 			_debois$elm_mdl$Material_Options$styled,
 			_elm_lang$html$Html$p,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$justify, _debois$elm_mdl$Material_Typography$subheadingColorContrast]),
+				[_debois$elm_mdl$Material_Typography$justify]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Justified')
 				])),
-		_1: '\n       Options.styled p\n         [ Typo.justify, Typo.subheadingColorContrast ]\n         [ text \"Justified\" ]\n       '
+		_1: '\n       Options.styled p\n         [ Typo.justify ]\n         [ text \"Justified\" ]\n       '
 	},
 		{
 		ctor: '_Tuple2',
@@ -23065,12 +23520,12 @@ var _debois$elm_mdl$Demo_Typography$demo1 = _elm_lang$core$Native_List.fromArray
 			_debois$elm_mdl$Material_Options$styled,
 			_elm_lang$html$Html$p,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Typography$subheading]),
+				[_debois$elm_mdl$Material_Typography$subhead]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Regular 16px (Device), Regular 15px (Desktop)')
 				])),
-		_1: '\n       Options.styled p\n         [ Typo.subheading ]\n         [ text \"Regular 16px (Device), Regular 15px (Desktop)\" ]\n       '
+		_1: '\n       Options.styled p\n         [ Typo.subhead ]\n         [ text \"Regular 16px (Device), Regular 15px (Desktop)\" ]\n       '
 	},
 		{
 		ctor: '_Tuple2',
@@ -23146,7 +23601,8 @@ var _debois$elm_mdl$Demo_Typography$view = function (model) {
 				[
 					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Desktop, 6),
 					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Tablet, 8),
-					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4)
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4),
+					_debois$elm_mdl$Material_Grid$align(_debois$elm_mdl$Material_Grid$Middle)
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[x]));
@@ -23158,7 +23614,11 @@ var _debois$elm_mdl$Demo_Typography$view = function (model) {
 				[
 					cell(_p1._0),
 					cell(
-					_debois$elm_mdl$Demo_Code$code(_p1._1))
+					A2(
+						_debois$elm_mdl$Demo_Code$code,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_p1._1))
 				]);
 		});
 	var head = A2(
@@ -23177,7 +23637,13 @@ var _debois$elm_mdl$Demo_Typography$view = function (model) {
 					[
 						_elm_lang$html$Html$text('Imports')
 					])),
-				_debois$elm_mdl$Demo_Code$code('\n                     import Material.Typography as Typo\n                     import Material.Options as Options\n                     import Html exposing (p)\n                     '),
+				A2(
+				_debois$elm_mdl$Demo_Code$code,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '24px 0')
+					]),
+				'\n                     import Material.Typography as Typo\n                     import Material.Options as Options\n                     import Html exposing (p)\n                     '),
 				A2(
 				_elm_lang$html$Html$p,
 				_elm_lang$core$Native_List.fromArray(
@@ -24629,45 +25095,7 @@ var _debois$elm_mdl$Material_Scheme$top = function (content) {
 	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
 };
 
-var _debois$elm_mdl$Main$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n   */\n  @import url(\"assets/styles/github-gist.css\");\n\n  blockquote:before { content: none; }\n  blockquote:after { content: none; }\n  blockquote {\n    border-left-style: solid;\n    border-width: 1px;\n    padding-left: 1.3ex;\n    border-color: rgb(255,82,82);\n    font-style: normal;\n      /* TODO: Really need a way to specify \"secondary color\" in\n         inline css.\n       */\n  }\n  p, blockquote {\n    max-width: 40em;\n  }\n\n  h1, h2 {\n    /* TODO. Need typography module with kerning. */\n    margin-left: -3px;\n  }\n\n  pre {\n    display: inline-block;\n    box-sizing: border-box;\n    min-width: 100%;\n    background-color: #f8f8f8;\n    padding-top: .5rem;\n    padding-bottom: 1rem;\n    padding-left:1rem;\n    margin: 0;\n  }\n  .mdl-layout__header--transparent {\n    background: url(\'https://getmdl.io/assets/demos/transparent.jpg\') center / cover;\n  }\n  .mdl-layout__header--transparent .mdl-layout__drawer-button {\n    /* This background is dark, so we set text to white. Use 87% black instead if\n       your background is light. */\n    color: white;\n  }\n');
-var _debois$elm_mdl$Main$drawer = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_debois$elm_mdl$Material_Layout$title,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Example drawer')
-			])),
-		A2(
-		_debois$elm_mdl$Material_Layout$navigation,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Layout$link,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Material_Layout$href('https://github.com/debois/elm-mdl')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('github')
-					])),
-				A2(
-				_debois$elm_mdl$Material_Layout$link,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Material_Layout$href('http://package.elm-lang.org/packages/debois/elm-mdl/latest/')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('elm-package')
-					]))
-			]))
-	]);
+var _debois$elm_mdl$Main$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n   */\n  @import url(\"assets/styles/github-gist.css\");\n\n  blockquote:before { content: none; }\n  blockquote:after { content: none; }\n  blockquote {\n    border-left-style: solid;\n    border-width: 1px;\n    padding-left: 1.3ex;\n    border-color: rgb(255,82,82);\n    font-style: normal;\n      /* TODO: Really need a way to specify \"secondary color\" in\n         inline css.\n       */\n  }\n  p, blockquote {\n    max-width: 40em;\n  }\n\n  pre {\n    display: inline-block;\n    box-sizing: border-box;\n    min-width: 100%;\n    background-color: #f8f8f8;\n    padding-top: .5rem;\n    padding-bottom: 1rem;\n    padding-left:1rem;\n    margin: 0;\n  }\n  code {\n    font-family: \'Roboto Mono\';\n  }\n  .mdl-layout__header--transparent {\n    background: url(\'https://getmdl.io/assets/demos/transparent.jpg\') center / cover;\n  }\n  .mdl-layout__header--transparent .mdl-layout__drawer-button {\n    /* This background is dark, so we set text to white. Use 87% black instead if\n       your background is light. */\n    color: white;\n  }\n');
 var _debois$elm_mdl$Main$e404 = function (_p0) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -24694,7 +25122,7 @@ var _debois$elm_mdl$Main$nth = F2(
 		return _elm_lang$core$List$head(
 			A2(_elm_lang$core$List$drop, k, xs));
 	});
-var _debois$elm_mdl$Main$model = {mdl: _debois$elm_mdl$Material$model, buttons: _debois$elm_mdl$Demo_Buttons$model, badges: _debois$elm_mdl$Demo_Badges$model, layout: _debois$elm_mdl$Demo_Layout$model, menus: _debois$elm_mdl$Demo_Menus$model, textfields: _debois$elm_mdl$Demo_Textfields$model, toggles: _debois$elm_mdl$Demo_Toggles$model, snackbar: _debois$elm_mdl$Demo_Snackbar$model, tables: _debois$elm_mdl$Demo_Tables$model, loading: _debois$elm_mdl$Demo_Loading$model, footers: _debois$elm_mdl$Demo_Footer$model, tooltip: _debois$elm_mdl$Demo_Tooltip$model, tabs: _debois$elm_mdl$Demo_Tabs$model, slider: _debois$elm_mdl$Demo_Slider$model, typography: _debois$elm_mdl$Demo_Typography$model, cards: _debois$elm_mdl$Demo_Cards$model, lists: _debois$elm_mdl$Demo_Lists$model, dialog: _debois$elm_mdl$Demo_Dialog$model, selectedTab: 0, transparentHeader: false};
+var _debois$elm_mdl$Main$model = {mdl: _debois$elm_mdl$Material$model, buttons: _debois$elm_mdl$Demo_Buttons$model, badges: _debois$elm_mdl$Demo_Badges$model, layout: _debois$elm_mdl$Demo_Layout$model, menus: _debois$elm_mdl$Demo_Menus$model, textfields: _debois$elm_mdl$Demo_Textfields$model, toggles: _debois$elm_mdl$Demo_Toggles$model, snackbar: _debois$elm_mdl$Demo_Snackbar$model, tables: _debois$elm_mdl$Demo_Tables$model, loading: _debois$elm_mdl$Demo_Loading$model, footers: _debois$elm_mdl$Demo_Footer$model, tooltip: _debois$elm_mdl$Demo_Tooltip$model, tabs: _debois$elm_mdl$Demo_Tabs$model, slider: _debois$elm_mdl$Demo_Slider$model, typography: _debois$elm_mdl$Demo_Typography$model, cards: _debois$elm_mdl$Demo_Cards$model, lists: _debois$elm_mdl$Demo_Lists$model, dialog: _debois$elm_mdl$Demo_Dialog$model, elevation: _debois$elm_mdl$Demo_Elevation$model, selectedTab: 0, transparentHeader: false};
 var _debois$elm_mdl$Main$Model = function (a) {
 	return function (b) {
 		return function (c) {
@@ -24715,7 +25143,9 @@ var _debois$elm_mdl$Main$Model = function (a) {
 																	return function (r) {
 																		return function (s) {
 																			return function (t) {
-																				return {mdl: a, buttons: b, badges: c, layout: d, menus: e, textfields: f, toggles: g, snackbar: h, tables: i, loading: j, footers: k, tooltip: l, tabs: m, slider: n, typography: o, cards: p, lists: q, dialog: r, selectedTab: s, transparentHeader: t};
+																				return function (u) {
+																					return {mdl: a, buttons: b, badges: c, layout: d, menus: e, textfields: f, toggles: g, snackbar: h, tables: i, loading: j, footers: k, tooltip: l, tabs: m, slider: n, typography: o, cards: p, lists: q, dialog: r, elevation: s, selectedTab: t, transparentHeader: u};
+																				};
 																			};
 																		};
 																	};
@@ -24735,6 +25165,9 @@ var _debois$elm_mdl$Main$Model = function (a) {
 			};
 		};
 	};
+};
+var _debois$elm_mdl$Main$ElevationMsg = function (a) {
+	return {ctor: 'ElevationMsg', _0: a};
 };
 var _debois$elm_mdl$Main$DialogMsg = function (a) {
 	return {ctor: 'DialogMsg', _0: a};
@@ -24920,7 +25353,13 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 		_0: 'Elevation',
 		_1: 'elevation',
 		_2: function (_p5) {
-			return _debois$elm_mdl$Demo_Elevation$view;
+			return A2(
+				_elm_lang$html$Html_App$map,
+				_debois$elm_mdl$Main$ElevationMsg,
+				_debois$elm_mdl$Demo_Elevation$view(
+					function (_) {
+						return _.elevation;
+					}(_p5)));
 		}
 	},
 		{
@@ -25031,43 +25470,43 @@ var _debois$elm_mdl$Main$tabs = _elm_lang$core$Native_List.fromArray(
 	},
 		{
 		ctor: '_Tuple3',
-		_0: 'Textfields',
-		_1: 'textfields',
-		_2: function (_p14) {
-			return A2(
-				_elm_lang$html$Html_App$map,
-				_debois$elm_mdl$Main$TextfieldMsg,
-				_debois$elm_mdl$Demo_Textfields$view(
-					function (_) {
-						return _.textfields;
-					}(_p14)));
-		}
-	},
-		{
-		ctor: '_Tuple3',
 		_0: 'Tables',
 		_1: 'tables',
-		_2: function (_p15) {
+		_2: function (_p14) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TablesMsg,
 				_debois$elm_mdl$Demo_Tables$view(
 					function (_) {
 						return _.tables;
-					}(_p15)));
+					}(_p14)));
 		}
 	},
 		{
 		ctor: '_Tuple3',
 		_0: 'Tabs',
 		_1: 'tabs',
-		_2: function (_p16) {
+		_2: function (_p15) {
 			return A2(
 				_elm_lang$html$Html_App$map,
 				_debois$elm_mdl$Main$TabMsg,
 				_debois$elm_mdl$Demo_Tabs$view(
 					function (_) {
 						return _.tabs;
+					}(_p15)));
+		}
+	},
+		{
+		ctor: '_Tuple3',
+		_0: 'Textfields',
+		_1: 'textfields',
+		_2: function (_p16) {
+			return A2(
+				_elm_lang$html$Html_App$map,
+				_debois$elm_mdl$Main$TextfieldMsg,
+				_debois$elm_mdl$Demo_Textfields$view(
+					function (_) {
+						return _.textfields;
 					}(_p16)));
 		}
 	},
@@ -25446,7 +25885,7 @@ var _debois$elm_mdl$Main$update = F2(
 					_debois$elm_mdl$Demo_Lists$update,
 					_p28._0,
 					model);
-			default:
+			case 'DialogMsg':
 				return A6(
 					_debois$elm_mdl$Material_Helpers$lift,
 					function (_) {
@@ -25462,8 +25901,74 @@ var _debois$elm_mdl$Main$update = F2(
 					_debois$elm_mdl$Demo_Dialog$update,
 					_p28._0,
 					model);
+			default:
+				return A6(
+					_debois$elm_mdl$Material_Helpers$lift,
+					function (_) {
+						return _.elevation;
+					},
+					F2(
+						function (m, x) {
+							return _elm_lang$core$Native_Utils.update(
+								m,
+								{elevation: x});
+						}),
+					_debois$elm_mdl$Main$ElevationMsg,
+					_debois$elm_mdl$Demo_Elevation$update,
+					_p28._0,
+					model);
 		}
 	});
+var _debois$elm_mdl$Main$drawer = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(
+		_debois$elm_mdl$Material_Layout$title,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Example drawer')
+			])),
+		A2(
+		_debois$elm_mdl$Material_Layout$navigation,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Layout$link,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Layout$href('https://github.com/debois/elm-mdl')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('github')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Layout$link,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Layout$href('http://package.elm-lang.org/packages/debois/elm-mdl/latest/')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('elm-package')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Layout$link,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Layout$href('#cards'),
+						_debois$elm_mdl$Material_Layout$onClick(
+						_debois$elm_mdl$Material_Layout$toggleDrawer(_debois$elm_mdl$Main$Mdl))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Card component')
+					]))
+			]))
+	]);
 var _debois$elm_mdl$Main$SelectTab = function (a) {
 	return {ctor: 'SelectTab', _0: a};
 };
