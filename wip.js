@@ -20993,7 +20993,8 @@ var _debois$elm_mdl$Demo_Menus$container = F4(
 									_elm_lang$core$Native_List.fromArray(
 										[
 											_p2._1,
-											_debois$elm_mdl$Material_Menu$icon(model.icon)
+											_debois$elm_mdl$Material_Menu$icon(model.icon),
+											_debois$elm_mdl$Material_Menu$ripple
 										]),
 									items)
 								]))
@@ -26547,10 +26548,22 @@ var _debois$elm_mdl$Main$view$ = function (model) {
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-					A2(
-					_elm_lang$html$Html_App$map,
-					_debois$elm_mdl$Main$DialogMsg,
-					_debois$elm_mdl$Demo_Dialog$element(model.dialog))
+					function () {
+					var _p29 = A2(_debois$elm_mdl$Main$nth, model.selectedTab, _debois$elm_mdl$Main$tabs);
+					if (((_p29.ctor === 'Just') && (_p29._0.ctor === '_Tuple3')) && (_p29._0._0 === 'Dialog')) {
+						return A2(
+							_elm_lang$html$Html_App$map,
+							_debois$elm_mdl$Main$DialogMsg,
+							_debois$elm_mdl$Demo_Dialog$element(model.dialog));
+					} else {
+						return A2(
+							_elm_lang$html$Html$div,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[]));
+					}
+				}()
 				]));
 	}(
 		A4(
@@ -26567,10 +26580,10 @@ var _debois$elm_mdl$Main$view$ = function (model) {
 					A2(
 					_debois$elm_mdl$Material_Options$when,
 					function () {
-						var _p29 = model.layout.header;
-						switch (_p29.ctor) {
+						var _p30 = model.layout.header;
+						switch (_p30.ctor) {
 							case 'Waterfall':
-								return _debois$elm_mdl$Material_Layout$waterfall(_p29._0);
+								return _debois$elm_mdl$Material_Layout$waterfall(_p30._0);
 							case 'Seamed':
 								return _debois$elm_mdl$Material_Layout$seamed;
 							case 'Standard':
@@ -26610,15 +26623,15 @@ var _debois$elm_mdl$Main$location2messages = function (location) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			function () {
-			var _p30 = A2(_elm_lang$core$String$dropLeft, 1, location.hash);
-			if (_p30 === '') {
+			var _p31 = A2(_elm_lang$core$String$dropLeft, 1, location.hash);
+			if (_p31 === '') {
 				return _debois$elm_mdl$Main$SelectTab(0);
 			} else {
 				return _debois$elm_mdl$Main$SelectTab(
 					A2(
 						_elm_lang$core$Maybe$withDefault,
 						-1,
-						A2(_elm_lang$core$Dict$get, _p30, _debois$elm_mdl$Main$urlTabs)));
+						A2(_elm_lang$core$Dict$get, _p31, _debois$elm_mdl$Main$urlTabs)));
 			}
 		}()
 		]);
