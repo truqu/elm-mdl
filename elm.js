@@ -26646,7 +26646,7 @@ var _debois$elm_mdl$Main$main = {
 				_0: _elm_lang$core$Native_Utils.update(
 					_debois$elm_mdl$Main$model,
 					{
-						mdl: A2(_debois$elm_mdl$Material_Layout$setTabsWidth, 1384, _debois$elm_mdl$Main$model.mdl)
+						mdl: A2(_debois$elm_mdl$Material_Layout$setTabsWidth, 2124, _debois$elm_mdl$Main$model.mdl)
 					}),
 				_1: _debois$elm_mdl$Material_Layout$sub0(_debois$elm_mdl$Main$Mdl)
 			},
