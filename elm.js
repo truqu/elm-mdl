@@ -12046,7 +12046,7 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 														{
 															canScrollLeft: _elm_lang$core$Native_Utils.cmp(scrollLeft, 0) > 0,
 															canScrollRight: _elm_lang$core$Native_Utils.cmp(scrollWidth - clientWidth, scrollLeft + 1) > 0,
-															width: _elm_lang$core$Maybe$Just(clientWidth)
+															width: _elm_lang$core$Maybe$Just(scrollWidth)
 														}));
 											}),
 										A2(_elm_lang$core$Json_Decode_ops[':='], 'scrollWidth', _elm_lang$core$Json_Decode$float),
