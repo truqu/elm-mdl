@@ -20836,7 +20836,7 @@ var _debois$elm_mdl$Demo_Loading$update = F2(
 
 var _debois$elm_mdl$Demo_Menus$references = _elm_lang$core$Native_List.fromArray(
 	[
-		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-menu'),
+		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Menu'),
 		_debois$elm_mdl$Demo_Page$mds('https://www.google.com/design/spec/components/menus.html'),
 		_debois$elm_mdl$Demo_Page$mdl('https://www.getmdl.io/components/#menus-section')
 	]);
