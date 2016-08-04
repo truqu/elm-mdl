@@ -9293,7 +9293,7 @@ var _debois$elm_mdl$Material_Button$blurAndForward = function (event) {
 var _debois$elm_mdl$Material_Button$accent = _debois$elm_mdl$Material_Options$cs('mdl-button--accent');
 var _debois$elm_mdl$Material_Button$primary = _debois$elm_mdl$Material_Options$cs('mdl-button--primary');
 var _debois$elm_mdl$Material_Button$colored = _debois$elm_mdl$Material_Options$cs('mdl-button--colored');
-var _debois$elm_mdl$Material_Button$plain = _debois$elm_mdl$Material_Options$cs('mdl-button--colored');
+var _debois$elm_mdl$Material_Button$plain = _debois$elm_mdl$Material_Options$nop;
 var _debois$elm_mdl$Material_Button$disabled = _debois$elm_mdl$Material_Options$set(
 	function (options) {
 		return _elm_lang$core$Native_Utils.update(
