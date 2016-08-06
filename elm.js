@@ -10544,19 +10544,23 @@ var _debois$elm_mdl$Material_Menu$pack = A4(
 var _debois$elm_mdl$Material_Menu$subs = function (lift) {
 	return function (_p25) {
 		return _elm_lang$core$Platform_Sub$batch(
-			A2(
-				_elm_lang$core$List$map,
-				function (_p26) {
-					var _p27 = _p26;
-					return A2(
-						_elm_lang$core$Platform_Sub$map,
-						A2(_debois$elm_mdl$Material_Menu$pack, lift, _p27._0),
-						_debois$elm_mdl$Material_Menu$subscriptions(_p27._1));
-				},
-				_elm_lang$core$Dict$toList(
-					function (_) {
-						return _.menu;
-					}(_p25))));
+			A3(
+				_elm_lang$core$Dict$foldl,
+				F3(
+					function (idx, model, ss) {
+						return A2(
+							_elm_lang$core$List_ops['::'],
+							A2(
+								_elm_lang$core$Platform_Sub$map,
+								A2(_debois$elm_mdl$Material_Menu$pack, lift, idx),
+								_debois$elm_mdl$Material_Menu$subscriptions(model)),
+							ss);
+					}),
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				function (_) {
+					return _.menu;
+				}(_p25)));
 	};
 };
 var _debois$elm_mdl$Material_Menu$Open = function (a) {
@@ -10591,9 +10595,9 @@ var _debois$elm_mdl$Material_Menu$view1 = F8(
 	function (lift, config, model, offsetTop, offsetHeight, index, summary, item) {
 		var canSelect = summary.config.enabled && (!_elm_lang$core$Native_Utils.eq(summary.config.onSelect, _elm_lang$core$Maybe$Nothing));
 		var hasRipple = config.ripple && canSelect;
-		var ripple = function (_p28) {
+		var ripple = function (_p26) {
 			return lift(
-				A2(_debois$elm_mdl$Material_Menu$Ripple, index, _p28));
+				A2(_debois$elm_mdl$Material_Menu$Ripple, index, _p26));
 		};
 		return A5(
 			_debois$elm_mdl$Material_Options$apply,
@@ -10617,13 +10621,13 @@ var _debois$elm_mdl$Material_Menu$view1 = F8(
 						model.index,
 						_elm_lang$core$Maybe$Just(index))),
 					function () {
-					var _p29 = {
+					var _p27 = {
 						ctor: '_Tuple2',
 						_0: model.geometry,
 						_1: _debois$elm_mdl$Material_Menu$isActive(model)
 					};
-					if (((_p29.ctor === '_Tuple2') && (_p29._0.ctor === 'Just')) && (_p29._1 === true)) {
-						return A4(_debois$elm_mdl$Material_Menu$delay, config.alignment, _p29._0._0.menu.bounds.height, offsetTop, offsetHeight);
+					if (((_p27.ctor === '_Tuple2') && (_p27._0.ctor === 'Just')) && (_p27._1 === true)) {
+						return A4(_debois$elm_mdl$Material_Menu$delay, config.alignment, _p27._0._0.menu.bounds.height, offsetTop, offsetHeight);
 					} else {
 						return _debois$elm_mdl$Material_Options$nop;
 					}
@@ -10750,21 +10754,21 @@ var _debois$elm_mdl$Material_Menu$view = F4(
 	function (lift, model, properties, items) {
 		var itemSummaries = A2(
 			_elm_lang$core$List$map,
-			function (_p30) {
+			function (_p28) {
 				return A2(
 					_debois$elm_mdl$Material_Options$collect,
 					_debois$elm_mdl$Material_Menu$defaultItemConfig,
 					function (_) {
 						return _.options;
-					}(_p30));
+					}(_p28));
 			},
 			items);
 		var numItems = _elm_lang$core$List$length(items);
 		var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Menu$defaultConfig, properties);
 		var config = summary.config;
 		var alignment = function () {
-			var _p31 = config.alignment;
-			switch (_p31.ctor) {
+			var _p29 = config.alignment;
+			switch (_p29.ctor) {
 				case 'BottomLeft':
 					return _debois$elm_mdl$Material_Options$cs('mdl-menu--bottom-left');
 				case 'BottomRight':
@@ -10878,14 +10882,14 @@ var _debois$elm_mdl$Material_Menu$view = F4(
 									alignment
 								]),
 							function () {
-								var _p32 = model.geometry;
-								if (_p32.ctor === 'Just') {
-									var _p33 = _p32._0;
+								var _p30 = model.geometry;
+								if (_p30.ctor === 'Just') {
+									var _p31 = _p30._0;
 									return A6(
 										_elm_lang$core$List$map5,
 										A3(_debois$elm_mdl$Material_Menu$view1, lift, config, model),
-										_p33.offsetTops,
-										_p33.offsetHeights,
+										_p31.offsetTops,
+										_p31.offsetHeights,
 										_elm_lang$core$Native_List.range(0, numItems - 1),
 										itemSummaries,
 										items);
@@ -13089,6 +13093,18 @@ var _debois$elm_mdl$Material_Tabs$textLabel = F2(
 				]));
 	});
 
+var _debois$elm_mdl$Material$init = function (lift) {
+	return _debois$elm_mdl$Material_Layout$sub0(lift);
+};
+var _debois$elm_mdl$Material$subscriptions = F2(
+	function (lift, model) {
+		return _elm_lang$core$Platform_Sub$batch(
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Layout$subs, lift, model.mdl),
+					A2(_debois$elm_mdl$Material_Menu$subs, lift, model.mdl)
+				]));
+	});
 var _debois$elm_mdl$Material$update = F2(
 	function (msg, model) {
 		return A2(
@@ -21377,19 +21393,19 @@ var _debois$elm_mdl$Demo_Menus$demo1 = function (model) {
 					A2(
 					_debois$elm_mdl$Demo_Menus$basic,
 					model,
-					{ctor: '_Tuple2', _0: 'Bottom left', _1: _debois$elm_mdl$Material_Menu$bottomLeft}),
+					{ctor: '_Tuple2', _0: 'bottomLeft', _1: _debois$elm_mdl$Material_Menu$bottomLeft}),
 					A2(
 					_debois$elm_mdl$Demo_Menus$edit,
 					model,
-					{ctor: '_Tuple2', _0: 'Bottom right', _1: _debois$elm_mdl$Material_Menu$bottomRight}),
+					{ctor: '_Tuple2', _0: 'bottomRight', _1: _debois$elm_mdl$Material_Menu$bottomRight}),
 					A2(
 					_debois$elm_mdl$Demo_Menus$checkmarks,
 					model,
-					{ctor: '_Tuple2', _0: 'Top left', _1: _debois$elm_mdl$Material_Menu$topLeft}),
+					{ctor: '_Tuple2', _0: 'topLeft', _1: _debois$elm_mdl$Material_Menu$topLeft}),
 					A2(
 					_debois$elm_mdl$Demo_Menus$icons,
 					model,
-					{ctor: '_Tuple2', _0: 'Top right', _1: _debois$elm_mdl$Material_Menu$topRight})
+					{ctor: '_Tuple2', _0: 'topRight', _1: _debois$elm_mdl$Material_Menu$topRight})
 				])));
 };
 var _debois$elm_mdl$Demo_Menus$view = function (model) {
@@ -26954,7 +26970,7 @@ var _debois$elm_mdl$Main$main = {
 					{
 						mdl: A2(_debois$elm_mdl$Material_Layout$setTabsWidth, 2124, _debois$elm_mdl$Main$model.mdl)
 					}),
-				_1: _debois$elm_mdl$Material_Layout$sub0(_debois$elm_mdl$Main$Mdl)
+				_1: _debois$elm_mdl$Material$init(_debois$elm_mdl$Main$Mdl)
 			},
 			view: _debois$elm_mdl$Main$view,
 			subscriptions: function (model) {
@@ -26965,7 +26981,7 @@ var _debois$elm_mdl$Main$main = {
 							_elm_lang$core$Platform_Sub$map,
 							_debois$elm_mdl$Main$MenusMsg,
 							A2(_debois$elm_mdl$Material_Menu$subs, _debois$elm_mdl$Demo_Menus$Mdl, model.menus.mdl)),
-							A2(_debois$elm_mdl$Material_Layout$subs, _debois$elm_mdl$Main$Mdl, model.mdl)
+							A2(_debois$elm_mdl$Material$subscriptions, _debois$elm_mdl$Main$Mdl, model)
 						]));
 			},
 			update: _debois$elm_mdl$Main$update
