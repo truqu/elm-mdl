@@ -9449,6 +9449,16 @@ var _debois$elm_mdl$Material_Textfield$rows = function (rows) {
 				});
 		});
 };
+var _debois$elm_mdl$Material_Textfield$style = function (style) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (config) {
+			return _elm_lang$core$Native_Utils.update(
+				config,
+				{
+					style: A2(_elm_lang$core$Basics_ops['++'], style, config.style)
+				});
+		});
+};
 var _debois$elm_mdl$Material_Textfield$onFocus = function (f) {
 	return _debois$elm_mdl$Material_Options$set(
 		function (config) {
@@ -9562,7 +9572,9 @@ var _debois$elm_mdl$Material_Textfield$Config = function (a) {
 										return function (k) {
 											return function (l) {
 												return function (m) {
-													return {labelText: a, labelFloat: b, error: c, value: d, disabled: e, onInput: f, kind: g, rows: h, cols: i, autofocus: j, maxlength: k, onBlur: l, onFocus: m};
+													return function (n) {
+														return {labelText: a, labelFloat: b, error: c, value: d, disabled: e, onInput: f, kind: g, rows: h, cols: i, autofocus: j, maxlength: k, onBlur: l, onFocus: m, style: n};
+													};
 												};
 											};
 										};
@@ -9595,7 +9607,23 @@ var _debois$elm_mdl$Material_Textfield$textarea = _debois$elm_mdl$Material_Optio
 			{kind: _debois$elm_mdl$Material_Textfield$Textarea});
 	});
 var _debois$elm_mdl$Material_Textfield$Text = {ctor: 'Text'};
-var _debois$elm_mdl$Material_Textfield$defaultConfig = {labelText: _elm_lang$core$Maybe$Nothing, labelFloat: false, error: _elm_lang$core$Maybe$Nothing, value: _elm_lang$core$Maybe$Nothing, disabled: false, kind: _debois$elm_mdl$Material_Textfield$Text, onInput: _elm_lang$core$Maybe$Nothing, rows: _elm_lang$core$Maybe$Nothing, cols: _elm_lang$core$Maybe$Nothing, autofocus: false, maxlength: _elm_lang$core$Maybe$Nothing, onBlur: _elm_lang$core$Maybe$Nothing, onFocus: _elm_lang$core$Maybe$Nothing};
+var _debois$elm_mdl$Material_Textfield$defaultConfig = {
+	labelText: _elm_lang$core$Maybe$Nothing,
+	labelFloat: false,
+	error: _elm_lang$core$Maybe$Nothing,
+	value: _elm_lang$core$Maybe$Nothing,
+	disabled: false,
+	kind: _debois$elm_mdl$Material_Textfield$Text,
+	onInput: _elm_lang$core$Maybe$Nothing,
+	rows: _elm_lang$core$Maybe$Nothing,
+	cols: _elm_lang$core$Maybe$Nothing,
+	autofocus: false,
+	maxlength: _elm_lang$core$Maybe$Nothing,
+	onBlur: _elm_lang$core$Maybe$Nothing,
+	onFocus: _elm_lang$core$Maybe$Nothing,
+	style: _elm_lang$core$Native_List.fromArray(
+		[])
+};
 var _debois$elm_mdl$Material_Textfield$text$ = _debois$elm_mdl$Material_Options$set(
 	function (config) {
 		return _elm_lang$core$Native_Utils.update(
@@ -9695,18 +9723,19 @@ var _debois$elm_mdl$Material_Textfield$view = F3(
 					[config.onInput, config.onBlur, config.onFocus])),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
+					A4(
+					_debois$elm_mdl$Material_Options$styled$,
 					elementFunction,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_debois$elm_mdl$Material_Options$many(config.style),
+							_debois$elm_mdl$Material_Options$cs('mdl-textfield__input'),
+							A2(_debois$elm_mdl$Material_Options$css, 'outline', 'none')
+						]),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('mdl-textfield__input'),
-								_elm_lang$html$Html_Attributes$style(
-								_elm_lang$core$Native_List.fromArray(
-									[
-										{ctor: '_Tuple2', _0: 'outline', _1: 'none'}
-									])),
 								_elm_lang$html$Html_Attributes$disabled(config.disabled),
 								_elm_lang$html$Html_Events$onBlur(
 								lift(_debois$elm_mdl$Material_Textfield$Blur)),
