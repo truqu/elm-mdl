@@ -12040,7 +12040,6 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 		var _p33 = _p25.tabs;
 		var _p32 = _p25.header;
 		var _p31 = _p25.drawer;
-		var drawerIsVisible = model.isDrawerOpen;
 		var hasDrawer = !_elm_lang$core$Native_Utils.eq(
 			_p31,
 			_elm_lang$core$Native_List.fromArray(
@@ -12077,6 +12076,7 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 		var contentDrawerButton = _p26._0;
 		var headerDrawerButton = _p26._1;
 		var drawerIsFixed = config.fixedDrawer && _elm_lang$core$Basics$not(model.isSmallScreen);
+		var drawerIsVisible = model.isDrawerOpen && _elm_lang$core$Basics$not(drawerIsFixed);
 		var tabsElems = _elm_lang$core$Basics$not(hasTabs) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
 			A4(_debois$elm_mdl$Material_Layout$tabsView, lift, config, model, _p33));
 		return A2(
@@ -12118,7 +12118,7 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 											{ctor: '_Tuple2', _0: 'mdl-layout--fixed-header', _1: config.fixedHeader && hasHeader},
 											{ctor: '_Tuple2', _0: 'mdl-layout--fixed-tabs', _1: config.fixedTabs && hasTabs}
 										]))),
-								(drawerIsVisible && _elm_lang$core$Basics$not(drawerIsFixed)) ? _elm_lang$core$Maybe$Just(
+								drawerIsVisible ? _elm_lang$core$Maybe$Just(
 								A2(
 									_elm_lang$html$Html_Events$on,
 									'keydown',
@@ -12157,10 +12157,7 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 							{
 								ctor: '_Tuple2',
 								_0: 'elm-mdl-obfuscator',
-								_1: A2(
-									_debois$elm_mdl$Material_Layout$obfuscator,
-									lift,
-									drawerIsVisible && _elm_lang$core$Basics$not(drawerIsFixed))
+								_1: A2(_debois$elm_mdl$Material_Layout$obfuscator, lift, drawerIsVisible)
 							}),
 							A2(
 							_elm_lang$core$Maybe$map,
@@ -16138,7 +16135,7 @@ var _debois$elm_mdl$Material_Dialog$title = _debois$elm_mdl$Material_Dialog$Titl
 
 var _debois$elm_mdl$Demo_Dialog$references = _elm_lang$core$Native_List.fromArray(
 	[
-		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Card'),
+		_debois$elm_mdl$Demo_Page$package('http://package.elm-lang.org/packages/debois/elm-mdl/latest/Material-Dialog'),
 		_debois$elm_mdl$Demo_Page$mds('https://material.google.com/components/dialog.html'),
 		_debois$elm_mdl$Demo_Page$mdl('https://getmdl.io/components/#dialog-section')
 	]);
