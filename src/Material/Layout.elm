@@ -250,7 +250,7 @@ update msg model =
 -}
 update' : (Msg -> msg) -> Msg -> Model -> Maybe (Model, Cmd msg)
 update' f action model =
-  case action of
+  case Debug.log "" action of
     NOP -> 
       Nothing
 
@@ -323,11 +323,6 @@ update' f action model =
     TransitionHeader { toCompact, fixedHeader } -> 
       let 
         headerVisible = (not model.isSmallScreen) || fixedHeader
-        model' = 
-          { model 
-          | isCompact = toCompact
-          , isAnimating = headerVisible 
-          }
       in
         if not model.isAnimating then 
           Just 
@@ -770,9 +765,53 @@ drawerView lift isVisible elems =
     elems
 
 
+{- Upstream non-bacwkwards compatible solution to browser address bar not
+disappearing on mobile: 
+
+  https://github.com/google/material-design-lite/issues/1072#issuecomment-187259322
+  https://github.com/google/material-design-lite/issues/1072#issuecomment-123445135
+  
+-}
+fixUpstream1072 : Html m
+fixUpstream1072 =
+  Options.stylesheet """
+  .mdl-layout {
+    overflow: visible;
+    min-height: 100%;
+  }
+  .mdl-layout__drawer {
+      position: fixed;
+  }
+  .mdl-layout__content {
+      display: block;
+      overflow: visible;
+      margin-top: 64px;
+  }
+  .is-small-screen .mdl-layout__content {
+      margin-top: 56px;
+  }
+  .mdl-layout__header {
+      position: fixed;
+  }
+  .mdl-layout__obfuscator {
+      position: fixed;
+  }
+  /*
+  html, body {
+    overflow-y: auto;
+    min-height: 100%;
+  } 
+  */
+  .mdl-layout__header--scroll.mdl-layout__header {
+      position: relative;
+  }
+
+"""
+
+
 {-| Content of the layout only (contents of main pane is set elsewhere). Every
 part is optional; if you supply an empty list for either, the sub-component is 
-omitted. 
+omitted.
 
 The `header` and `drawer` contains the contents of the header rows and drawer,
 respectively. Use `row`, `spacer`, `title`, `nav`, and `link`, as well as
@@ -832,6 +871,13 @@ view lift model options { drawer, header, tabs, main } =
         Nothing
       else 
         Just (tabsView lift config model tabs)
+
+    onScroll = 
+      (on "scroll" >> attribute)
+             (Decoder.map 
+               (ScrollPane config.fixedHeader >> lift) 
+               ("currentTarget" := DOM.scrollTop))
+           `when` isWaterfall config.mode 
   in
   div
     [ classList
@@ -839,32 +885,32 @@ view lift model options { drawer, header, tabs, main } =
         , ("has-scrolling-header", config.mode == Scrolling)
         ]
     ]
-    [ filter (Keyed.node "div") 
-        ([ Just <| classList
-            [ ("mdl-layout ", True)
-            , ("is-upgraded", True)
-            , ("is-small-screen", model.isSmallScreen)
-            , ("has-drawer", hasDrawer)
-            , ("has-tabs", hasTabs)
-            , ("mdl-js-layout", True)
-            , ("mdl-layout--fixed-drawer", config.fixedDrawer && hasDrawer)
-            , ("mdl-layout--fixed-header", config.fixedHeader && hasHeader)
-            , ("mdl-layout--fixed-tabs", config.fixedTabs && hasTabs)
-            ]
+    [ filter (Options.styled (Keyed.node "div"))
+        [ cs "mdl-layout"
+        , cs "is-upgraded"
+        , cs "is-small-screen" `when` model.isSmallScreen
+        , cs "has-drawer" `when` hasDrawer
+        , cs "has-tabs" `when` hasTabs
+        , cs "mdl-js-layout"
+        , cs "mdl-layout--fixed-drawer" `when` (config.fixedDrawer && hasDrawer)
+        , cs "mdl-layout--fixed-header" `when` (config.fixedHeader && hasHeader)
+        , cs "mdl-layout--fixed-tabs" `when` (config.fixedTabs && hasTabs)
+        , onScroll
+        {- Fix upstream #4180. -}
+        , css "overflow-y" "visible" `when` (config.mode == Scrolling && config.fixedHeader)
+        , css "overflow-x" "visible" `when` (config.mode == Scrolling && config.fixedHeader)
+        , css "overflow" "visible"   `when` (config.mode == Scrolling && config.fixedHeader)
         {- MDL has code to close drawer on ESC, but it seems to be
            non-operational. We fix it here. Elm 0.17 doesn't give us a way to
            catch global keyboard events, but we can reasonably assume something inside
            mdl-layout__container is focused. 
         -} 
-        , if drawerIsVisible then
-            on "keydown" 
-               (Decoder.map 
-                 (lift << \key -> if key == 27 then ToggleDrawer else NOP) 
-                 Events.keyCode)
-            |> Just
-          else
-            Nothing
-        ] |> List.filterMap identity)
+        , (on "keydown" >> attribute)
+             (Decoder.map 
+               (lift << \key -> if key == 27 then ToggleDrawer else NOP) 
+               Events.keyCode)
+          `when` drawerIsVisible
+        ]
         [ if hasHeader then
             headerView lift config model (headerDrawerButton, header, tabsElems)
               |> (,) "elm-mdl-header" |> Just
@@ -875,18 +921,10 @@ view lift model options { drawer, header, tabs, main } =
         , contentDrawerButton |> Maybe.map ((,) "elm-drawer-button")
         , Options.styled main'
             [ cs "mdl-layout__content" 
-            , css "overflow-y" "visible" `when` (config.mode == Scrolling && config.fixedHeader)
-            , css "overflow-x" "visible" `when` (config.mode == Scrolling && config.fixedHeader)
-            , css "overflow" "visible"   `when` (config.mode == Scrolling && config.fixedHeader)
-              {- Above three lines fixes upstream bug #4180. -}
-            , (on "scroll" >> attribute)
-                 (Decoder.map 
-                   (ScrollPane config.fixedHeader >> lift) 
-                   (DOM.target DOM.scrollTop))
-               `when` isWaterfall config.mode 
-            ]
+            ] 
             main
           |> (,) (toString config.selectedTab) |> Just
+        , Just ("elm-mdl-extra-styles", fixUpstream1072)
         ]
     ]
 
