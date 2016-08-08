@@ -11365,7 +11365,7 @@ var _elm_lang$window$Window$subMap = F2(
 	});
 _elm_lang$core$Native_Platform.effectManagers['Window'] = {pkg: 'elm-lang/window', init: _elm_lang$window$Window$init, onEffects: _elm_lang$window$Window$onEffects, onSelfMsg: _elm_lang$window$Window$onSelfMsg, tag: 'sub', subMap: _elm_lang$window$Window$subMap};
 
-var _debois$elm_mdl$Material_Layout$fixUpstream1072 = _debois$elm_mdl$Material_Options$stylesheet('\n  .mdl-layout {\n    overflow: visible;\n    min-height: 100%;\n  }\n  .mdl-layout__drawer {\n      position: fixed;\n  }\n  .mdl-layout__content {\n      display: block;\n      overflow: visible;\n      margin-top: 64px;\n  }\n  .is-small-screen .mdl-layout__content {\n      margin-top: 56px;\n  }\n  .mdl-layout__header {\n      position: fixed;\n  }\n  .mdl-layout__obfuscator {\n      position: fixed;\n  }\n  html, body {\n    overflow-y: auto;\n    min-height: 100%;\n  }\n\n');
+var _debois$elm_mdl$Material_Layout$fixUpstream1072 = _debois$elm_mdl$Material_Options$stylesheet('\n  .mdl-layout {\n    overflow: visible;\n    min-height: 100%;\n  }\n  .mdl-layout__drawer {\n      position: fixed;\n  }\n  .mdl-layout__content {\n      display: block;\n      overflow: visible;\n      margin-top: 64px;\n  }\n  .is-small-screen .mdl-layout__content {\n      margin-top: 56px;\n  }\n  .mdl-layout__header {\n      position: fixed;\n  }\n  .mdl-layout__obfuscator {\n      position: fixed;\n  }\n  /*\n  html, body {\n    overflow-y: auto;\n    min-height: 100%;\n  } \n  */\n  .mdl-layout__header--scroll.mdl-layout__header {\n      position: relative;\n  }\n\n');
 var _debois$elm_mdl$Material_Layout$drawerView = F3(
 	function (lift, isVisible, elems) {
 		return A2(
@@ -11565,7 +11565,7 @@ var _debois$elm_mdl$Material_Layout$update$ = F3(
 	function (f, action, model) {
 		update$:
 		while (true) {
-			var _p5 = action;
+			var _p5 = A2(_elm_lang$core$Debug$log, '', action);
 			switch (_p5.ctor) {
 				case 'NOP':
 					return _elm_lang$core$Maybe$Nothing;
@@ -12067,22 +12067,22 @@ var _debois$elm_mdl$Material_Layout$tabsView = F4(
 var _debois$elm_mdl$Material_Layout$view = F4(
 	function (lift, model, options, _p24) {
 		var _p25 = _p24;
-		var _p33 = _p25.tabs;
-		var _p32 = _p25.header;
-		var _p31 = _p25.drawer;
+		var _p34 = _p25.tabs;
+		var _p33 = _p25.header;
+		var _p32 = _p25.drawer;
 		var hasDrawer = !_elm_lang$core$Native_Utils.eq(
-			_p31,
+			_p32,
 			_elm_lang$core$Native_List.fromArray(
 				[]));
 		var hasTabs = _elm_lang$core$Basics$not(
 			_elm_lang$core$List$isEmpty(
-				_elm_lang$core$Basics$fst(_p33)));
+				_elm_lang$core$Basics$fst(_p34)));
 		var hasHeader = hasTabs || _elm_lang$core$Basics$not(
-			_elm_lang$core$List$isEmpty(_p32));
+			_elm_lang$core$List$isEmpty(_p33));
 		var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Layout$defaultConfig, options);
 		var config = summary.config;
 		var _p26 = function () {
-			var _p27 = {ctor: '_Tuple3', _0: _p31, _1: _p32, _2: config.fixedHeader};
+			var _p27 = {ctor: '_Tuple3', _0: _p32, _1: _p33, _2: config.fixedHeader};
 			if ((_p27.ctor === '_Tuple3') && (_p27._0.ctor === '::')) {
 				if ((_p27._1.ctor === '::') && (_p27._2 === true)) {
 					return {
@@ -12108,7 +12108,21 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 		var drawerIsFixed = config.fixedDrawer && _elm_lang$core$Basics$not(model.isSmallScreen);
 		var drawerIsVisible = model.isDrawerOpen && _elm_lang$core$Basics$not(drawerIsFixed);
 		var tabsElems = _elm_lang$core$Basics$not(hasTabs) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
-			A4(_debois$elm_mdl$Material_Layout$tabsView, lift, config, model, _p33));
+			A4(_debois$elm_mdl$Material_Layout$tabsView, lift, config, model, _p34));
+		var onScroll = A2(
+			_debois$elm_mdl$Material_Options$when,
+			function (_p28) {
+				return _debois$elm_mdl$Material_Options_Internal$attribute(
+					A2(_elm_lang$html$Html_Events$on, 'scroll', _p28));
+			}(
+				A2(
+					_elm_lang$core$Json_Decode$map,
+					function (_p29) {
+						return lift(
+							A2(_debois$elm_mdl$Material_Layout$ScrollPane, config.fixedHeader, _p29));
+					},
+					A2(_elm_lang$core$Json_Decode_ops[':='], 'currentTarget', _debois$elm_dom$DOM$scrollTop))),
+			_debois$elm_mdl$Material_Layout$isWaterfall(config.mode));
 		return A2(
 			_elm_lang$html$Html$div,
 			_elm_lang$core$Native_List.fromArray(
@@ -12128,40 +12142,67 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 				[
 					A3(
 					_debois$elm_mdl$Material_Helpers$filter,
-					_elm_lang$html$Html_Keyed$node('div'),
-					A2(
-						_elm_lang$core$List$filterMap,
-						_elm_lang$core$Basics$identity,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$core$Maybe$Just(
-								_elm_lang$html$Html_Attributes$classList(
-									_elm_lang$core$Native_List.fromArray(
-										[
-											{ctor: '_Tuple2', _0: 'mdl-layout ', _1: true},
-											{ctor: '_Tuple2', _0: 'is-upgraded', _1: true},
-											{ctor: '_Tuple2', _0: 'is-small-screen', _1: model.isSmallScreen},
-											{ctor: '_Tuple2', _0: 'has-drawer', _1: hasDrawer},
-											{ctor: '_Tuple2', _0: 'has-tabs', _1: hasTabs},
-											{ctor: '_Tuple2', _0: 'mdl-js-layout', _1: true},
-											{ctor: '_Tuple2', _0: 'mdl-layout--fixed-drawer', _1: config.fixedDrawer && hasDrawer},
-											{ctor: '_Tuple2', _0: 'mdl-layout--fixed-header', _1: config.fixedHeader && hasHeader},
-											{ctor: '_Tuple2', _0: 'mdl-layout--fixed-tabs', _1: config.fixedTabs && hasTabs}
-										]))),
-								drawerIsVisible ? _elm_lang$core$Maybe$Just(
+					_debois$elm_mdl$Material_Options$styled(
+						_elm_lang$html$Html_Keyed$node('div')),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_debois$elm_mdl$Material_Options$cs('mdl-layout'),
+							_debois$elm_mdl$Material_Options$cs('is-upgraded'),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							_debois$elm_mdl$Material_Options$cs('is-small-screen'),
+							model.isSmallScreen),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							_debois$elm_mdl$Material_Options$cs('has-drawer'),
+							hasDrawer),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							_debois$elm_mdl$Material_Options$cs('has-tabs'),
+							hasTabs),
+							_debois$elm_mdl$Material_Options$cs('mdl-js-layout'),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							_debois$elm_mdl$Material_Options$cs('mdl-layout--fixed-drawer'),
+							config.fixedDrawer && hasDrawer),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							_debois$elm_mdl$Material_Options$cs('mdl-layout--fixed-header'),
+							config.fixedHeader && hasHeader),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							_debois$elm_mdl$Material_Options$cs('mdl-layout--fixed-tabs'),
+							config.fixedTabs && hasTabs),
+							onScroll,
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'visible'),
+							_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							A2(_debois$elm_mdl$Material_Options$css, 'overflow-x', 'visible'),
+							_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'visible'),
+							_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
+							A2(
+							_debois$elm_mdl$Material_Options$when,
+							function (_p30) {
+								return _debois$elm_mdl$Material_Options_Internal$attribute(
+									A2(_elm_lang$html$Html_Events$on, 'keydown', _p30));
+							}(
 								A2(
-									_elm_lang$html$Html_Events$on,
-									'keydown',
-									A2(
-										_elm_lang$core$Json_Decode$map,
-										function (_p28) {
-											return lift(
-												function (key) {
-													return _elm_lang$core$Native_Utils.eq(key, 27) ? _debois$elm_mdl$Material_Layout$ToggleDrawer : _debois$elm_mdl$Material_Layout$NOP;
-												}(_p28));
-										},
-										_elm_lang$html$Html_Events$keyCode))) : _elm_lang$core$Maybe$Nothing
-							])),
+									_elm_lang$core$Json_Decode$map,
+									function (_p31) {
+										return lift(
+											function (key) {
+												return _elm_lang$core$Native_Utils.eq(key, 27) ? _debois$elm_mdl$Material_Layout$ToggleDrawer : _debois$elm_mdl$Material_Layout$NOP;
+											}(_p31));
+									},
+									_elm_lang$html$Html_Events$keyCode)),
+							drawerIsVisible)
+						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							hasHeader ? _elm_lang$core$Maybe$Just(
@@ -12176,12 +12217,12 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 									lift,
 									config,
 									model,
-									{ctor: '_Tuple3', _0: headerDrawerButton, _1: _p32, _2: tabsElems}))) : _elm_lang$core$Maybe$Nothing,
+									{ctor: '_Tuple3', _0: headerDrawerButton, _1: _p33, _2: tabsElems}))) : _elm_lang$core$Maybe$Nothing,
 							_elm_lang$core$Basics$not(hasDrawer) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
 							{
 								ctor: '_Tuple2',
 								_0: 'elm-mdl-drawer',
-								_1: A3(_debois$elm_mdl$Material_Layout$drawerView, lift, drawerIsVisible, _p31)
+								_1: A3(_debois$elm_mdl$Material_Layout$drawerView, lift, drawerIsVisible, _p32)
 							}),
 							_elm_lang$core$Basics$not(hasDrawer) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
 							{
@@ -12209,36 +12250,10 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 									_elm_lang$core$Native_List.fromArray(
 										[
 											_debois$elm_mdl$Material_Options$cs('mdl-layout__content'),
-											A2(
-											_debois$elm_mdl$Material_Options$when,
-											A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'visible'),
-											_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
-											A2(
-											_debois$elm_mdl$Material_Options$when,
-											A2(_debois$elm_mdl$Material_Options$css, 'overflow-x', 'visible'),
-											_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
-											A2(
-											_debois$elm_mdl$Material_Options$when,
-											A2(_debois$elm_mdl$Material_Options$css, 'overflow', 'visible'),
-											_elm_lang$core$Native_Utils.eq(config.mode, _debois$elm_mdl$Material_Layout$Scrolling) && config.fixedHeader),
-											A2(
-											_debois$elm_mdl$Material_Options$when,
-											function (_p29) {
-												return _debois$elm_mdl$Material_Options_Internal$attribute(
-													A2(_elm_lang$html$Html_Events$on, 'scroll', _p29));
-											}(
-												A2(
-													_elm_lang$core$Json_Decode$map,
-													function (_p30) {
-														return lift(
-															A2(_debois$elm_mdl$Material_Layout$ScrollPane, config.fixedHeader, _p30));
-													},
-													_debois$elm_dom$DOM$target(_debois$elm_dom$DOM$scrollTop))),
-											_debois$elm_mdl$Material_Layout$isWaterfall(config.mode))
+											onScroll
 										]),
 									_p25.main)))
-						])),
-					_debois$elm_mdl$Material_Layout$fixUpstream1072
+						]))
 				]));
 	});
 var _debois$elm_mdl$Material_Layout$render = A4(
