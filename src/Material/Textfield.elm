@@ -355,7 +355,7 @@ view lift model options =
     textValue =
       case config.value of
         Just str ->
-          [ Html.Attributes.value str ]
+          [ Html.Attributes.defaultValue str ]
         Nothing ->
           []
 
