@@ -9702,7 +9702,7 @@ var _debois$elm_mdl$Material_Textfield$view = F3(
 			if (_p6.ctor === 'Just') {
 				return _elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$value(_p6._0)
+						_elm_lang$html$Html_Attributes$defaultValue(_p6._0)
 					]);
 			} else {
 				return _elm_lang$core$Native_List.fromArray(
