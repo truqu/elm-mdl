@@ -10833,8 +10833,14 @@ var _debois$elm_mdl$Material_Menu$view = F4(
 					return _debois$elm_mdl$Material_Options$cs('mdl-menu--top-right');
 			}
 		}();
-		return A2(
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
 			_elm_lang$html$Html$div,
+			A2(
+				_elm_lang$core$List_ops['::'],
+				A2(_debois$elm_mdl$Material_Options$css, 'position', 'relative'),
+				properties),
 			_elm_lang$core$Native_List.fromArray(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
@@ -10860,7 +10866,12 @@ var _debois$elm_mdl$Material_Menu$view = F4(
 								_debois$elm_mdl$Material_Options$when,
 								_debois$elm_mdl$Material_Options_Internal$attribute(
 									A2(_debois$elm_mdl$Material_Menu$onClick, _debois$elm_mdl$Material_Menu_Geometry$decode, _debois$elm_mdl$Material_Menu$Open)),
-								!_elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Opened))
+								!_elm_lang$core$Native_Utils.eq(model.animationState, _debois$elm_mdl$Material_Menu$Opened)),
+								A2(
+								_debois$elm_mdl$Material_Options$when,
+								_debois$elm_mdl$Material_Options_Internal$attribute(
+									_elm_lang$html$Html_Events$onClick(_debois$elm_mdl$Material_Menu$Close)),
+								_debois$elm_mdl$Material_Menu$isActive(model))
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
