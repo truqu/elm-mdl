@@ -20840,6 +20840,14 @@ var _debois$elm_mdl$Demo_Lists$update = F2(
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
+			case 'Click':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{str: _p6._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
 				return A2(_debois$elm_mdl$Material$update, _p6._0, model);
 		}
@@ -20848,14 +20856,112 @@ var _debois$elm_mdl$Demo_Lists$model = {
 	mdl: _debois$elm_mdl$Material$model,
 	toggles: _elm_lang$core$Set$fromList(
 		_elm_lang$core$Native_List.fromArray(
-			[1, 9, 10]))
+			[1, 9, 10])),
+	str: ''
 };
-var _debois$elm_mdl$Demo_Lists$Model = F2(
-	function (a, b) {
-		return {mdl: a, toggles: b};
+var _debois$elm_mdl$Demo_Lists$Model = F3(
+	function (a, b, c) {
+		return {mdl: a, toggles: b, str: c};
 	});
 var _debois$elm_mdl$Demo_Lists$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
+};
+var _debois$elm_mdl$Demo_Lists$Click = function (a) {
+	return {ctor: 'Click', _0: a};
+};
+var _debois$elm_mdl$Demo_Lists$click = function (model) {
+	return A2(
+		_debois$elm_mdl$Demo_Lists$withCode,
+		'\n div \n    [] \n    [ Lists.ul [ css \"margin\" \"0\", css \"padding\" \"0\" ]\n        [ Lists.li [] \n            [ Lists.content \n                [ Options.attribute <| Html.Events.onClick (Click \"Elm\") ] \n                [ text \"Elm\" ] \n            ]\n        , Lists.li [] \n            [ Lists.content \n                [ Options.attribute <| Html.Events.onClick (Click \"F#\") ] \n                [ text \"F#\" ] \n            ]\n        , Lists.li [] \n            [ Lists.content \n                [ Options.attribute <| Html.Events.onClick (Click \"Lisp\") ] \n                [ text \"Lisp\" ] \n            ]\n        ]\n    , p [] \n        [ text <| \"Try clicking a list item above. \" ++ \n            if model.str /= \"\" then \n              \"You chose \'\" ++ model.str ++ \"\'.\" \n            else \n              \"\" \n        ]\n    ]\n  ',
+		A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_List$ul,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'margin', '0'),
+							A2(_debois$elm_mdl$Material_Options$css, 'padding', '0')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_debois$elm_mdl$Material_List$li,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_List$content,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Options$attribute(
+											_elm_lang$html$Html_Events$onClick(
+												_debois$elm_mdl$Demo_Lists$Click('Elm')))
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Elm')
+										]))
+								])),
+							A2(
+							_debois$elm_mdl$Material_List$li,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_List$content,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Options$attribute(
+											_elm_lang$html$Html_Events$onClick(
+												_debois$elm_mdl$Demo_Lists$Click('F#')))
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('F#')
+										]))
+								])),
+							A2(
+							_debois$elm_mdl$Material_List$li,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_List$content,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_debois$elm_mdl$Material_Options$attribute(
+											_elm_lang$html$Html_Events$onClick(
+												_debois$elm_mdl$Demo_Lists$Click('Lisp')))
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Lisp')
+										]))
+								]))
+						])),
+					A2(
+					_elm_lang$html$Html$p,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'Try clicking a list item above. ',
+								(!_elm_lang$core$Native_Utils.eq(model.str, '')) ? A2(
+									_elm_lang$core$Basics_ops['++'],
+									'You chose \'',
+									A2(_elm_lang$core$Basics_ops['++'], model.str, '\'.')) : ''))
+						]))
+				])));
 };
 var _debois$elm_mdl$Demo_Lists$Flip = function (a) {
 	return {ctor: 'Flip', _0: a};
@@ -21469,7 +21575,14 @@ var _debois$elm_mdl$Demo_Lists$view = function (model) {
 										return {ctor: '_Tuple2', _0: v0, _1: v1};
 									}),
 								'List with body',
-								_debois$elm_mdl$Demo_Lists$body)
+								_debois$elm_mdl$Demo_Lists$body),
+								A2(
+								F2(
+									function (v0, v1) {
+										return {ctor: '_Tuple2', _0: v0, _1: v1};
+									}),
+								'List with actions',
+								_debois$elm_mdl$Demo_Lists$click)
 							])))
 				]))
 		]);
