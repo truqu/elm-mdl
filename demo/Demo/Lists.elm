@@ -86,7 +86,7 @@ basic model =
     , Lists.li [] [ Lists.content [] [ text "Lisp" ] ]
     ]
   |> withCode """
-   Lists.ul []
+   Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li [] [ Lists.content [] [ text "Elm" ] ]
     , Lists.li [] [ Lists.content [] [ text "F#" ] ]
     , Lists.li [] [ Lists.content [] [ text "Lisp" ] ]
@@ -125,20 +125,20 @@ click model =
   |> withCode """
  div 
     [] 
-    [ Lists.ul []
+    [ Lists.ul [ css "margin" "0", css "padding" "0" ]
         [ Lists.li [] 
             [ Lists.content 
-                [ Options.attribute <| Html.Events.onClick (Click "Elm") ] 
+                [ Options.onClick (Click "Elm") ]
                 [ text "Elm" ] 
             ]
         , Lists.li [] 
             [ Lists.content 
-                [ Options.attribute <| Html.Events.onClick (Click "F#") ] 
+                [ Options.onClick (Click "F#") ]
                 [ text "F#" ] 
             ]
         , Lists.li [] 
             [ Lists.content 
-                [ Options.attribute <| Html.Events.onClick (Click "Lisp") ] 
+                [ Options.onClick (Click "Lisp") ]
                 [ text "Lisp" ] 
             ]
         ]
@@ -179,7 +179,7 @@ icons model =
         ]
     ]
   |> withCode """
-  Lists.ul []
+  Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li []
         [ Lists.content [] 
             [ Lists.icon "inbox" []
@@ -224,7 +224,7 @@ avatars model =
         ]
     ]
   |> withCode """
-  Lists.ul []
+  Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li []
         [ Lists.content []
             [ Lists.avatarImage "assets/christoffer.jpg" []
@@ -270,7 +270,7 @@ avatarsWithIcons model =
         ]
     ]
   |> withCode """
-   Lists.ul []
+   Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li []
         [ Lists.content [] 
             [ Lists.avatarIcon "photo_camera" []
@@ -342,7 +342,7 @@ secondaryAction1 model =
         ]
         [ Icon.i "star" ]
   in 
-    Lists.ul [] 
+    Lists.ul [ css "margin" "0", css "padding" "0" ]
       [ Lists.li []
           [ Lists.content [] [ text "Alan Turing" ] 
           , star model 0
@@ -401,7 +401,7 @@ secondaryAction2 model =
   in
     comment list "Note the incantations necessary to get Radio Button positioning correct." 
       |> withCode """
-  Lists.ul []
+  Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li []
         [ Lists.content [] [ text "Include checkbox?" ]
         , Lists.content2 [] 
@@ -465,7 +465,7 @@ info model =
         ]
     ]
       |> withCode """
-  Lists.ul [] 
+  Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li []
         [ Lists.content [] [ text "MacBook" ] 
         , Lists.content2 [] 
@@ -492,7 +492,7 @@ info model =
 subtitle : Model -> (Html Msg, String)
 subtitle model = 
   Lists.ul [ css "margin" "0", css "padding" "0" ]
-    [ Lists.li [ Lists.withSubtitle ]
+    [ Lists.li [ Lists.withSubtitle ] -- NB! Required on every Lists.li containing subtitle.
         [ Lists.content [] 
             [ text "Mark Wright" 
             , Lists.subtitle [] [ text "4.02m (June 8, 1912)" ]
@@ -514,7 +514,7 @@ subtitle model =
       |> flip comment """Note that subtitle and body are mutually exclusive.
                          Note also the required Lists.withSubtitle argument to Lists.li."""
       |> withCode """
-  Lists.ul []
+  Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li [ Lists.withSubtitle ] -- NB! Required on every Lists.li containing subtitle.
         [ Lists.content [] 
             [ text "Mark Wright" 
@@ -576,7 +576,7 @@ you should drive...« """ ]
       |> flip comment """Note that body and subtitle are mutually exclusive.
                          Note also the required Lists.withBody argument to Lists.li."""
       |> withCode """
-   Lists.ul []
+   Lists.ul [ css "margin" "0", css "padding" "0" ]
     [ Lists.li [ Lists.withBody ] -- NB! Required on every Lists.li containing body. 
         [ Lists.content [] 
             [ text \"Robert Frost\"
