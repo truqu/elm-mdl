@@ -42,7 +42,7 @@ import Html exposing (Attribute, Html)
 import Html.Attributes
 import Material.Options as Options exposing (cs)
 import Material.Icon as Icon
-import Material.Options.Internal as Internal
+import Material.Internal.Options as Internal
 import Material.Helpers as Helpers
 import Json.Decode as Json
 

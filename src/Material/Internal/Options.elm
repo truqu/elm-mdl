@@ -1,4 +1,4 @@
-module Material.Options.Internal exposing (..)
+module Material.Internal.Options exposing (..)
 
 import Html exposing (Attribute)
 import Html.Attributes
@@ -6,7 +6,6 @@ import Html.Events
 import String
 import Json.Decode as Json exposing (Decoder)
 import Material.Dispatch as Dispatch
-import Material.Component as Component
 
 
 {-| Internal type of properties. Do not use directly; use constructor functions
@@ -224,25 +223,6 @@ container =
     option << (\style config -> { config | container = Many style :: config.container })
 
 
-
-dispatch
-  : (Component.Msg button textfield menu layout toggles tooltip tabs (List m) -> m)
-    -> Property c m 
-dispatch lift =
-    Lift (Json.map Component.Dispatch >> Json.map lift)
-
-
-{-| Inject dispatch
--}
-inject
-  : (a -> b -> List (Property c m) -> d)
-  -> (Component.Msg button textfield menu layout toggles tooltip tabs (List m) -> m)
-  -> a
-  -> b
-  -> List (Property c m)
-  -> d   
-inject view lift a b c =
-    view a b (dispatch lift :: c)
 
 
 {-| Construct lifted handler with trivial decoder in a manner that

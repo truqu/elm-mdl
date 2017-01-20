@@ -103,13 +103,15 @@ import Json.Decode as Json exposing (Decoder)
 import Json.Encode exposing (string)
 import Mouse
 import String
+import Material.Internal.Menu exposing (ItemConfig, Msg(..))
+import Material.Internal.Geometry as Geometry exposing (Geometry)
 import Material.Helpers as Helpers exposing (pure, map1st)
 import Material.Icon as Icon
-import Material.Menu.Geometry as Geometry exposing (Geometry)
 import Material.Options as Options exposing (Style, cs, css, styled, styled_, when)
-import Material.Options.Internal as Internal
+import Material.Internal.Options as Internal
 import Material.Ripple as Ripple
-import Material.Component as Component exposing (Indexed, Index)
+import Material.Component as Component exposing (Indexed)
+import Material.Msg exposing (Index) 
 
 
 -- CONSTANTS
@@ -194,12 +196,6 @@ item =
     Item
 
 
-type alias ItemConfig m =
-    { enabled : Bool
-    , divider : Bool
-    , onSelect : Maybe m
-    }
-
 
 defaultItemConfig : ItemConfig m
 defaultItemConfig =
@@ -235,15 +231,8 @@ onSelect =
 
 {-| Component action.
 -}
-type Msg m
-    = Open Geometry
-    | Select Int (Maybe m)
-    | Close
-    | Tick
-    | Ripple Int Ripple.Msg
-    | Click Mouse.Position
-    | Key (List (Internal.Summary (ItemConfig m) m)) Int
-
+type alias Msg m = 
+  Material.Internal.Menu.Msg m
 
 isActive : Model -> Bool
 isActive model =
@@ -787,28 +776,24 @@ indicated in `Material`, and a user message `Select String`.
       ]
 -}
 render :
-    (Component.Msg button textfield (Msg m) layout toggles tooltip tabs dispatch
-     -> m
-    )
-    -> Component.Index
+    (Material.Msg.Msg m -> m)
+    -> Index
     -> Store s
     -> List (Property m)
     -> List (Item m)
     -> Html m
 render =
-    Component.render get view Component.MenuMsg
+    Component.render get view Material.Msg.MenuMsg
 
 
 {-| TODO
 -}
 subs :
-    (Component.Msg button textfield (Msg msg) layout toggles tooltip tabs dispatch
-     -> msg
-    )
+    (Material.Msg.Msg msg -> msg)
     -> Store s
     -> Sub msg
 subs =
-    Component.subs Component.MenuMsg .menu subscriptions
+    Component.subs Material.Msg.MenuMsg .menu subscriptions
 
 
 

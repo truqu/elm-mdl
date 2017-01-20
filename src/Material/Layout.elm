@@ -4,7 +4,7 @@ module Material.Layout
         , subscriptions
         , Model
         , defaultModel
-        , Msg(ToggleDrawer)
+        , Msg
         , update
         , Property
         , fixedDrawer
@@ -148,12 +148,14 @@ import Platform.Cmd exposing (Cmd)
 import Window
 import Json.Decode as Decoder exposing (field)
 import Task
+import Material.Internal.Layout exposing (Msg(..), TabScrollState)
 import Material.Component as Component exposing (Indexed, indexed, render1, subs)
 import Material.Helpers as Helpers exposing (filter, delay, pure, map1st, map2nd)
 import Material.Ripple as Ripple
 import Material.Icon as Icon
-import Material.Options as Options exposing (Style, cs, nop, css, when, styled)
-import Material.Options.Internal as Internal
+import Material.Options as Options exposing (Style, cs, nop, css, when, styled, id)
+import Material.Internal.Options as Internal
+import Material.Msg exposing (Index)
 import DOM
 
 
@@ -181,12 +183,6 @@ subscriptions model =
 
 -- MODEL
 
-
-type alias TabScrollState =
-    { canScrollLeft : Bool
-    , canScrollRight : Bool
-    , width : Maybe Int
-    }
 
 
 
@@ -250,17 +246,8 @@ defaultModel =
 
 {-| Component messages.
 -}
-type Msg
-    = ToggleDrawer
-    | Resize Int
-    | ScrollTab TabScrollState
-    | ScrollPane Bool Float
-      -- True means fixedHeader
-    | TransitionHeader { toCompact : Bool, fixedHeader : Bool }
-    | TransitionEnd
-    | NOP
-      -- Subcomponents
-    | Ripple Int Ripple.Msg
+type alias Msg = 
+    Material.Internal.Layout.Msg
 
 
 {-| Component update.
@@ -1022,14 +1009,14 @@ Excerpt:
       , main = [ MyComponent.view model ]
     }
 -}
-render
-  : ( Component.Msg button textfield menu Msg toggles tooltip tabs dispatch -> m)
+render :
+    (Material.Msg.Msg m -> m)
     -> { a | layout : Model }
     -> List (Property m)
     -> Contents m
     -> Html m    
 render =
-    Component.render1 get view Component.LayoutMsg
+    Component.render1 get view Material.Msg.LayoutMsg
 
 
 {-| Component subscriptions (type compatible with render). Either this or
@@ -1037,11 +1024,11 @@ render =
 viewport size changes.
 -}
 subs :
-    (Component.Msg button textfield menu Msg toggles tooltip tabs dispatch -> m)
+    (Material.Msg.Msg m -> m)
     -> Store s
     -> Sub m
 subs lift =
-    get >> subscriptions >> Sub.map (Component.LayoutMsg >> lift)
+    get >> subscriptions >> Sub.map (Material.Msg.LayoutMsg >> lift)
 
 
 {-| Component subscription initialiser. Either this or
@@ -1049,10 +1036,10 @@ subs lift =
 viewport size changes. Example use:
 -}
 sub0 :
-    (Component.Msg button textfield menu Msg toggles tooltip tabs dispatch -> m)
+    (Material.Msg.Msg m -> m)
     -> Cmd m
 sub0 lift =
-    Tuple.second init |> Cmd.map (Component.LayoutMsg >> lift)
+    Tuple.second init |> Cmd.map (Material.Msg.LayoutMsg >> lift)
 
 
 {-| Toggle drawer.
@@ -1061,10 +1048,10 @@ This function is for use with component typing. For plain TEA, simply issue
 an update for the exposed Msg `ToggleDrawer`.
 -}
 toggleDrawer :
-    (Component.Msg button textfield menu Msg toggles tooltip tabs dispatch -> m)
+    (Material.Msg.Msg m -> m)
     -> m
 toggleDrawer lift =
-    (Component.LayoutMsg >> lift) ToggleDrawer
+    (Material.Msg.LayoutMsg >> lift) ToggleDrawer
 
 
 {-| Set tabsWidth
