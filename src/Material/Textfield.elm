@@ -192,7 +192,7 @@ value =
 -}
 defaultValue : String -> Property m
 defaultValue =
-    Internal.options
+    Internal.option
         << (\str config -> { config | defaultValue = Just str })
 
 
