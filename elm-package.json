@@ -28,6 +28,7 @@
         "Material.Snackbar",
         "Material.Spinner",
         "Material.Slider",
+        "Material.Slider.SliderPreview",
         "Material.Table",
         "Material.Tooltip",
         "Material.Toggles",
