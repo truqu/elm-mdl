@@ -24,6 +24,7 @@ module Material.Textfield
         , Msg(..)
         , update
         , view
+        , Store
         )
 
 {-| From the [Material Design Lite documentation](http://www.getmdl.io/components/#textfields-section):

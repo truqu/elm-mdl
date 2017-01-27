@@ -13,6 +13,7 @@
         "Material.Card",
         "Material.Chip",
         "Material.Color",
+        "Material.Component",
         "Material.Dialog",
         "Material.Elevation",
         "Material.Footer",
