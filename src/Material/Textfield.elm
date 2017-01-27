@@ -6,6 +6,7 @@ module Material.Textfield
         , error
         , value
         , defaultValue
+        , dirty
         , disabled
         , password
         , render
@@ -103,6 +104,7 @@ type alias Config m =
     , error : Maybe String
     , value : Maybe String
     , defaultValue : Maybe String
+    , dirty : Maybe Bool
     , disabled : Bool
     , kind : Kind
     , expandable : Maybe String
@@ -119,6 +121,7 @@ defaultConfig =
     , error = Nothing
     , value = Nothing
     , defaultValue = Nothing
+    , dirty = Nothing
     , disabled = False
     , kind = Text
     , expandable = Nothing
@@ -195,6 +198,14 @@ defaultValue : String -> Property m
 defaultValue =
     Internal.option
         << (\str config -> { config | defaultValue = Just str })
+
+
+{-| Specify if field is dirty
+-}
+dirty : Bool -> Property m
+dirty =
+    Internal.option
+        << (\bool config -> { config | dirty = Just bool })
 
 
 {-| Specifies that the input should automatically get focus when the page loads
@@ -394,15 +405,20 @@ view lift model options _ =
             , cs "is-invalid" |> when (config.error /= Nothing)
             , cs "is-dirty"
                 |> when
-                    (case config.value of
-                        Just "" ->
-                            False
-
-                        Just _ ->
-                            True
+                    (case config.dirty of
+                        Just bool ->
+                            bool
 
                         Nothing ->
-                            model.isDirty
+                            case config.value of
+                                Just "" ->
+                                    False
+
+                                Just _ ->
+                                    True
+
+                                Nothing ->
+                                    model.isDirty
                     )
             , cs "is-focused" |> when (model.isFocused && not config.disabled)
             , cs "is-disabled" |> when config.disabled
